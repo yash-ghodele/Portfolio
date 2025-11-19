@@ -8,8 +8,17 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 export default function Testimonials() {
   const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        staggerChildren: 0.1
+      }
+    },
   }
 
   const testimonials = [
@@ -77,7 +86,7 @@ export default function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="py-20">
+    <section id="testimonials" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial="hidden"
@@ -90,23 +99,43 @@ export default function Testimonials() {
           <Badge variant="outline" className="mb-4">
             Testimonials
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Satisfaction</h2>
-          <div className="w-20 h-1 bg-primary mx-auto"></div>
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+          >
+            What People Say
+          </motion.h2>
+          <motion.div 
+            className="w-20 h-1 bg-primary mx-auto"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          ></motion.div>
         </motion.div>
 
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           variants={fadeIn}
         >
           <Carousel className="w-full">
             <CarouselContent>
-              {testimonials.map((testimonial) => (
+              {testimonials.map((testimonial, index) => (
                 <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3 p-2">
-                  <Card className="h-full">
-                    <CardContent className="p-6 flex flex-col h-full">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Card className="h-full hover:shadow-lg hover:shadow-primary/10 hover:border-primary/50 transition-all duration-300 group">
+                      <CardContent className="p-6 flex flex-col h-full">
                       <div className="flex items-center gap-4 mb-4">
                         <div className="w-12 h-12 rounded-full overflow-hidden">
                           <img
@@ -124,6 +153,7 @@ export default function Testimonials() {
                       <div className="mt-auto">{renderStars(testimonial.rating)}</div>
                     </CardContent>
                   </Card>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>

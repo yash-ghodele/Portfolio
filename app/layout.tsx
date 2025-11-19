@@ -8,10 +8,9 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Yash | Portfolio - Engineer • Leader • Innovator",
+  title: "Yash Ghodele | Portfolio",
   description:
-    "Portfolio of Yash - B.Tech ECE Student, Event Manager, IoT Enthusiast, and Community Leader at MIT College of Engineering, Aurangabad",
-  generator: "v0.app",
+    "Portfolio of Yash Ghodele - B.Tech ECE Student, Event Manager, IoT Enthusiast, and Community Leader at MIT College of Engineering, Aurangabad",
 }
 
 export default function RootLayout({

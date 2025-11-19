@@ -28,8 +28,42 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    },
+  }
+
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    },
+  }
+
+  const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    },
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -62,14 +96,14 @@ export default function Contact() {
     {
       icon: <Mail className="h-6 w-6 text-primary" />,
       title: "Email",
-      value: "yash@example.com",
-      link: "mailto:yash@example.com",
+      value: "yashghodele.work@gmail.com",
+      link: "mailto:yashghodele.work@gmail.com",
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
       title: "Phone",
-      value: "+91 (XXX) XXX-XXXX",
-      link: "tel:+91XXXXXXXXXX",
+      value: "+91 76661 68561",
+      link: "tel:+917666168561",
     },
     {
       icon: <MapPin className="h-6 w-6 text-primary" />,
@@ -93,21 +127,35 @@ export default function Contact() {
           <Badge variant="outline" className="mb-4">
             Contact
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Collaborate</h2>
-          <div className="w-20 h-1 bg-primary mx-auto"></div>
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+          >
+            Let's Collaborate
+          </motion.h2>
+          <motion.div 
+            className="w-20 h-1 bg-primary mx-auto"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          ></motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            variants={fadeIn}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={slideInLeft}
             className="lg:col-span-2"
           >
-            <Card>
-              <CardContent className="p-6">
+            <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <CardContent className="p-6 md:p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
@@ -118,6 +166,7 @@ export default function Contact() {
                         placeholder="John Doe"
                         value={formData.name}
                         onChange={handleChange}
+                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/50"
                         required
                       />
                     </div>
@@ -130,6 +179,7 @@ export default function Contact() {
                         placeholder="john@example.com"
                         value={formData.email}
                         onChange={handleChange}
+                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/50"
                         required
                       />
                     </div>
@@ -142,6 +192,7 @@ export default function Contact() {
                       placeholder="Project Inquiry or Collaboration"
                       value={formData.subject}
                       onChange={handleChange}
+                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/50"
                       required
                     />
                   </div>
@@ -154,10 +205,15 @@ export default function Contact() {
                       rows={6}
                       value={formData.message}
                       onChange={handleChange}
+                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/50 resize-none"
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  <Button 
+                    type="submit" 
+                    className="w-full shadow-lg hover:shadow-glow-hover transition-all duration-300" 
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
@@ -168,18 +224,24 @@ export default function Contact() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            variants={fadeIn}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            variants={slideInRight}
           >
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
-                <Card key={index}>
+                <Card key={index} className="hover:shadow-lg hover:border-primary/50 transition-all duration-300 group">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <div className="bg-primary/10 p-3 rounded-full">{info.icon}</div>
+                      <motion.div 
+                        className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        {info.icon}
+                      </motion.div>
                       <div>
-                        <h4 className="text-lg font-semibold mb-1">{info.title}</h4>
+                        <h4 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">{info.title}</h4>
                         {info.link ? (
                           <a href={info.link} className="text-muted-foreground hover:text-primary transition-colors">
                             {info.value}
@@ -198,12 +260,12 @@ export default function Contact() {
                   <h4 className="text-lg font-semibold mb-4">Follow Me</h4>
                   <div className="flex gap-4">
                     <Button variant="outline" size="icon" className="rounded-full bg-transparent" asChild>
-                      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                      <a href="https://linkedin.com/in/yash-ghodele" target="_blank" rel="noopener noreferrer">
                         <Linkedin className="h-5 w-5" />
                       </a>
                     </Button>
                     <Button variant="outline" size="icon" className="rounded-full bg-transparent" asChild>
-                      <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                      <a href="https://github.com/yash-ghodele" target="_blank" rel="noopener noreferrer">
                         <Github className="h-5 w-5" />
                       </a>
                     </Button>

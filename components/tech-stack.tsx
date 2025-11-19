@@ -85,13 +85,40 @@ export default function TechStack() {
   }
 
   const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    },
   }
 
   const scaleUp = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1 },
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 150,
+        damping: 20
+      }
+    },
+  }
+
+  const cardHover = {
+    scale: 1.05,
+    y: -8,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 20
+    }
   }
 
   return (
@@ -108,8 +135,22 @@ export default function TechStack() {
           <Badge variant="outline" className="mb-4">
             Skills
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical & Soft Skills</h2>
-          <div className="w-20 h-1 bg-primary mx-auto"></div>
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+          >
+            Technical & Soft Skills
+          </motion.h2>
+          <motion.div 
+            className="w-20 h-1 bg-primary mx-auto"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          ></motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -118,21 +159,29 @@ export default function TechStack() {
               key={key}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6 }}
               variants={scaleUp}
+              whileHover={cardHover}
+              whileTap={{ scale: 0.98 }}
             >
               <Card
-                className={`h-full cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                  selectedCategory === key ? "ring-2 ring-primary" : ""
+                className={`h-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/50 ${
+                  selectedCategory === key ? "ring-2 ring-primary shadow-glow" : ""
                 }`}
                 onClick={() => setSelectedCategory(selectedCategory === key ? null : key)}
               >
                 <CardContent className="p-6">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="bg-primary/10 p-3 rounded-full">{category.icon}</div>
+                    <motion.div 
+                      className="bg-primary/10 p-3 rounded-full"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {category.icon}
+                    </motion.div>
                     <div>
-                      <h3 className="text-lg font-semibold">{category.title}</h3>
+                      <h3 className="text-lg font-semibold hover:text-primary transition-colors">{category.title}</h3>
                       <p className="text-sm text-muted-foreground">{category.description}</p>
                     </div>
                   </div>
@@ -158,12 +207,12 @@ export default function TechStack() {
                               <span className="font-medium">{skill.name}</span>
                               <span className="text-muted-foreground">{skill.level}%</span>
                             </div>
-                            <div className="w-full bg-muted rounded-full h-1.5">
+                            <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
                               <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: `${skill.level}%` }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="bg-primary h-1.5 rounded-full"
+                                transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+                                className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full shadow-glow"
                               />
                             </div>
                           </motion.div>

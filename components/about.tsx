@@ -7,8 +7,43 @@ import { Zap, Users, Lightbulb } from "lucide-react"
 
 export default function About() {
   const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        staggerChildren: 0.1
+      }
+    },
+  }
+
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    },
+  }
+
+  const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    },
   }
 
   return (
@@ -25,17 +60,31 @@ export default function About() {
           <Badge variant="outline" className="mb-4">
             About Me
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Who I Am</h2>
-          <div className="w-20 h-1 bg-primary mx-auto"></div>
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+          >
+            Who I Am
+          </motion.h2>
+          <motion.div 
+            className="w-20 h-1 bg-primary mx-auto"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          ></motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            variants={fadeIn}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={slideInLeft}
           >
             <h3 className="text-2xl font-bold mb-4">Passionate About Innovation</h3>
             <p className="text-muted-foreground mb-6">
@@ -62,15 +111,19 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.3 }}
               variants={fadeIn}
             >
-              <Card>
+              <Card className="h-full hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 hover:border-primary/50 group">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full">
+                    <motion.div 
+                      className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
                       <Zap className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-semibold mb-2">IoT Enthusiast</h4>
-                      <p className="text-muted-foreground">
+                    </motion.div>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">IoT Enthusiast</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Building smart solutions with Arduino, sensors, and embedded systems for real-world problems.
                       </p>
                     </div>
@@ -86,15 +139,19 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.4 }}
               variants={fadeIn}
             >
-              <Card>
+              <Card className="h-full hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 hover:border-primary/50 group">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full">
+                    <motion.div 
+                      className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
                       <Users className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-semibold mb-2">Community Leader</h4>
-                      <p className="text-muted-foreground">
+                    </motion.div>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">Community Leader</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Leading teams, organizing events, and fostering innovation through collaboration and mentorship.
                       </p>
                     </div>
@@ -110,15 +167,19 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.5 }}
               variants={fadeIn}
             >
-              <Card>
+              <Card className="h-full hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 hover:border-primary/50 group">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full">
+                    <motion.div 
+                      className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
                       <Lightbulb className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-semibold mb-2">Creative Problem Solver</h4>
-                      <p className="text-muted-foreground">
+                    </motion.div>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">Creative Problem Solver</h4>
+                      <p className="text-muted-foreground leading-relaxed">
                         Combining technical skills with creative thinking to develop innovative solutions.
                       </p>
                     </div>
