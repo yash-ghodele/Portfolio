@@ -74,7 +74,7 @@ This project is private and proprietary.
 
 **Yash Ghodele**
 
-- Portfolio: [Live Site](https://your-portfolio-url.netlify.app)
+- Portfolio: [Live Site](https://yash-ghodele.netlify.app)
 - GitHub: [@yash-ghodele](https://github.com/yash-ghodele)
 - LinkedIn: [Yash Ghodele](https://linkedin.com/in/yash-ghodele)
 
