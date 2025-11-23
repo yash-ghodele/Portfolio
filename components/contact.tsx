@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/hooks/use-toast"
-import { Mail, MapPin, Phone, Github, Linkedin, Instagram } from "lucide-react"
+import { Mail, MapPin, Phone, Github, Linkedin, Instagram, Send, Loader2 } from "lucide-react"
 
 interface FormData {
   name: string
@@ -29,8 +29,8 @@ export default function Contact() {
 
   const fadeIn = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
@@ -42,8 +42,8 @@ export default function Contact() {
 
   const slideInLeft = {
     hidden: { opacity: 0, x: -50 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: {
         type: "spring",
@@ -55,8 +55,8 @@ export default function Contact() {
 
   const slideInRight = {
     hidden: { opacity: 0, x: 50 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: {
         type: "spring",
@@ -114,8 +114,11 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-20 bg-muted/30 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -124,10 +127,10 @@ export default function Contact() {
           variants={fadeIn}
           className="text-center mb-16"
         >
-          <Badge variant="outline" className="mb-4">
+          <Badge variant="outline" className="mb-4 text-sm font-medium">
             Contact
           </Badge>
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -136,13 +139,16 @@ export default function Contact() {
           >
             Let's Collaborate
           </motion.h2>
-          <motion.div 
-            className="w-20 h-1 bg-primary mx-auto"
+          <motion.div
+            className="w-20 h-1 bg-primary mx-auto mb-4"
             initial={{ width: 0 }}
             whileInView={{ width: 80 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           ></motion.div>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Have a project in mind or want to discuss technology? I'd love to hear from you.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -154,7 +160,7 @@ export default function Contact() {
             variants={slideInLeft}
             className="lg:col-span-2"
           >
-            <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Card className="shadow-2xl shadow-primary/5 border-2 hover:border-primary/20 transition-all duration-300 bg-card/50 backdrop-blur-sm">
               <CardContent className="p-6 md:p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -166,7 +172,7 @@ export default function Contact() {
                         placeholder="John Doe"
                         value={formData.name}
                         onChange={handleChange}
-                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/50"
+                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/50 focus:border-primary bg-background/50"
                         required
                       />
                     </div>
@@ -179,7 +185,7 @@ export default function Contact() {
                         placeholder="john@example.com"
                         value={formData.email}
                         onChange={handleChange}
-                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/50"
+                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/50 focus:border-primary bg-background/50"
                         required
                       />
                     </div>
@@ -192,7 +198,7 @@ export default function Contact() {
                       placeholder="Project Inquiry or Collaboration"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/50"
+                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/50 focus:border-primary bg-background/50"
                       required
                     />
                   </div>
@@ -205,16 +211,27 @@ export default function Contact() {
                       rows={6}
                       value={formData.message}
                       onChange={handleChange}
-                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/50 resize-none"
+                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/50 focus:border-primary bg-background/50 resize-none"
                       required
                     />
                   </div>
-                  <Button 
-                    type="submit" 
-                    className="w-full shadow-lg hover:shadow-glow-hover transition-all duration-300" 
+                  <Button
+                    type="submit"
+                    className="w-full h-12 text-lg font-medium shadow-lg hover:shadow-primary/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 bg-gradient-to-r from-primary to-primary/80 relative overflow-hidden group"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                        Sending...
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-2">
+                        Send Message
+                        <Send className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    )}
                   </Button>
                 </form>
               </CardContent>
@@ -230,10 +247,10 @@ export default function Contact() {
           >
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
-                <Card key={index} className="hover:shadow-lg hover:border-primary/50 transition-all duration-300 group">
+                <Card key={index} className="hover:shadow-lg hover:border-primary/50 transition-all duration-300 group bg-card/50 backdrop-blur-sm border-2">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <motion.div 
+                      <motion.div
                         className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300"
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.6 }}
@@ -241,13 +258,13 @@ export default function Contact() {
                         {info.icon}
                       </motion.div>
                       <div>
-                        <h4 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">{info.title}</h4>
+                        <h4 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">{info.title}</h4>
                         {info.link ? (
-                          <a href={info.link} className="text-muted-foreground hover:text-primary transition-colors">
+                          <a href={info.link} className="text-muted-foreground hover:text-primary transition-colors font-medium">
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-muted-foreground">{info.value}</p>
+                          <p className="text-muted-foreground font-medium">{info.value}</p>
                         )}
                       </div>
                     </div>
@@ -255,25 +272,28 @@ export default function Contact() {
                 </Card>
               ))}
 
-              <Card className="mt-8">
+              <Card className="mt-8 border-2 bg-card/50 backdrop-blur-sm">
                 <CardContent className="p-6">
-                  <h4 className="text-lg font-semibold mb-4">Follow Me</h4>
+                  <h4 className="text-lg font-bold mb-4">Follow Me</h4>
                   <div className="flex gap-4">
-                    <Button variant="outline" size="icon" className="rounded-full bg-transparent" asChild>
-                      <a href="https://linkedin.com/in/yash-ghodele" target="_blank" rel="noopener noreferrer">
-                        <Linkedin className="h-5 w-5" />
-                      </a>
-                    </Button>
-                    <Button variant="outline" size="icon" className="rounded-full bg-transparent" asChild>
-                      <a href="https://github.com/yash-ghodele" target="_blank" rel="noopener noreferrer">
-                        <Github className="h-5 w-5" />
-                      </a>
-                    </Button>
-                    <Button variant="outline" size="icon" className="rounded-full bg-transparent" asChild>
-                      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                        <Instagram className="h-5 w-5" />
-                      </a>
-                    </Button>
+                    {[
+                      { icon: Linkedin, href: "https://linkedin.com/in/yash-ghodele", label: "LinkedIn" },
+                      { icon: Github, href: "https://github.com/yash-ghodele", label: "GitHub" },
+                      { icon: Instagram, href: "https://www.instagram.com/why_be_yashhh/", label: "Instagram" }
+                    ].map((social, i) => (
+                      <Button
+                        key={i}
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full h-12 w-12 border-2 hover:border-primary hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                        asChild
+                        aria-label={social.label}
+                      >
+                        <a href={social.href} target="_blank" rel="noopener noreferrer">
+                          <social.icon className="h-5 w-5" />
+                        </a>
+                      </Button>
+                    ))}
                   </div>
                 </CardContent>
               </Card>

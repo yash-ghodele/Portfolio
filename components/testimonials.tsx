@@ -3,14 +3,14 @@
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { Star, StarHalf } from "lucide-react"
+import { Star, StarHalf, Quote } from "lucide-react"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
 export default function Testimonials() {
   const fadeIn = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
@@ -75,19 +75,22 @@ export default function Testimonials() {
     const hasHalfStar = rating % 1 !== 0
 
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<Star key={i} className="h-5 w-5 fill-primary text-primary" />)
+      stars.push(<Star key={i} className="h-4 w-4 fill-primary text-primary" />)
     }
 
     if (hasHalfStar) {
-      stars.push(<StarHalf key="half" className="h-5 w-5 fill-primary text-primary" />)
+      stars.push(<StarHalf key="half" className="h-4 w-4 fill-primary text-primary" />)
     }
 
-    return <div className="flex">{stars}</div>
+    return <div className="flex gap-0.5">{stars}</div>
   }
 
   return (
-    <section id="testimonials" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="testimonials" className="py-20 bg-muted/30 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -96,10 +99,10 @@ export default function Testimonials() {
           variants={fadeIn}
           className="text-center mb-16"
         >
-          <Badge variant="outline" className="mb-4">
+          <Badge variant="outline" className="mb-4 text-sm font-medium">
             Testimonials
           </Badge>
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -108,13 +111,16 @@ export default function Testimonials() {
           >
             What People Say
           </motion.h2>
-          <motion.div 
-            className="w-20 h-1 bg-primary mx-auto"
+          <motion.div
+            className="w-20 h-1 bg-primary mx-auto mb-4"
             initial={{ width: 0 }}
             whileInView={{ width: 80 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           ></motion.div>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Feedback from colleagues, mentors, and event participants
+          </p>
         </motion.div>
 
         <motion.div
@@ -124,42 +130,65 @@ export default function Testimonials() {
           transition={{ duration: 0.6, delay: 0.2 }}
           variants={fadeIn}
         >
-          <Carousel className="w-full">
-            <CarouselContent>
+          <Carousel
+            className="w-full"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+          >
+            <CarouselContent className="-ml-4">
               {testimonials.map((testimonial, index) => (
-                <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3 p-2">
+                <CarouselItem key={testimonial.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
+                    className="h-full"
                   >
-                    <Card className="h-full hover:shadow-lg hover:shadow-primary/10 hover:border-primary/50 transition-all duration-300 group">
-                      <CardContent className="p-6 flex flex-col h-full">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 rounded-full overflow-hidden">
-                          <img
-                            src={testimonial.image || "/placeholder.svg"}
-                            alt={testimonial.name}
-                            className="w-full h-full object-cover"
-                          />
+                    <Card className="h-full border-2 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 group bg-card/50 backdrop-blur-sm">
+                      <CardContent className="p-6 flex flex-col h-full relative">
+                        {/* Quote Icon */}
+                        <div className="absolute top-6 right-6 text-primary/10 group-hover:text-primary/20 transition-colors duration-500">
+                          <Quote className="h-10 w-10 fill-current" />
                         </div>
-                        <div>
-                          <h4 className="font-semibold">{testimonial.name}</h4>
-                          <p className="text-sm text-muted-foreground">{testimonial.position}</p>
+
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20 group-hover:border-primary transition-colors duration-300">
+                            <img
+                              src={testimonial.image || "/placeholder.svg"}
+                              alt={testimonial.name}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                          </div>
+                          <div>
+                            <h4 className="font-bold group-hover:text-primary transition-colors duration-300">{testimonial.name}</h4>
+                            <p className="text-xs text-muted-foreground">{testimonial.position}</p>
+                          </div>
                         </div>
-                      </div>
-                      <p className="text-muted-foreground flex-grow mb-4">"{testimonial.content}"</p>
-                      <div className="mt-auto">{renderStars(testimonial.rating)}</div>
-                    </CardContent>
-                  </Card>
+
+                        <p className="text-muted-foreground flex-grow mb-6 text-sm leading-relaxed italic relative z-10">
+                          "{testimonial.content}"
+                        </p>
+
+                        <div className="mt-auto pt-4 border-t border-border/50 flex justify-between items-center">
+                          <div className="bg-primary/5 px-3 py-1 rounded-full">
+                            {renderStars(testimonial.rating)}
+                          </div>
+                          <span className="text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            Verified
+                          </span>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center mt-8">
-              <CarouselPrevious className="relative static translate-y-0 mr-2" />
-              <CarouselNext className="relative static translate-y-0" />
+            <div className="flex justify-center mt-10 gap-4">
+              <CarouselPrevious className="relative static translate-y-0 h-10 w-10 border-2 hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300" />
+              <CarouselNext className="relative static translate-y-0 h-10 w-10 border-2 hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300" />
             </div>
           </Carousel>
         </motion.div>

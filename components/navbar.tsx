@@ -49,8 +49,8 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <motion.button 
-            onClick={() => scrollToSection("home")} 
+          <motion.button
+            onClick={() => scrollToSection("home")}
             className="text-2xl font-bold text-primary relative group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -89,7 +89,7 @@ export default function Navbar() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
-            <Button 
+            <Button
               className="shadow-lg hover:shadow-glow-hover transition-all duration-300"
               onClick={() => {
                 // TODO: Replace with actual resume PDF URL
@@ -122,7 +122,7 @@ export default function Navbar() {
                   {link.name}
                 </button>
               ))}
-              <Button 
+              <Button
                 className="w-full"
                 onClick={() => {
                   // TODO: Replace with actual resume PDF URL

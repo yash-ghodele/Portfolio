@@ -86,8 +86,8 @@ export default function TechStack() {
 
   const fadeIn = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
@@ -99,8 +99,8 @@ export default function TechStack() {
 
   const scaleUp = {
     hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       y: 0,
       transition: {
@@ -132,10 +132,10 @@ export default function TechStack() {
           variants={fadeIn}
           className="text-center mb-16"
         >
-          <Badge variant="outline" className="mb-4">
+          <Badge variant="outline" className="mb-4 text-sm font-medium">
             Skills
           </Badge>
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -144,13 +144,16 @@ export default function TechStack() {
           >
             Technical & Soft Skills
           </motion.h2>
-          <motion.div 
-            className="w-20 h-1 bg-primary mx-auto"
+          <motion.div
+            className="w-20 h-1 bg-primary mx-auto mb-4"
             initial={{ width: 0 }}
             whileInView={{ width: 80 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           ></motion.div>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Comprehensive skill set across technical and soft skills
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -166,14 +169,13 @@ export default function TechStack() {
               whileTap={{ scale: 0.98 }}
             >
               <Card
-                className={`h-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/50 ${
-                  selectedCategory === key ? "ring-2 ring-primary shadow-glow" : ""
-                }`}
+                className={`h-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/50 ${selectedCategory === key ? "ring-2 ring-primary shadow-glow" : ""
+                  }`}
                 onClick={() => setSelectedCategory(selectedCategory === key ? null : key)}
               >
                 <CardContent className="p-6">
                   <div className="flex items-center gap-4 mb-4">
-                    <motion.div 
+                    <motion.div
                       className="bg-primary/10 p-3 rounded-full"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 300 }}

@@ -47,8 +47,9 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      {/* Animated gradient background */}
+      {/* Enhanced animated gradient background */}
       <div className="absolute inset-0 gradient-animated opacity-50 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -65,7 +66,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Hi, I'm <span className="text-primary gradient-text">Yash</span>
+                Hi, I'm <span className="text-primary gradient-text bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary">Yash</span>
               </motion.h1>
               <motion.h2
                 className="text-2xl md:text-3xl lg:text-4xl font-medium mb-6 min-h-[3rem]"
@@ -121,22 +122,29 @@ export default function Hero() {
             >
               <Button
                 size="lg"
-                className="group shadow-lg hover:shadow-glow-hover transition-all duration-300"
+                className="group relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105"
                 onClick={() => scrollToSection("projects")}
               >
-                View My Projects
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <span className="relative z-10 flex items-center">
+                  View My Projects
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+                {/* Shine effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.6 }}
+                />
               </Button>
-              <div>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
-                  onClick={() => scrollToSection("contact")}
-                >
-                  Contact Me
-                </Button>
-              </div>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
+                onClick={() => scrollToSection("contact")}
+              >
+                Contact Me
+              </Button>
             </motion.div>
 
             <motion.div
@@ -155,11 +163,13 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
+                  whileHover={{ scale: 1.2, y: -5 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="icon"
-                    className="rounded-full hover:bg-primary/10 transition-all duration-300"
+                    className="rounded-full border-2 hover:bg-primary/10 hover:border-primary hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
                     asChild
                   >
                     <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
@@ -172,8 +182,8 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{
               duration: 0.8,
               delay: 0.3,
@@ -183,15 +193,19 @@ export default function Hero() {
             }}
             className="relative w-auto max-w-full mx-auto inline-block"
           >
-            {/* Decorative border frame */}
-            <div className="absolute inset-0 rounded-3xl border-2 border-primary/30 pointer-events-none shadow-glow"></div>
+            {/* Subtle background glow */}
+            <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl -z-10"></div>
 
             {/* Main image container */}
-            <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-3xl overflow-hidden shadow-2xl hover:shadow-glow-hover transition-all duration-500 group inline-block">
+            <motion.div
+              className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-3xl overflow-hidden shadow-2xl group inline-block"
+              whileHover={{ scale: 1.02, boxShadow: "0 25px 50px -12px rgba(var(--primary-rgb), 0.3)" }}
+              transition={{ duration: 0.3 }}
+            >
               <img
                 src="/Yash-Ghodele.png"
                 alt="Yash - Engineer, Leader, Innovator"
-                className="block h-auto object-contain"
+                className="block h-auto object-contain group-hover:scale-105 transition-transform duration-500 relative z-10"
                 style={{
                   maxWidth: '100%',
                   maxHeight: 'min(600px, 80vh)',
@@ -201,9 +215,9 @@ export default function Hero() {
                 loading="eager"
               />
 
-              {/* Overlay gradient for depth */}
+              {/* Simple overlay gradient for depth */}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent pointer-events-none"></div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
