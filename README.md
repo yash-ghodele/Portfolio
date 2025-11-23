@@ -1,87 +1,100 @@
-# YG Portfolio
+# Yash Ghodele - Portfolio
 
-A modern, responsive portfolio website built with Next.js, showcasing the work and achievements of Yash Ghodele - Engineer, Leader, and Innovator.
+A professional, high-performance portfolio website built with Next.js 14, showcasing the work, skills, and journey of **Yash Ghodele** - Engineer, Leader, and Innovator.
+
+![Portfolio Preview](public/og-image.png)
 
 ## 🚀 About
 
-This portfolio website represents the professional journey of Yash Ghodele, a B.Tech Electronics & Computer Engineering student at MIT Chh. Sambhajinagar (Class of 2026). The site highlights expertise in IoT systems, embedded hardware prototyping, front-end integration, and leadership in tech communities.
+This portfolio represents my professional journey as a B.Tech Electronics & Computer Engineering student at MIT Chh. Sambhajinagar. It highlights my expertise in:
+*   **IoT & Embedded Systems**
+*   **Full Stack Development**
+*   **Leadership & Event Management**
+*   **Innovation & Prototyping**
 
-## ✨ Features
+The website is designed with a focus on **modern UI/UX**, **smooth animations**, and **accessibility**.
 
-- **Modern UI/UX**: Clean, responsive design with dark theme support
-- **Next.js 14+**: Built with the latest Next.js App Router
-- **TypeScript**: Fully typed for better development experience
-- **Responsive Design**: Optimized for all devices and screen sizes
-- **Performance Optimized**: Fast loading times and smooth animations
-- **SEO Friendly**: Optimized metadata and structure
+## ✨ Key Features
+
+*   **🎨 Modern Design System**: Professional "Deep Blue" color scheme for a trustworthy and premium look.
+*   **⚡ High Performance**: Built with Next.js App Router and optimized for speed.
+*   **🎬 Rich Animations**: Extensive use of **Framer Motion** for smooth transitions, scroll effects, and interactive elements.
+*   **📱 Fully Responsive**: Flawless experience across all devices (Mobile, Tablet, Desktop).
+*   **🧩 Comprehensive Sections**:
+    *   **Hero**: Engaging introduction with dynamic CTA and social links.
+    *   **About**: Personal journey and key highlights.
+    *   **Tech Stack**: Interactive categorization of technical and soft skills.
+    *   **Projects**: Detailed showcase of key projects with "Learn More" modals.
+    *   **Experience**: Visual timeline of professional roles and achievements.
+    *   **Testimonials**: Carousel of feedback from peers and mentors.
+    *   **Contact**: Functional contact form with validation and premium styling.
+*   **♿ Accessible**: Semantic HTML and ARIA labels for better accessibility.
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: Custom components with Radix UI
-- **Icons**: Lucide React
-- **Deployment**: Netlify
+*   **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+*   **Language**: [TypeScript](https://www.typescriptlang.org/)
+*   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+*   **UI Library**: [Shadcn/UI](https://ui.shadcn.com/) (Radix UI)
+*   **Animations**: [Framer Motion](https://www.framer.com/motion/)
+*   **Icons**: [Lucide React](https://lucide.dev/)
+*   **Forms**: React Hook Form + Zod
+*   **Deployment**: Netlify
 
 ## 📦 Installation
 
-1. Clone the repository:
-```bash
-git clone git@github.com:yash-ghodele/YG-portfolio.git
-cd YG-portfolio
-```
+1.  **Clone the repository:**
+    ```bash
+    git clone git@github.com:yash-ghodele/Portfolio.git
+    cd Portfolio
+    ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-3. Run the development server:
-```bash
-npm run dev
-```
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+4.  Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🏗️ Project Structure
 
 ```
-YG-portfolio/
-├── app/                    # Next.js app directory
-│   └── layout.tsx         # Root layout component
-├── components/            # React components
-│   └── navbar.tsx        # Navigation bar component
-├── public/               # Static assets
-│   ├── logo.svg         # Logo files
-│   ├── logo-modern.svg
-│   └── logo-simple.svg
-├── netlify.toml         # Netlify configuration
-└── README.md           # Project documentation
+portfolio/
+├── app/                    # Next.js App Router pages and layout
+├── components/             # Reusable React components
+│   ├── ui/                 # Shadcn/UI primitive components
+│   ├── hero.tsx            # Hero section
+│   ├── about.tsx           # About section
+│   ├── projects.tsx        # Projects showcase
+│   ├── experience.tsx      # Experience timeline
+│   └── ...
+├── lib/                    # Utility functions
+├── public/                 # Static assets (images, icons)
+└── ...
 ```
 
 ## 🚢 Deployment
 
-This project is configured for deployment on Netlify using the Next.js plugin.
-
-The site is automatically deployed when changes are pushed to the main branch.
-
-## 📝 License
-
-This project is private and proprietary.
+This project is configured for seamless deployment on **Netlify**. Changes pushed to the `main` branch are automatically built and deployed.
 
 ## 👤 Author
 
 **Yash Ghodele**
 
-- Portfolio: [Live Site](https://yash-ghodele.netlify.app)
-- GitHub: [@yash-ghodele](https://github.com/yash-ghodele)
-- LinkedIn: [Yash Ghodele](https://linkedin.com/in/yash-ghodele)
+*   **Portfolio**: [Live Site](https://yash-ghodele.netlify.app)
+*   **GitHub**: [@yash-ghodele](https://github.com/yash-ghodele)
+*   **LinkedIn**: [Yash Ghodele](https://linkedin.com/in/yash-ghodele)
+*   **Instagram**: [@why_be_yashhh](https://www.instagram.com/why_be_yashhh/)
 
-## 🙏 Acknowledgments
+## 📝 License
 
-Built with ❤️ using Next.js and modern web technologies.
+This project is private and proprietary. All rights reserved.
 
 ---
 
-**Note**: This is a personal portfolio project. For inquiries or collaborations, please reach out through the contact section on the website.
+Built with ❤️ and ☕ by Yash Ghodele.
