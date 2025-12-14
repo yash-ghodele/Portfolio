@@ -14,12 +14,7 @@ export default function NotFound() {
             {/* Warning/Hazard Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-yellow-500/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-            <motion.div
-                className="relative z-10 flex flex-col items-center text-center max-w-2xl"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-            >
+            <div className="relative z-10 flex flex-col items-center text-center max-w-2xl">
                 {/* The Graphic: Disconnected Plug */}
                 <div className="relative mb-8">
                     <motion.div
@@ -78,7 +73,7 @@ export default function NotFound() {
                         </Button>
                     </Link>
                 </motion.div>
-            </motion.div>
+            </div>
 
             {/* Decorative Scanline */}
             <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-[100] bg-[length:100%_2px,3px_100%] opacity-20"></div>
