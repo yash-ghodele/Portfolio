@@ -1,232 +1,221 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import { Award, Users, Zap, Calendar, Briefcase } from "lucide-react"
+import { Award, Users, Zap, Calendar, ChevronRight, Trophy, Star, Target, Shield } from "lucide-react"
 
 export default function Experience() {
-  const fadeIn = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        staggerChildren: 0.1
-      }
-    },
-  }
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
 
-  const cardHover = {
-    scale: 1.02,
-    y: -5,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 20
-    }
-  }
+  // Transform scroll progress into beam height
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1])
 
   const experiences = [
     {
-      icon: <Award className="h-6 w-6 text-primary" />,
+      icon: <Award className="h-6 w-6" />,
       title: "Executive Head",
       organization: "BotBuddies (S2P Robotics Pvt. Ltd.)",
       period: "2024 - Present",
-      description:
-        "Leading robotics initiatives and managing team operations for innovative IoT and robotics projects.",
+      description: "Leading robotics initiatives and managing team operations for innovative IoT and robotics projects.",
       highlights: ["Team Leadership", "Project Management", "Innovation Strategy"],
+      side: "left"
     },
     {
-      icon: <Users className="h-6 w-6 text-primary" />,
+      icon: <Users className="h-6 w-6" />,
       title: "Event Head",
       organization: "ECESA (Electronics & Communication Engineering Students Association)",
       period: "2023 - 2024",
       description: "Organized and managed technical events, workshops, and seminars for the engineering community.",
       highlights: ["Event Organization", "Community Engagement", "Technical Workshops"],
+      side: "right"
     },
     {
-      icon: <Zap className="h-6 w-6 text-primary" />,
+      icon: <Zap className="h-6 w-6" />,
       title: "Cultural Secretary",
       organization: "IETE Students Forum",
       period: "2023 - 2024",
       description: "Coordinated cultural and technical events, fostering community engagement and collaboration.",
       highlights: ["Event Coordination", "Team Collaboration", "Community Building"],
+      side: "left"
     },
   ]
 
   const achievements = [
     {
+      icon: <Trophy className="w-5 h-5" />,
       title: "InnoHack 2025 & 2.0",
-      description: "Organized and directed major hackathon events with 200+ participants",
+      description: "Organized and directed major hackathon events with 200+ participants"
     },
     {
-      title: "Digital Marketing Certification",
-      description: "Completed comprehensive digital marketing course with a focus on social media and content strategy",
+      icon: <Target className="w-5 h-5" />,
+      title: "Digital Marketing",
+      description: "Completed comprehensive digital marketing course with a focus on social media and content strategy"
     },
     {
+      icon: <Star className="w-5 h-5" />,
       title: "Robotics & IoT Projects",
-      description: "Led development of multiple award-winning IoT and robotics projects",
+      description: "Led development of multiple award-winning IoT and robotics projects"
     },
     {
+      icon: <Shield className="w-5 h-5" />,
       title: "Community Leadership",
-      description: "Mentored 50+ students in IoT, embedded systems, and event management",
+      description: "Mentored 50+ students in IoT, embedded systems, and event management"
     },
   ]
 
   return (
-    <section id="experience" className="py-20 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none"></div>
+    <section id="experience" className="py-32 relative overflow-hidden bg-black/5" ref={containerRef}>
+      {/* Background Ambience */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.05),transparent_70%)] pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 max-w-5xl">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          variants={fadeIn}
-          className="text-center mb-16"
+          style={{ opacity }}
+          className="text-center mb-24"
         >
-          <Badge variant="outline" className="mb-4 text-sm font-medium">
-            Experience
+          <Badge variant="outline" className="mb-4 text-sm font-medium border-primary/50 text-foreground py-1 px-3 backdrop-blur-md">
+            Career Trajectory
           </Badge>
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
-          >
-            Leadership & Experience
-          </motion.h2>
-          <motion.div
-            className="w-20 h-1 bg-primary mx-auto mb-4"
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          ></motion.div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            My professional journey and key roles in technical organizations
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
+            Professional Experience
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            A timeline of leadership, innovation, and impact.
           </p>
         </motion.div>
 
-        {/* Timeline Visualization for Desktop */}
-        <div className="relative mb-20">
-          {/* Connecting Line (Desktop) */}
-          <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent -translate-y-1/2 hidden md:block"></div>
+        <div className="relative mb-32">
+          {/* Central Laser Beam */}
+          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-1/2 md:translate-x-[-1px]">
+            <motion.div
+              style={{ height: lineHeight }}
+              className="w-full bg-gradient-to-b from-primary via-purple-400 to-blue-500 shadow-[0_0_15px_rgba(168,85,247,0.6)]"
+            />
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          <div className="space-y-16">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                variants={fadeIn}
-                whileHover={cardHover}
-                className="relative"
+                initial={{ opacity: 0, x: exp.side === "left" ? -50 : 50, rotateX: 20 }}
+                whileInView={{ opacity: 1, x: 0, rotateX: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7, delay: index * 0.1 }}
+                className={`relative flex flex-col md:flex-row gap-8 items-center ${exp.side === "left" ? "md:flex-row-reverse" : ""}`}
               >
-                {/* Timeline Dot (Desktop) */}
-                <div className="absolute top-0 left-1/2 w-4 h-4 bg-primary rounded-full -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block shadow-[0_0_10px_rgba(var(--primary-rgb),0.5)] border-4 border-background box-content"></div>
+                {/* Timeline Node & Connector */}
+                <div className="absolute left-[20px] md:left-1/2 top-12 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 flex items-center justify-center z-20">
+                  <div className="w-4 h-4 rounded-full bg-black border-2 border-primary shadow-[0_0_10px_rgba(168,85,247,0.8)] relative z-10">
+                    <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20"></div>
+                  </div>
+                  {/* Horizontal Connector Line (Desktop) */}
+                  <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 h-[1px] bg-gradient-to-r from-primary/60 to-transparent w-24 ${exp.side === "right" ? "-right-4 flex-row-reverse origin-right" : "-left-4 origin-left"}`}></div>
 
-                {/* Card */}
-                <Card className="h-full border-2 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 group bg-card/50 backdrop-blur-sm overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                  {/* Mobile Connector */}
+                  <div className="md:hidden absolute -top-12 left-1/2 -translate-x-1/2 w-[2px] h-12 bg-gradient-to-b from-primary/50 to-transparent"></div>
+                </div>
 
-                  <CardContent className="p-6 relative z-10">
-                    <div className="flex flex-col items-center text-center mb-6">
-                      <motion.div
-                        className="bg-gradient-to-br from-primary/20 to-primary/10 p-4 rounded-2xl mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500"
-                        whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                      >
-                        {exp.icon}
-                      </motion.div>
-                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">{exp.title}</h3>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
-                        <Briefcase className="w-3 h-3" />
-                        <span>{exp.organization}</span>
+                {/* Spacer for desktop alignment */}
+                <div className="hidden md:block flex-1"></div>
+
+                {/* Card Content */}
+                <div className={`w-full flex-1 pl-12 md:pl-0 ${exp.side === "left" ? "md:pr-16" : "md:pl-16"}`}>
+                  <div className="relative group cursor-pointer perspective-1000">
+                    {/* Animated Border Gradient */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-2xl opacity-10 group-hover:opacity-50 blur transition duration-500"></div>
+
+                    <div className="relative bg-zinc-950 border border-white/10 p-6 rounded-2xl group-hover:bg-zinc-900 group-hover:border-white/20 transition-all duration-300">
+                      {/* Decorative Corner Accents */}
+                      <div className="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-2 h-2 border-t-2 border-r-2 border-primary"></div>
                       </div>
-                      <div className="flex items-center gap-2 text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full mt-3">
-                        <Calendar className="w-3 h-3" />
-                        <span>{exp.period}</span>
+                      <div className="absolute bottom-0 left-0 p-3 opacity-20 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-2 h-2 border-b-2 border-l-2 border-primary"></div>
+                      </div>
+
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-black transition-all duration-300 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                          {exp.icon}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 text-xs font-mono text-primary mb-1">
+                            <Calendar className="w-3 h-3" />
+                            {exp.period}
+                          </div>
+                          <h3 className="text-xl font-bold text-white leading-tight group-hover:text-primary transition-colors">{exp.title}</h3>
+                          <p className="text-sm text-gray-400">{exp.organization}</p>
+                        </div>
+                      </div>
+
+                      <p className="text-gray-400 text-sm leading-relaxed mb-4 border-l-2 border-white/5 pl-4">
+                        {exp.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {exp.highlights.map((tag, i) => (
+                          <span key={i} className="text-xs font-medium px-2.5 py-1 rounded bg-white/5 border border-white/5 text-gray-300 group-hover:text-white transition-colors">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Hover Arrow */}
+                      <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">
+                        <ChevronRight className="w-5 h-5 text-primary" />
                       </div>
                     </div>
-
-                    <p className="text-muted-foreground mb-6 leading-relaxed text-center text-sm">{exp.description}</p>
-
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {exp.highlights.map((highlight, i) => (
-                        <Badge key={i} variant="secondary" className="text-xs hover:bg-primary/20 hover:text-primary transition-colors duration-300">
-                          {highlight}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
 
+        {/* Achievements Section */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          variants={fadeIn}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
         >
-          <motion.h3
-            className="text-2xl font-bold mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
-          >
-            Key Achievements
-          </motion.h3>
-          <motion.div
-            className="w-20 h-1 bg-primary mx-auto"
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          ></motion.div>
-        </motion.div>
+          <h3 className="text-3xl font-bold text-white text-center mb-12 flex items-center justify-center gap-3">
+            <Trophy className="w-8 h-8 text-yellow-500" /> Key Achievements
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {achievements.map((item, i) => (
+              <div key={i} className="relative group cursor-pointer">
+                {/* Gradient Blur Border */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-2xl opacity-10 group-hover:opacity-50 blur transition duration-500"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              variants={fadeIn}
-              whileHover={cardHover}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Card className="h-full border-2 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 group overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                <CardContent className="p-6 relative z-10 flex items-start gap-4">
-                  <div className="mt-1 bg-primary/10 p-2 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <Award className="h-5 w-5 text-primary" />
+                <div className="relative h-full p-6 rounded-2xl bg-zinc-950 border border-white/10 group-hover:bg-zinc-900 group-hover:border-white/20 transition-all duration-300 flex items-start gap-4">
+
+                  {/* Corner Accents */}
+                  <div className="absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-2 h-2 border-t-2 border-r-2 border-primary"></div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 p-2 opacity-20 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-2 h-2 border-b-2 border-l-2 border-primary"></div>
+                  </div>
+
+                  <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-black transition-all duration-300 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                    {item.icon}
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{achievement.title}</h4>
-                    <p className="text-muted-foreground leading-relaxed text-sm">{achievement.description}</p>
+                    <h4 className="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">{item.title}</h4>
+                    <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
     </section>
   )

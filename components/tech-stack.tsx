@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
 import { Code2, Cpu, Smartphone, Wrench, Megaphone, Users } from "lucide-react"
 
 export default function TechStack() {
@@ -97,164 +96,136 @@ export default function TechStack() {
     },
   }
 
-  const scaleUp = {
-    hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 150,
-        damping: 20
-      }
-    },
-  }
-
-  const cardHover = {
-    scale: 1.05,
-    y: -8,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 20
-    }
-  }
-
   return (
-    <section id="tech-stack" className="py-20">
-      <div className="container mx-auto px-4">
+    <section id="tech-stack" className="py-32 relative overflow-hidden bg-black/5">
+      {/* HUD Background Grid - Isometric/Cyberpunk feel */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
+
+      {/* Ambient Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-primary/20 blur-[120px] rounded-full pointer-events-none opacity-50"></div>
+
+      <div className="container mx-auto px-4 relative z-10 perspective-1000">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
           variants={fadeIn}
-          className="text-center mb-16"
+          className="text-center mb-24 relative"
         >
-          <Badge variant="outline" className="mb-4 text-sm font-medium">
-            Skills
-          </Badge>
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
-          >
-            Technical & Soft Skills
-          </motion.h2>
-          <motion.div
-            className="w-20 h-1 bg-primary mx-auto mb-4"
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          ></motion.div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive skill set across technical and soft skills
+          <div className="inline-block relative">
+            <Badge variant="outline" className="mb-6 text-sm font-medium border-primary/50 text-primary py-1.5 px-6 backdrop-blur-md bg-primary/5 shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+              System Capabilities
+            </Badge>
+            {/* Decorative HUD lines */}
+            <div className="absolute -left-12 top-1/2 w-8 h-[1px] bg-primary/50"></div>
+            <div className="absolute -right-12 top-1/2 w-8 h-[1px] bg-primary/50"></div>
+          </div>
+
+          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-white/20 select-none">
+            Tech Arsenal
+          </h2>
+
+          <p className="text-xl text-muted-foreground/80 max-w-2xl mx-auto font-light tracking-wide">
+            Deployed technologies & operational protocols
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Object.entries(technologies).map(([key, category]) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 perspective-1000">
+          {Object.entries(technologies).map(([key, category], index) => (
             <motion.div
               key={key}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6 }}
-              variants={scaleUp}
-              whileHover={cardHover}
-              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, rotateX: 20, y: 50 }}
+              whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: index * 0.1, type: "spring" }}
+              className={`group relative min-h-[300px] perspective-1000 cursor-pointer`}
+              onClick={() => setSelectedCategory(selectedCategory === key ? null : key)}
             >
-              <Card
-                className={`h-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/50 ${selectedCategory === key ? "ring-2 ring-primary shadow-glow" : ""
+              <div
+                className={`relative h-full transition-all duration-500 ease-out transform-style-3d 
+                  ${selectedCategory === key
+                    ? 'scale-105 z-20'
+                    : 'group-hover:translate-z-10 group-hover:rotate-x-2'
                   }`}
-                onClick={() => setSelectedCategory(selectedCategory === key ? null : key)}
               >
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <motion.div
-                      className="bg-primary/10 p-3 rounded-full"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      {category.icon}
-                    </motion.div>
-                    <div>
-                      <h3 className="text-lg font-semibold hover:text-primary transition-colors">{category.title}</h3>
-                      <p className="text-sm text-muted-foreground">{category.description}</p>
+                {/* Glass Panel */}
+                <div className={`absolute inset-0 rounded-3xl backdrop-blur-xl border transition-all duration-500
+                  ${selectedCategory === key
+                    ? 'bg-background/80 border-primary/50 shadow-[0_0_50px_rgba(168,85,247,0.2)]'
+                    : 'bg-background/20 border-white/10 group-hover:border-primary/30 group-hover:bg-background/30'
+                  }`}
+                ></div>
+
+                {/* Scanning Line Effect */}
+                <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                  <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent top-0 animate-[scan_4s_ease-in-out_infinite] opacity-0 group-hover:opacity-100"></div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 p-8 h-full flex flex-col">
+                  <div className="flex items-start justify-between mb-8">
+                    <div className={`p-4 rounded-xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 transition-all duration-300
+                      ${selectedCategory === key ? 'bg-primary/20 border-primary/50 shadow-[0_0_20px_rgba(168,85,247,0.3)]' : 'group-hover:bg-white/10'}
+                    `}>
+                      <div className="text-white h-8 w-8">
+                        {category.icon}
+                      </div>
+                    </div>
+                    {/* HUD Corner Accents */}
+                    <div className="flex gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
                     </div>
                   </div>
 
-                  <AnimatePresence>
-                    {selectedCategory === key && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="space-y-4"
-                      >
-                        {category.skills.map((skill, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="space-y-2"
-                          >
-                            <div className="flex justify-between text-sm">
-                              <span className="font-medium">{skill.name}</span>
-                              <span className="text-muted-foreground">{skill.level}%</span>
-                            </div>
-                            <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-                              <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: `${skill.level}%` }}
-                                transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-                                className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full shadow-glow"
-                              />
-                            </div>
-                          </motion.div>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <h3 className="text-2xl font-bold mb-2 tracking-wide text-white group-hover:text-primary transition-colors">
+                    {category.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-6 font-mono opacity-80">
+                    {`// ${category.description}`}
+                  </p>
 
-                  {selectedCategory !== key && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {category.skills.slice(0, 3).map((skill, index) => (
-                        <Badge key={index} variant="secondary">
-                          {skill.name}
-                        </Badge>
-                      ))}
-                      {category.skills.length > 3 && (
-                        <Badge variant="secondary">+{category.skills.length - 3} more</Badge>
+                  <div className="mt-auto">
+                    <AnimatePresence mode="wait">
+                      {selectedCategory === key ? (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="space-y-4"
+                        >
+                          {category.skills.map((skill, i) => (
+                            <div key={i} className="flex items-center gap-3">
+                              <div className="h-1.5 flex-1 bg-white/5 rounded-full overflow-hidden">
+                                <motion.div
+                                  className="h-full bg-primary shadow-[0_0_10px_rgba(168,85,247,0.8)]"
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${skill.level}%` }}
+                                  transition={{ duration: 0.8, delay: i * 0.05 }}
+                                />
+                              </div>
+                              <span className="text-xs font-mono text-primary/80 w-8 text-right">{skill.level}%</span>
+                              <span className="text-xs font-medium text-white/90 min-w-[60px]">{skill.name}</span>
+                            </div>
+                          ))}
+                        </motion.div>
+                      ) : (
+                        <div className="flex flex-wrap gap-2">
+                          {category.skills.slice(0, 3).map((skill, i) => (
+                            <div key={i} className="px-3 py-1 rounded-full text-xs font-medium border border-white/10 bg-white/5 text-muted-foreground">
+                              {skill.name}
+                            </div>
+                          ))}
+                          <div className="px-2 py-1 text-xs text-muted-foreground/50">...</div>
+                        </div>
                       )}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          variants={fadeIn}
-          className="mt-12 text-center text-muted-foreground"
-        >
-          <p className="max-w-2xl mx-auto">
-            With a strong foundation in IoT, embedded systems, and full-stack development, combined with proven
-            leadership and event management expertise, I bring a unique blend of technical and interpersonal skills to
-            every project.
-          </p>
-        </motion.div>
       </div>
     </section>
   )

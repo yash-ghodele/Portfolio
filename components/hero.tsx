@@ -37,7 +37,7 @@ export default function Hero() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetTop = element.getBoundingClientRect().top + window.scrollY
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
@@ -46,30 +46,37 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      {/* Enhanced animated gradient background */}
-      <div className="absolute inset-0 gradient-animated opacity-50 pointer-events-none"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none"></div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Gradient background layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-background to-blue-900/10 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5 pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* Animated gradient orbs */}
+      <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
+
+      <div className="container mx-auto px-4 relative z-10 py-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <div className="space-y-4">
+            <div className="space-y-6">
               <motion.h1
-                className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight"
+                className="text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1]"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Hi, I'm <span className="text-primary gradient-text bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary">Yash</span>
+                Hi, I'm <br />
+                <span className="bg-gradient-to-r from-purple-400 via-primary to-blue-500 bg-clip-text text-transparent animate-gradient">
+                  Yash
+                </span>
               </motion.h1>
               <motion.h2
-                className="text-2xl md:text-3xl lg:text-4xl font-medium mb-6 min-h-[3rem]"
+                className="text-xl md:text-2xl lg:text-3xl font-medium text-muted-foreground min-h-[3rem]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -86,7 +93,7 @@ export default function Hero() {
                         stiffness: 200,
                         damping: 15
                       }}
-                      className={`inline-block ${word === "•" ? "text-muted-foreground" : "text-foreground font-semibold"
+                      className={`inline-block ${word === "•" ? "text-primary/50" : "text-foreground font-semibold"
                         }`}
                     >
                       {word}
@@ -106,12 +113,12 @@ export default function Hero() {
             </div>
 
             <motion.p
-              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed"
+              className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              I am a dedicated Electronics and Computer Engineering student with proven leadership and event management skills. My experience organizing large-scale gatherings, coupled with my technical expertise in IoT and project management, equips me to create engaging cultural experiences.
+              Building the future of connected systems. I blend IoT expertise with leadership skills to create impactful solutions that bridge hardware and software.
             </motion.p>
 
             <motion.div
@@ -122,11 +129,11 @@ export default function Hero() {
             >
               <Button
                 size="lg"
-                className="group relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105"
+                className="group relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white shadow-lg shadow-purple-500/30 hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 border-0"
                 onClick={() => scrollToSection("projects")}
               >
                 <span className="relative z-10 flex items-center">
-                  View My Projects
+                  View My Work
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
                 {/* Shine effect */}
@@ -140,7 +147,7 @@ export default function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="border-2 border-primary/30 backdrop-blur-sm bg-background/50 hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/20"
                 onClick={() => scrollToSection("contact")}
               >
                 Contact Me
@@ -156,7 +163,7 @@ export default function Hero() {
               {[
                 { icon: Github, href: "https://github.com/yash-ghodele", label: "GitHub" },
                 { icon: Linkedin, href: "https://linkedin.com/in/yash-ghodele", label: "LinkedIn" },
-                { icon: Instagram, href: "https://instagram.com", label: "Instagram" }
+                { icon: Instagram, href: "https://www.instagram.com/why_be_yashhh/", label: "Instagram" }
               ].map(({ icon: Icon, href, label }, index) => (
                 <motion.div
                   key={label}
@@ -223,13 +230,14 @@ export default function Hero() {
       </div>
 
       <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block z-20"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.8 }}
       >
         <motion.button
           onClick={() => scrollToSection("about")}
+
           className="p-2 rounded-full hover:bg-primary/10 transition-all duration-300 relative group"
           aria-label="Scroll to about section"
           animate={{ y: [0, 10, 0] }}
