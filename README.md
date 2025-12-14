@@ -1,4 +1,4 @@
-# Yash Ghodele - Professional Portfolio v2.0
+# Yash Ghodele - Professional Portfolio v2.0 (beta)
 
 ![Portfolio Banner](/Yash-Ghodele.png)
 
