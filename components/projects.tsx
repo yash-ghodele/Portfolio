@@ -2,77 +2,54 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, ChevronRight, ChevronLeft, Terminal, Layout, Cpu, Shield } from "lucide-react"
+import { ExternalLink, Github, ChevronRight, ChevronLeft } from "lucide-react"
+import { projects as localProjects } from "@/lib/data"
+import { getProjects } from "@/lib/sanity"
+import type { Project } from "@/lib/data"
 
 export default function Projects() {
+  const [projects, setProjects] = useState<Project[]>(localProjects)
   const [current, setCurrent] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
-  const projects = [
-    {
-      id: 1,
-      title: "FuelGuard",
-      subtitle: "IoT Solution",
-      image: "/fuel-monitoring-system.jpg",
-      icon: <Layout className="w-8 h-8" />,
-      description: "A comprehensive IoT solution for real-time fuel theft detection and monitoring. Integrates ultrasonic sensors, MQTT security, and a responsive Next.js dashboard.",
-      stats: "Saved 20% fuel costs for 50+ fleets",
-      tech: ["Next.js", "TypeScript", "Firebase", "MQTT", "ESP32", "+3"],
-      links: { demo: "#", code: "#" },
-      color: "from-purple-500 to-blue-600"
-    },
-    {
-      id: 2,
-      title: "Sanjivani",
-      subtitle: "AI Diagnosis",
-      image: "/agriculture-ai-crop-disease.jpg",
-      icon: <Cpu className="w-8 h-8" />,
-      description: "AI-powered crop disease detection system using CNNs (Convolutional Neural Networks). empowering farmers with instant diagnosis via mobile upload.",
-      stats: "98% Accuracy across 15 crop types",
-      tech: ["Python", "TensorFlow", "React", "OpenCV", "Flask", "+2"],
-      links: { demo: "#", code: "#" },
-      color: "from-green-500 to-emerald-600"
-    },
-    {
-      id: 3,
-      title: "Smart CRM",
-      subtitle: "Business Automation",
-      image: "/crm-business-management.jpg",
-      icon: <Terminal className="w-8 h-8" />,
-      description: "Automated B2B lead generation and verification system. Features a custom 5-step validation workflow and rich reporting engine.",
-      stats: "Processed 10k+ leads with 99.9% validity",
-      tech: ["VBA", "MS Access", "Automation", "Excel", "+1"],
-      links: { demo: "#", code: "#" },
-      color: "from-orange-500 to-red-600"
-    },
-    {
-      id: 4,
-      title: "IoT Security",
-      subtitle: "Home Defense",
-      image: "/smart-lock-security-system.jpg",
-      icon: <Shield className="w-8 h-8" />,
-      description: "Intelligent multi-mode door lock system with remote surveillance. autonomous lockdown capabilities and real-time intrusion alerts.",
-      stats: "0.5s Response time for localized threats",
-      tech: ["ESP8266", "Blynk IoT", "C++", "Hardware", "+4"],
-      links: { demo: "#", code: "#" },
-      color: "from-blue-500 to-cyan-600"
+  useEffect(() => {
+    setMounted(true)
+    // Fetch from Sanity
+    async function fetchSanityProjects() {
+      try {
+        const sanityProjects = await getProjects()
+        if (sanityProjects && sanityProjects.length > 0) {
+          console.log("Using Sanity Data", sanityProjects)
+          setProjects(sanityProjects)
+        } else {
+          console.log("No Sanity data found, using local fallback.")
+        }
+      } catch (error) {
+        console.error("Failed to fetch from Sanity:", error)
+      }
     }
-  ]
+    fetchSanityProjects()
+  }, [])
 
   // Auto-play timer
   useEffect(() => {
-    if (isHovered) return // Pause on hover
+    if (isHovered || !mounted) return // Pause on hover
 
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % projects.length)
     }, 5000)
     return () => clearInterval(timer)
-  }, [current, isHovered, projects.length])
+  }, [current, isHovered, projects.length, mounted])
 
   const next = () => setCurrent((curr) => (curr + 1) % projects.length)
   const prev = () => setCurrent((curr) => (curr - 1 + projects.length) % projects.length)
+
+  if (!mounted) return <div className="py-24 bg-[#050505] text-center text-white">Loading Projects...</div>
 
   return (
     <section id="projects" className="py-24 relative min-h-[90vh] flex flex-col justify-center bg-[#050505] overflow-hidden">
@@ -98,7 +75,7 @@ export default function Projects() {
           {/* Custom Navigation Buttons */}
           <button
             onClick={prev}
-            className="absolute -left-4 md:-left-20 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/5 border border-white/10 text-white backdrop-blur-md hover:bg-primary hover:border-primary hover:scale-110 shadow-[0_0_30px_rgba(0,0,0,0.5)] transition-all duration-300 group hidden md:flex items-center justify-center"
+            className="absolute -left-4 md:-20 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/5 border border-white/10 text-white backdrop-blur-md hover:bg-primary hover:border-primary hover:scale-110 shadow-[0_0_30px_rgba(0,0,0,0.5)] transition-all duration-300 group hidden md:flex items-center justify-center"
             aria-label="Previous Project"
           >
             <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
@@ -129,51 +106,57 @@ export default function Projects() {
               >
                 {/* Visual Side (Image) */}
                 <div className="relative h-64 lg:h-auto overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${projects[current].color} opacity-20 mix-blend-overlay z-10`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${projects[current]?.color || "from-purple-500"} opacity-20 mix-blend-overlay z-10`}></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#111111] z-20"></div>
 
-                  <motion.img
-                    src={projects[current].image || "/placeholder.jpg"}
-                    alt={projects[current].title}
+                  <Image
+                    src={projects[current]?.image || "/placeholder.jpg"}
+                    alt={projects[current]?.title || "Project"}
+                    fill
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
                   />
 
                   {/* Floating Icon */}
-                  <div className="absolute top-8 left-8 z-30 p-4 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 text-white shadow-lg">
-                    {projects[current].icon}
-                  </div>
+                  {projects[current]?.icon && (
+                    <div className="absolute top-8 left-8 z-30 p-4 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 text-white shadow-lg">
+                      {projects[current].icon}
+                    </div>
+                  )}
                 </div>
 
                 {/* Content Side */}
                 <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center relative z-30">
                   {/* Background Glow */}
-                  <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${projects[current].color} opacity-10 blur-[100px] pointer-events-none rounded-full`}></div>
+                  <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${projects[current]?.color || "from-blue-500"} opacity-10 blur-[100px] pointer-events-none rounded-full`}></div>
 
                   <div className="flex items-center gap-3 mb-6">
                     <Badge variant="outline" className={`px-3 py-1 rounded-full border-white/10 bg-white/5 text-xs font-medium text-white/80`}>
-                      {projects[current].subtitle}
+                      {projects[current]?.subtitle}
                     </Badge>
                     <div className="h-px flex-1 bg-white/10"></div>
-                    <span className="font-mono text-xs text-white/40">v2.4.0</span>
                   </div>
 
-                  <h3 className="text-4xl md:text-5xl font-black mb-6 text-white leading-tight">
-                    {projects[current].title}
-                  </h3>
+                  <Link href={`/projects/${projects[current]?.slug}`}>
+                    <h3 className="text-4xl md:text-5xl font-black mb-6 text-white leading-tight hover:text-primary transition-colors cursor-pointer">
+                      {projects[current]?.title}
+                    </h3>
+                  </Link>
 
                   <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                    {projects[current].description}
+                    {projects[current]?.description}
                   </p>
 
                   <div className="mb-8 p-4 rounded-xl bg-white/5 border border-white/5 backdrop-blur-sm">
                     <p className="text-sm text-gray-400 mb-1">Key Impact</p>
                     <p className="text-lg font-semibold text-primary">
-                      {projects[current].stats}
+                      {projects[current]?.stats}
                     </p>
                   </div>
 
                   <div className="flex flex-wrap gap-2 mb-10">
-                    {projects[current].tech.map((t, i) => (
+                    {projects[current]?.tech.map((t, i) => (
                       <span key={i} className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-gray-300 text-sm">
                         {t}
                       </span>
@@ -181,10 +164,10 @@ export default function Projects() {
                   </div>
 
                   <div className="flex gap-4 mt-auto">
-                    <Button className="flex-1 bg-white text-black hover:bg-gray-200" onClick={() => window.open(projects[current].links.demo)}>
+                    <Button className="flex-1 bg-white text-black hover:bg-gray-200" onClick={() => window.open(projects[current]?.links.demo)}>
                       <ExternalLink className="w-4 h-4 mr-2" /> Live Demo
                     </Button>
-                    <Button variant="outline" className="flex-1 border-white/10 text-white hover:bg-white/10" onClick={() => window.open(projects[current].links.code)}>
+                    <Button variant="outline" className="flex-1 border-white/10 text-white hover:bg-white/10" onClick={() => window.open(projects[current]?.links.code)}>
                       <Github className="w-4 h-4 mr-2" /> Source
                     </Button>
                   </div>
@@ -202,7 +185,11 @@ export default function Projects() {
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${current === i ? 'bg-primary scale-125' : 'bg-white/20 hover:bg-white/40'}`}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === current
+                    ? "bg-white w-8"
+                    : "bg-white/20 hover:bg-white/40"
+                  }`}
+                aria-label={`Go to project ${i + 1}`}
               />
             ))}
           </div>

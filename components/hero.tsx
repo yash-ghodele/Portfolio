@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Github, Linkedin, Instagram } from "lucide-react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 export default function Hero() {
   const words = ["Engineer", "•", "Leader", "•", "Innovator"]
@@ -209,9 +210,11 @@ export default function Hero() {
               whileHover={{ scale: 1.02, boxShadow: "0 25px 50px -12px rgba(var(--primary-rgb), 0.3)" }}
               transition={{ duration: 0.3 }}
             >
-              <img
+              <Image
                 src="/Yash-Ghodele.png"
                 alt="Yash - Engineer, Leader, Innovator"
+                width={600}
+                height={800}
                 className="block h-auto object-contain group-hover:scale-105 transition-transform duration-500 relative z-10"
                 style={{
                   maxWidth: '100%',
@@ -219,7 +222,7 @@ export default function Hero() {
                   width: 'auto',
                   height: 'auto'
                 }}
-                loading="eager"
+                priority
               />
 
               {/* Simple overlay gradient for depth */}
