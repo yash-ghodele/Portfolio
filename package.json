@@ -2,6 +2,9 @@
   "name": "yash-portfolio",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "next build",
     "pages:build": "npx @cloudflare/next-on-pages@1",
