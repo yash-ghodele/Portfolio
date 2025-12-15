@@ -1,184 +1,148 @@
-import { notFound } from "next/navigation"
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import { getProjects } from '@/lib/mdx'
+import Link from 'next/link'
+import Image from 'next/image'
+import { ArrowLeft, ExternalLink, Github, Layout, Cpu, Terminal, Shield, LucideIcon } from 'lucide-react'
+import { notFound } from 'next/navigation'
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ExternalLink, Github, Calendar, Layers } from "lucide-react"
-import { projects } from "@/lib/data"
-import { Metadata } from "next"
+import { Button } from "@/components/ui/button"
 
-export const runtime = 'edge'
+// Icon Map (Duplicate of what's in Projects component - could be shared but fine here)
+const iconMap: Record<string, LucideIcon> = {
+    "Layout": Layout,
+    "Cpu": Cpu,
+    "Terminal": Terminal,
+    "Shield": Shield
+}
 
-// Generate static params for all projects
 export async function generateStaticParams() {
+    const projects = getProjects()
     return projects.map((project) => ({
         slug: project.slug,
     }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const project = projects.find((p) => p.slug === params.slug)
-    if (!project) return { title: "Project Not Found" }
-
+export function generateMetadata({ params }: { params: { slug: string } }) {
+    const project = getProjects().find((p) => p.slug === params.slug)
+    if (!project) {
+        return
+    }
     return {
-        title: `${project.title} | Yash Ghodele`,
-        description: project.description,
+        title: `${project.metadata.title} | Yash Ghodele`,
+        description: project.metadata.description,
     }
 }
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-    const project = projects.find((p) => p.slug === params.slug)
+    const project = getProjects().find((p) => p.slug === params.slug)
 
     if (!project) {
         notFound()
     }
 
+    const IconComponent = iconMap[project.metadata.iconName] || Terminal
+
     return (
-        <div className="min-h-screen bg-[#050505] text-white selection:bg-primary/30">
-            {/* Background Gradients */}
-            <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center opacity-5 pointer-events-none"></div>
-            <div className={`fixed top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br ${project.color} opacity-10 blur-[120px] pointer-events-none rounded-full`}></div>
+        <div className="min-h-screen bg-[#050505] text-white">
+            {/* Hero Header */}
+            <div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+                <Image
+                    src={project.metadata.image}
+                    alt={project.metadata.title}
+                    fill
+                    className="object-cover opacity-30"
+                    priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/50 to-transparent"></div>
 
-            {/* Navigation */}
-            <nav className="absolute top-0 w-full z-50 p-6">
-                <div className="container mx-auto">
-                    <Link href="/#projects">
-                        <Button variant="ghost" className="text-gray-400 hover:text-white hover:bg-white/5 gap-2">
-                            <ArrowLeft className="w-4 h-4" /> Back to Portfolio
-                        </Button>
-                    </Link>
-                </div>
-            </nav>
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="container px-4 max-w-4xl pt-20">
+                        <Link
+                            href="/"
+                            className="inline-flex items-center text-sm text-gray-400 hover:text-white mb-8 transition-colors backdrop-blur-md bg-black/30 px-4 py-2 rounded-full border border-white/10"
+                        >
+                            <ArrowLeft className="w-4 h-4 mr-2" />
+                            Back to Home
+                        </Link>
 
-            {/* Hero Section */}
-            <section className="relative pt-32 pb-16 px-4">
-                <div className="container mx-auto max-w-5xl">
-                    <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
-                        <div className="flex-1 space-y-6">
-                            <div className="flex items-center gap-3">
-                                <div className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md">
-                                    {project.icon}
-                                </div>
-                                <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 px-3 py-1">
-                                    {project.subtitle}
-                                </Badge>
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className={`p-4 rounded-2xl bg-gradient-to-br ${project.metadata.color} bg-opacity-20 border border-white/10 backdrop-blur-xl`}>
+                                <IconComponent className="w-8 h-8 text-white" />
                             </div>
+                            <Badge variant="outline" className="text-sm border-white/20 bg-white/5 px-3 py-1">
+                                {project.metadata.subtitle}
+                            </Badge>
+                        </div>
 
-                            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-tight">
-                                {project.title}
-                            </h1>
+                        <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
+                            {project.metadata.title}
+                        </h1>
 
-                            <p className="text-xl md:text-2xl text-gray-400 leading-relaxed max-w-2xl">
-                                {project.description}
+                        <p className="text-xl md:text-2xl text-gray-300 max-w-2xl leading-relaxed mb-8">
+                            {project.metadata.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-4">
+                            <Button asChild className="bg-white text-black hover:bg-gray-200">
+                                <a href={project.metadata.demoLink} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                                    <ExternalLink className="w-4 h-4 mr-2" /> Live Demo
+                                </a>
+                            </Button>
+                            <Button asChild variant="outline" className="border-white/10 text-white hover:bg-white/10">
+                                <a href={project.metadata.codeLink} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                                    <Github className="w-4 h-4 mr-2" /> Source Code
+                                </a>
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Content Section */}
+            <div className="container px-4 max-w-4xl py-24">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    {/* Main Content */}
+                    <div className="lg:col-span-2">
+                        <article className="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-p:text-gray-400 prose-li:text-gray-400">
+                            <MDXRemote source={project.content} />
+                        </article>
+                    </div>
+
+                    {/* Sidebar Stats */}
+                    <div className="space-y-8">
+                        <div className="p-6 rounded-2xl bg-[#111] border border-white/10">
+                            <h3 className="text-sm font-medium text-gray-500 mb-4 uppercase tracking-wider">Key Impact</h3>
+                            <p className="text-2xl font-bold text-primary">
+                                {project.metadata.stats}
                             </p>
-
-                            <div className="flex flex-wrap gap-4 pt-4">
-                                {project.links.demo && (
-                                    <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
-                                        <Button size="lg" className="bg-white text-black hover:bg-gray-200">
-                                            <ExternalLink className="w-4 h-4 mr-2" /> Live Demo
-                                        </Button>
-                                    </a>
-                                )}
-                                {project.links.code && (
-                                    <a href={project.links.code} target="_blank" rel="noopener noreferrer">
-                                        <Button size="lg" variant="outline" className="border-white/10 text-white hover:bg-white/5">
-                                            <Github className="w-4 h-4 mr-2" /> View Code
-                                        </Button>
-                                    </a>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Hero Image */}
-                    <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#111]">
-                        <Image
-                            src={project.image}
-                            alt={project.title}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-                </div>
-            </section>
-
-            {/* Details Grid */}
-            <section className="py-16 px-4 bg-[#0a0a0a]">
-                <div className="container mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-12">
-
-                    {/* Sidebar: Stats & Tech */}
-                    <div className="md:col-span-1 space-y-8">
-                        <div className="p-6 rounded-2xl bg-white/5 border border-white/5">
-                            <h3 className="text-sm font-mono text-gray-500 mb-4 uppercase tracking-wider">Impact Stats</h3>
-                            <p className="text-2xl font-bold text-white">{project.stats}</p>
                         </div>
 
-                        <div className="p-6 rounded-2xl bg-white/5 border border-white/5">
-                            <h3 className="text-sm font-mono text-gray-500 mb-4 uppercase tracking-wider flex items-center gap-2">
-                                <Layers className="w-4 h-4" /> Tech Stack
-                            </h3>
+                        <div className="p-6 rounded-2xl bg-[#111] border border-white/10">
+                            <h3 className="text-sm font-medium text-gray-500 mb-4 uppercase tracking-wider">Technologies</h3>
                             <div className="flex flex-wrap gap-2">
-                                {project.tech.map((t) => (
-                                    <Badge key={t} variant="secondary" className="bg-black/40 text-gray-300 hover:bg-black/60">
+                                {project.metadata.tech.map((t) => (
+                                    <Badge key={t} variant="secondary" className="bg-white/5 hover:bg-white/10 text-gray-300 border-transparent">
                                         {t}
                                     </Badge>
                                 ))}
                             </div>
                         </div>
 
-                        <div className="p-6 rounded-2xl bg-white/5 border border-white/5">
-                            <h3 className="text-sm font-mono text-gray-500 mb-4 uppercase tracking-wider flex items-center gap-2">
-                                <Calendar className="w-4 h-4" /> Timeline
-                            </h3>
-                            <p className="text-gray-300">Completed 2024</p>
-                        </div>
-                    </div>
-
-                    {/* Main Content */}
-                    <div className="md:col-span-2 space-y-12">
-                        <div>
-                            <h2 className="text-3xl font-bold mb-6">About the Project</h2>
-                            <div className="prose prose-invert prose-lg text-gray-400">
-                                <p>
-                                    This project represents a significant milestone in applying {project.tech[0]} to solve real-world problems.
-                                    The architecture focused on scalability and performance, ensuring that {project.subtitle} could handle usage at scale.
-                                </p>
-                                <p>
-                                    Key challenges involved integrating strict security protocols while maintaining a seamless user experience.
-                                    By leveraging modern frameworks, we achieved a response time that exceeds industry standards.
-                                </p>
+                        <div className="p-6 rounded-2xl bg-[#111] border border-white/10">
+                            <h3 className="text-sm font-medium text-gray-500 mb-4 uppercase tracking-wider">Project Info</h3>
+                            <div className="flex justify-between items-center py-2 border-b border-white/5">
+                                <span className="text-gray-400">Year</span>
+                                <span className="font-mono">{new Date(project.metadata.publishedAt).getFullYear()}</span>
+                            </div>
+                            <div className="flex justify-between items-center py-2 border-b border-white/5">
+                                <span className="text-gray-400">Role</span>
+                                <span>Lead Developer</span>
                             </div>
                         </div>
 
-                        <div>
-                            <h2 className="text-3xl font-bold mb-6">Key Features</h2>
-                            <ul className="space-y-4">
-                                {[1, 2, 3].map((i) => (
-                                    <li key={i} className="flex gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                                        <div className="h-2 w-2 mt-2 rounded-full bg-primary shrink-0"></div>
-                                        <div>
-                                            <h4 className="font-bold text-white mb-1">Advanced Feature {i}</h4>
-                                            <p className="text-sm text-gray-400">Implementation details regarding this specific feature and its value to the user.</p>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
                     </div>
                 </div>
-            </section>
-
-            {/* CTA Layer */}
-            <section className="py-24 px-4 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8">Interested in building something similar?</h2>
-                <Link href="/#contact">
-                    <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-gradient-to-r from-primary to-purple-600 hover:scale-105 transition-transform">
-                        Let's Collaborate
-                    </Button>
-                </Link>
-            </section>
+            </div>
         </div>
     )
 }

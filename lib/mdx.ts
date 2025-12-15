@@ -9,7 +9,23 @@ type Metadata = {
     image?: string
 }
 
+
+export type ProjectMetadata = {
+    title: string
+    subtitle: string
+    image: string
+    iconName: string
+    description: string
+    stats: string
+    tech: string[]
+    demoLink: string
+    codeLink: string
+    color: string
+    publishedAt: string
+}
+
 function getMDXFiles(dir: string) {
+    if (!fs.existsSync(dir)) return []
     return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
 }
 
@@ -24,7 +40,7 @@ function getMDXData(dir: string) {
         const { data, content } = readMDXFile(path.join(dir, file))
         const slug = path.basename(file, path.extname(file))
         return {
-            metadata: data as Metadata,
+            metadata: data as any,
             slug,
             content,
         }
@@ -32,5 +48,15 @@ function getMDXData(dir: string) {
 }
 
 export function getBlogPosts() {
-    return getMDXData(path.join(process.cwd(), 'content', 'posts'))
+    return getMDXData(path.join(process.cwd(), 'content', 'posts')).map(post => ({
+        ...post,
+        metadata: post.metadata as Metadata
+    }))
+}
+
+export function getProjects() {
+    return getMDXData(path.join(process.cwd(), 'content', 'projects')).map(project => ({
+        ...project,
+        metadata: project.metadata as ProjectMetadata
+    }))
 }

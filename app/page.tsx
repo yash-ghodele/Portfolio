@@ -8,8 +8,7 @@ import Testimonials from "@/components/testimonials"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
-
-export const runtime = 'edge'
+import { getProjects } from "@/lib/mdx"
 
 export const metadata: Metadata = {
   title: "Yash Ghodele | Portfolio",
@@ -18,6 +17,8 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
+  const projects = getProjects()
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -25,7 +26,7 @@ export default function Home() {
         <Hero />
         <About />
         <TechStack />
-        <Projects />
+        <Projects projects={projects} />
         <Experience />
         <Testimonials />
         <Contact />
