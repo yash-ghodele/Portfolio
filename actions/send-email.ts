@@ -14,7 +14,7 @@ const FormSchema = z.object({
 
 import { Resend } from "resend"
 
-const resend = new Resend('re_Rgk1pjM6_Mv3dSZqeWqpKMZStat5PbHRy')
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export type FormState = {
     message: string
