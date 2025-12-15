@@ -8,32 +8,14 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, ChevronRight, ChevronLeft } from "lucide-react"
 import { projects as localProjects } from "@/lib/data"
-import { getProjects } from "@/lib/sanity"
-import type { Project } from "@/lib/data"
-
+import BackgroundParticles from "@/components/ui/background-particles"
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>(localProjects)
   const [current, setCurrent] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const [mounted, setMounted] = useState(false)
-
   useEffect(() => {
     setMounted(true)
-    // Fetch from Sanity
-    async function fetchSanityProjects() {
-      try {
-        const sanityProjects = await getProjects()
-        if (sanityProjects && sanityProjects.length > 0) {
-          console.log("Using Sanity Data", sanityProjects)
-          setProjects(sanityProjects)
-        } else {
-          console.log("No Sanity data found, using local fallback.")
-        }
-      } catch (error) {
-        console.error("Failed to fetch from Sanity:", error)
-      }
-    }
-    fetchSanityProjects()
   }, [])
 
   // Auto-play timer
@@ -49,10 +31,11 @@ export default function Projects() {
   const next = () => setCurrent((curr) => (curr + 1) % projects.length)
   const prev = () => setCurrent((curr) => (curr - 1 + projects.length) % projects.length)
 
-  if (!mounted) return <div className="py-24 bg-[#050505] text-center text-white">Loading Projects...</div>
+  if (!mounted) return <div className="py-24 text-center text-white">Loading Projects...</div>
 
   return (
-    <section id="projects" className="py-24 relative min-h-[90vh] flex flex-col justify-center bg-[#050505] overflow-hidden">
+    <section id="projects" className="py-24 relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
+      <BackgroundParticles />
       {/* Subtle Background Glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 to-transparent pointer-events-none"></div>
 
@@ -186,8 +169,8 @@ export default function Projects() {
                 key={i}
                 onClick={() => setCurrent(i)}
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === current
-                    ? "bg-white w-8"
-                    : "bg-white/20 hover:bg-white/40"
+                  ? "bg-white w-8"
+                  : "bg-white/20 hover:bg-white/40"
                   }`}
                 aria-label={`Go to project ${i + 1}`}
               />

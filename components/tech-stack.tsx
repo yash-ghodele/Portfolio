@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, Variants } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Code2, Cpu, Smartphone, Wrench, Megaphone, Users } from "lucide-react"
+import BackgroundParticles from "@/components/ui/background-particles"
 
 export default function TechStack() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -83,7 +84,7 @@ export default function TechStack() {
     },
   }
 
-  const fadeIn = {
+  const fadeIn: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -97,11 +98,14 @@ export default function TechStack() {
   }
 
   return (
-    <section id="tech-stack" className="py-32 relative overflow-hidden bg-black/5">
-      {/* HUD Background Grid - Isometric/Cyberpunk feel */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
+    <section id="tech-stack" className="py-32 relative overflow-hidden">
+      <BackgroundParticles />
+      {/* HUD Background Grid - Isometric/Cyberpunk feel (Restoring subtly or just keeping clean?) 
+          User said "constant background for all pages except hero". 
+          So I will leave it CLEAN (transparent to global bg). 
+      */}
 
-      {/* Ambient Glows */}
+      {/* Ambient Glows (Retained for subtle depth) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-primary/20 blur-[120px] rounded-full pointer-events-none opacity-50"></div>
 
       <div className="container mx-auto px-4 relative z-10 perspective-1000">
@@ -113,20 +117,17 @@ export default function TechStack() {
           className="text-center mb-24 relative"
         >
           <div className="inline-block relative">
-            <Badge variant="outline" className="mb-6 text-sm font-medium border-primary/50 text-primary py-1.5 px-6 backdrop-blur-md bg-primary/5 shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-              System Capabilities
+            <Badge variant="outline" className="mb-6 text-sm font-medium border-primary/50 text-white py-1.5 px-6 backdrop-blur-md bg-transparent">
+              Domain Expertise
             </Badge>
-            {/* Decorative HUD lines */}
-            <div className="absolute -left-12 top-1/2 w-8 h-[1px] bg-primary/50"></div>
-            <div className="absolute -right-12 top-1/2 w-8 h-[1px] bg-primary/50"></div>
           </div>
 
-          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-white/20 select-none">
-            Tech Arsenal
+          <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tighter text-white">
+            Technical Skills
           </h2>
 
           <p className="text-xl text-muted-foreground/80 max-w-2xl mx-auto font-light tracking-wide">
-            Deployed technologies & operational protocols
+            A comprehensive overview of my technical proficiency.
           </p>
         </motion.div>
 

@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/hooks/use-toast"
 import { Mail, MapPin, Phone, Github, Linkedin, Instagram, Send, Loader2 } from "lucide-react"
 import { sendEmail } from "@/actions/send-email"
+import BackgroundParticles from "@/components/ui/background-particles"
 
 interface FormData {
   name: string
@@ -40,6 +41,7 @@ export default function Contact() {
     const formDataObj = new FormData()
     formDataObj.append("name", formData.name)
     formDataObj.append("email", formData.email)
+    formDataObj.append("subject", formData.subject)
     formDataObj.append("message", formData.message)
     // subject is not in the server action schema currently, but we can send it or ignore it. 
     // The previous action didn't include subject validation, let's just stick to the main 3 for simplicity or update the action.
@@ -74,7 +76,8 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-32 relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section id="contact" className="py-32 relative min-h-screen flex items-center justify-center overflow-hidden">
+      <BackgroundParticles />
       {/* Ambient Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(100,50,255,0.1),transparent_50%)] pointer-events-none"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,50,150,0.05),transparent_50%)] pointer-events-none"></div>

@@ -9,7 +9,8 @@ import { z } from "zod"
 const FormSchema = z.object({
     name: z.string().min(2, { message: "Name must be at least 2 characters." }),
     email: z.string().email({ message: "Please enter a valid email address." }),
-    message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+    subject: z.string().min(2, { message: "Subject must be at least 2 characters." }),
+    message: z.string().min(5, { message: "Message must be at least 5 characters." }),
 })
 
 import { Resend } from "resend"
@@ -44,60 +45,120 @@ export async function sendEmail(prevState: FormState, formData: FormData): Promi
     }
 
     try {
-        const { name, email, message } = parsed.data
+        const { name, email, subject, message } = parsed.data
 
         // 1. Send Notification to Portfolio Owner (Yash)
         const ownerEmail = await resend.emails.send({
             from: 'Portfolio Contact <onboarding@resend.dev>',
             replyTo: email,
-            to: 'yashghodele.work@gmail.com',
-            subject: `New Message from Portfolio: ${name}`,
+            to: 'ghodeleyash2004@gmail.com',
+            subject: `Contact Form: ${subject}`,
             html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #ffffff;">
-                <h2 style="color: #333333; margin-top: 0; text-align: center; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px;">New Portfolio Contact</h2>
-                
-                <div style="margin-top: 20px;">
-                    <p style="font-size: 16px; color: #555;"><strong>Name:</strong> <span style="color: #000;">${name}</span></p>
-                    <p style="font-size: 16px; color: #555;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #0070f3; text-decoration: none;">${email}</a></p>
-                </div>
-
-                <div style="margin-top: 30px; background-color: #f9f9f9; padding: 15px; border-radius: 6px; border-left: 4px solid #0070f3;">
-                    <p style="margin: 0; font-weight: bold; color: #333; margin-bottom: 10px;">Message:</p>
-                    <p style="margin: 0; white-space: pre-wrap; color: #444; line-height: 1.6;">${message}</p>
-                </div>
-                
-                <p style="margin-top: 30px; font-size: 12px; color: #888; text-align: center;">
-                    Sent from your Portfolio Contact Form
-                </p>
-            </div>
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <style>
+                        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #000000; color: #ffffff; }
+                        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+                        .card { background-color: #111111; border: 1px solid #333333; border-radius: 8px; overflow: hidden; }
+                        .header { padding: 24px; border-bottom: 1px solid #222222; background-color: #0a0a0a; }
+                        .title { margin: 0; font-size: 18px; font-weight: 600; color: #ffffff; }
+                        .content { padding: 32px; }
+                        .row { margin-bottom: 20px; }
+                        .label { font-size: 12px; text-transform: uppercase; color: #888888; margin-bottom: 6px; font-weight: 500; }
+                        .value { font-size: 15px; color: #ffffff; line-height: 1.5; }
+                        .message-box { background: #0a0a0a; border: 1px solid #222222; padding: 16px; border-radius: 6px; color: #cccccc; white-space: pre-wrap; font-size: 14px; }
+                        .footer { font-size: 12px; color: #444444; margin-top: 24px; text-align: center; }
+                        a { color: #ffffff; text-decoration: underline; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="card">
+                            <div class="header">
+                                <h1 class="title">New Contact Submission</h1>
+                            </div>
+                            <div class="content">
+                                <div class="row">
+                                    <div class="label">Name</div>
+                                    <div class="value">${name}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">Email</div>
+                                    <div class="value"><a href="mailto:${email}">${email}</a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">Subject</div>
+                                    <div class="value">${subject}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">Message</div>
+                                    <div class="message-box">${message}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            Sent from Portfolio Contact Form
+                        </div>
+                    </div>
+                </body>
+            </html>
             `
         })
 
         if (ownerEmail.error) throw new Error(ownerEmail.error.message)
 
         // 2. Send Confirmation to Visitor (Auto-Reply)
-        // NOTE: This will fail for unverified emails on the free/onboarding tier. 
-        // We catch the error so it doesn't report "Failed" to the user just because the auto-reply failed.
         try {
             await resend.emails.send({
                 from: 'Yash Ghodele <onboarding@resend.dev>',
-                to: email, // The visitor's email
-                subject: `Reviewing your message: ${name}`,
+                to: email,
+                subject: `Receipt: ${subject}`,
                 html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #ffffff;">
-                    <h2 style="color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px;">Thanks for reaching out!</h2>
-                    <p style="color: #555; font-size: 16px; line-height: 1.6;">
-                        Hi <strong>${name}</strong>,<br><br>
-                        I've received your message and will get back to you as soon as possible.
-                    </p>
-                    <div style="margin-top: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 6px; color: #666; font-size: 14px;">
-                        <em>"${message.substring(0, 100)}${message.length > 100 ? '...' : ''}"</em>
-                    </div>
-                    <p style="margin-top: 30px; font-size: 14px; color: #888;">
-                        Best regards,<br>
-                        <strong>Yash Ghodele</strong>
-                    </p>
-                </div>
+                <!DOCTYPE html>
+                <html>
+                    <head>
+                        <style>
+                            body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #050505; color: #ffffff; }
+                            .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+                            .card { background-color: #0a0a0a; border: 1px solid #222222; border-radius: 8px; overflow: hidden; }
+                            .header { padding: 30px; text-align: left; border-bottom: 1px solid #222; background-color: #111; }
+                            .title { margin: 0; font-size: 20px; font-weight: 600; color: #ffffff; }
+                            .content { padding: 30px; }
+                            .text { font-size: 15px; line-height: 1.6; color: #cccccc; margin-bottom: 24px; }
+                            .original-message { background: #111111; border: 1px solid #222222; padding: 16px; border-radius: 6px; margin-bottom: 24px; }
+                            .label { font-size: 11px; text-transform: uppercase; color: #666666; margin-bottom: 4px; }
+                            .message-text { font-size: 14px; color: #999999; font-style: italic; }
+                            .btn { display: inline-block; background: #ffffff; color: #000000; padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 14px; }
+                            .footer { text-align: center; font-size: 12px; color: #444444; margin-top: 30px; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <div class="card">
+                                <div class="header">
+                                    <h1 class="title">Message Received</h1>
+                                </div>
+                                <div class="content">
+                                    <p class="text">
+                                        Dear ${name},<br><br>
+                                        Thank you for contacting me regarding <strong>"${subject}"</strong>. I have received your message and will review it shortly.
+                                    </p>
+                                    
+                                    <div class="original-message">
+                                        <div class="label">Your Message</div>
+                                        <p class="message-text">"${message}"</p>
+                                    </div>
+                                    
+                                    <a href="https://yash-ghodele.pages.dev" class="btn">Visit Portfolio</a>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                &copy; ${new Date().getFullYear()} Yash Ghodele
+                            </div>
+                        </div>
+                    </body>
+                </html>
                 `
             })
         } catch (autoReplyError) {

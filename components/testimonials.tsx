@@ -1,25 +1,18 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
-import { Star, StarHalf, Quote, Terminal, Hash } from "lucide-react"
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
+import BackgroundParticles from "@/components/ui/background-particles"
 
 export default function Testimonials() {
-  const fadeIn = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        staggerChildren: 0.1
-      }
-    },
-  }
+  const [current, setCurrent] = useState(0)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const testimonials = [
     {
@@ -29,7 +22,6 @@ export default function Testimonials() {
       content:
         "Yash has demonstrated exceptional leadership skills. His ability to organize large-scale technical events like InnoHack hackathons with 200+ participants showcases his project management abilities.",
       rating: 5,
-      role: "MENTOR"
     },
     {
       id: 2,
@@ -38,7 +30,6 @@ export default function Testimonials() {
       content:
         "Working under Yash's leadership was an incredible learning experience. His expertise in IoT and ability to mentor the team helped us deliver outstanding projects.",
       rating: 5,
-      role: "COLLEAGUE"
     },
     {
       id: 3,
@@ -47,7 +38,6 @@ export default function Testimonials() {
       content:
         "One of the most well-organized events I've attended. The platform was seamless and the judging process was fair. His attention to detail is remarkable.",
       rating: 5,
-      role: "PARTICIPANT"
     },
     {
       id: 4,
@@ -55,136 +45,132 @@ export default function Testimonials() {
       position: "IETE Students Forum",
       content:
         "Yash brought fresh ideas and energy. His ability to coordinate between different teams made him an invaluable member of our organization.",
-      rating: 4.5,
-      role: "PEER"
+      rating: 5,
     },
     {
       id: 5,
-      name: "Rohit Mehta",
-      position: "Mentee, IoT Workshop",
+      name: "Rohan Verma",
+      position: "Tech Lead, CodeCrafters",
       content:
-        "His mentorship in IoT has been instrumental. He explains complex concepts clearly and generous shares his practical expertise with others.",
+        "A highly skilled developer with a keen eye for design. His portfolio alone demonstrates his attention to detail and technical prowess.",
       rating: 5,
-      role: "STUDENT"
-    },
+    }
   ]
 
-  const renderStars = (rating: number) => {
-    const stars = []
-    const fullStars = Math.floor(rating)
-    const hasHalfStar = rating % 1 !== 0
+  const next = () => setCurrent((curr) => (curr + 1) % testimonials.length)
+  const prev = () => setCurrent((curr) => (curr - 1 + testimonials.length) % testimonials.length)
 
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<Star key={i} className="h-3 w-3 fill-primary text-primary" />)
+  // Get 3 visible items with wrap-around
+  const getVisibleTestimonials = () => {
+    const items = []
+    for (let i = 0; i < 3; i++) {
+      items.push(testimonials[(current + i) % testimonials.length])
     }
-
-    if (hasHalfStar) {
-      stars.push(<StarHalf key="half" className="h-3 w-3 fill-primary text-primary" />)
-    }
-
-    return <div className="flex gap-0.5">{stars}</div>
+    return items
   }
 
+  const visibleItems = getVisibleTestimonials()
+
+  if (!mounted) return null
+
   return (
-    <section id="testimonials" className="py-32 relative bg-black overflow-hidden">
-      {/* Tech Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+    <section id="testimonials" className="py-24 relative overflow-hidden">
+      <BackgroundParticles />
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          variants={fadeIn}
-          className="text-center mb-16"
-        >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Terminal className="w-5 h-5 text-primary" />
-            <span className="text-primary font-mono text-sm tracking-wider">SYSTEM_LOGS // FEEDBACK</span>
-          </div>
+      <div className="container mx-auto px-4 max-w-7xl relative z-10 mb-12">
+        <div className="text-center mb-16">
+          <Badge variant="outline" className="mb-6 py-1.5 px-4 border-white/10 bg-white/5 text-white/80 backdrop-blur-md">
+            Endorsements
+          </Badge>
+          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
+            What People Say
+          </h2>
+        </div>
 
-          <motion.h2
-            className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+        {/* Carousel Container */}
+        <div className="relative">
+
+          {/* Navigation Buttons (Absolute - Outside container) */}
+          <button
+            onClick={prev}
+            className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/5 border border-white/10 text-white backdrop-blur-md hover:bg-white/10 transition-all duration-300 hidden md:flex items-center justify-center group"
+            aria-label="Previous Testimonial"
           >
-            DATA TRANSMISSIONS
-          </motion.h2>
-        </motion.div>
+            <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
+          </button>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          variants={fadeIn}
-        >
-          <Carousel
-            className="w-full"
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 5000,
-                stopOnInteraction: false,
-                stopOnMouseEnter: true,
-              }),
-            ]}
+          <button
+            onClick={next}
+            className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/5 border border-white/10 text-white backdrop-blur-md hover:bg-white/10 transition-all duration-300 hidden md:flex items-center justify-center group"
+            aria-label="Next Testimonial"
           >
-            <CarouselContent className="-ml-6">
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={testimonial.id} className="pl-6 md:basis-1/2 lg:basis-1/3">
-                  <div className="h-full pt-1">
-                    <div className="group h-full cursor-pointer relative">
-                      {/* Tech Borders */}
-                      <div className="absolute top-0 left-0 w-8 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></div>
-                      <div className="absolute top-0 left-0 w-[2px] h-8 bg-primary transition-all duration-300 group-hover:h-full"></div>
-                      <div className="absolute bottom-0 right-0 w-8 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></div>
-                      <div className="absolute bottom-0 right-0 w-[2px] h-8 bg-primary transition-all duration-300 group-hover:h-full"></div>
+            <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+          </button>
 
-                      {/* Card Body */}
-                      <div className="h-full bg-zinc-950 p-6 border border-zinc-800 transition-all duration-300 group-hover:border-primary/50 relative overflow-hidden">
-                        {/* Scanline Effect */}
-                        <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[size:100%_4px] opacity-0 group-hover:opacity-20 pointer-events-none transition-opacity duration-300"></div>
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <AnimatePresence mode="popLayout">
+              {visibleItems.map((item, index) => (
+                <motion.div
+                  key={`${item.id}-${index}`} // Composite key to force re-render on position change if needed, or simple ID if we want layout animation
+                  // Actually, strictly using ID allows Framer to animate positions.
+                  // But since we are cycling content slots, let's use a stable index layout? 
+                  // No, simple fade/slide is safer for "Show 3".
+                  layout
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }} // This might get chaotic with 3.
+                  // Simpler: Just fade in/out the new set? 
+                  // Or just animate the properties.
+                  transition={{ duration: 0.3 }}
+                  className="h-full"
+                >
+                  <div className="h-full min-h-[400px] p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col relative group hover:bg-white/10 transition-colors">
+                    <Quote className="absolute top-6 right-6 w-8 h-8 text-white/5 group-hover:text-primary/20 transition-colors" />
 
-                        <div className="flex justify-between items-start mb-6">
-                          <div className="flex flex-col">
-                            <span className="text-xs font-mono text-primary/70 mb-1">ID: USER_0{testimonial.id}</span>
-                            <h4 className="font-bold text-white text-lg font-mono tracking-tight group-hover:text-primary transition-colors">{testimonial.name}</h4>
-                            <span className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">{testimonial.role}</span>
-                          </div>
-                          <Quote className="w-8 h-8 text-zinc-800 group-hover:text-primary/20 transition-colors" />
-                        </div>
+                    <div className="flex gap-1 mb-6">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                      ))}
+                    </div>
 
-                        <p className="text-zinc-400 text-sm leading-relaxed font-mono border-l-2 border-zinc-800 pl-4 mb-6 group-hover:border-primary/50 transition-colors">
-                          {testimonial.content}
-                        </p>
+                    <p className="text-white/80 mb-8 leading-relaxed italic font-light text-sm md:text-base">
+                      &quot;{item.content}&quot;
+                    </p>
 
-                        <div className="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-zinc-800">
-                          <span className="text-xs text-zinc-600 font-mono flex items-center gap-1">
-                            <Hash className="w-3 h-3" /> {testimonial.rating.toFixed(1)}
-                          </span>
-                          <div className="bg-zinc-900 px-2 py-1 rounded border border-zinc-800">
-                            {renderStars(testimonial.rating)}
-                          </div>
-                        </div>
+                    <div className="mt-auto flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-sm font-bold text-white">
+                        {item.name[0]}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white text-sm">{item.name}</h4>
+                        <p className="text-white/50 text-xs">{item.position}</p>
                       </div>
                     </div>
                   </div>
-                </CarouselItem>
+                </motion.div>
               ))}
-            </CarouselContent>
-            <div className="flex justify-center mt-12 gap-4">
-              <CarouselPrevious className="relative static translate-y-0 h-10 w-10 border border-zinc-800 bg-black hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 rounded-none" />
-              <CarouselNext className="relative static translate-y-0 h-10 w-10 border border-zinc-800 bg-black hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 rounded-none" />
-            </div>
-          </Carousel>
-        </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Dots Navigation */}
+          <div className="flex justify-center gap-2 mt-12">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${i === current
+                  ? "bg-white w-6"
+                  : "bg-white/20 hover:bg-white/40"
+                  }`}
+                aria-label={`Go to testimonial group starting at ${i + 1}`}
+              />
+            ))}
+          </div>
+
+        </div>
       </div>
     </section>
   )

@@ -22,7 +22,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-black py-12 border-t border-white/10 relative overflow-hidden">
+    <footer className="bg-zinc-950 py-12 border-t border-white/10 relative overflow-hidden">
       {/* Ambient Background Glow matching Contact section */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(168,85,247,0.1),transparent_70%)] pointer-events-none"></div>
 

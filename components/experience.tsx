@@ -4,6 +4,7 @@ import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Award, Users, Zap, Calendar, ChevronRight, Trophy, Star, Target, Shield } from "lucide-react"
+import BackgroundParticles from "@/components/ui/background-particles"
 
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -70,7 +71,8 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-32 relative overflow-hidden bg-black/5" ref={containerRef}>
+    <section id="experience" className="py-32 relative overflow-hidden" ref={containerRef}>
+      <BackgroundParticles />
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.05),transparent_70%)] pointer-events-none"></div>
 
@@ -80,13 +82,13 @@ export default function Experience() {
           className="text-center mb-24"
         >
           <Badge variant="outline" className="mb-4 text-sm font-medium border-primary/50 text-foreground py-1 px-3 backdrop-blur-md">
-            Career Trajectory
+            Journey
           </Badge>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
-            Professional Experience
+            Experience
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            A timeline of leadership, innovation, and impact.
+            Professional roles and operational leadership positions.
           </p>
         </motion.div>
 

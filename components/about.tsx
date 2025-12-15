@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Zap, Users, Lightbulb } from "lucide-react"
+import BackgroundParticles from "@/components/ui/background-particles"
 
 export default function About() {
   const fadeIn: Variants = {
@@ -48,6 +49,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-32 relative overflow-hidden">
+      <BackgroundParticles />
       {/* Background gradients */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-purple-900/5 to-background pointer-events-none"></div>
 
@@ -62,7 +64,7 @@ export default function About() {
           className="text-center mb-24 max-w-4xl mx-auto"
         >
           <Badge variant="outline" className="mb-6 text-sm font-medium border-primary/30 py-1.5 px-4 backdrop-blur-sm">
-            About Me
+            Overview
           </Badge>
           <motion.h2
             className="text-5xl md:text-7xl font-black mb-8 tracking-tight"
@@ -71,8 +73,8 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
           >
-            <span className="bg-gradient-to-r from-purple-400 via-primary to-blue-500 bg-clip-text text-transparent">
-              Beyond the Code
+            <span className="text-white">
+              Professional Profile
             </span>
           </motion.h2>
           <motion.p
@@ -81,7 +83,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            I'm a <span className="text-foreground font-semibold">B.Tech ECE Student</span> blending hardware logic with software creativity to build connected ecosystems.
+            B.Tech ECE Student specializing in <span className="text-foreground font-semibold">Embedded Systems</span> and <span className="text-foreground font-semibold">Full Stack Development</span>.
           </motion.p>
         </motion.div>
 
@@ -96,21 +98,18 @@ export default function About() {
             viewport={{ once: true }}
             variants={slideInLeft}
           >
-            <h3 className="text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/50 bg-clip-text text-transparent">
-              The intersection of <br /> IoT & Leadership
+            <h3 className="text-3xl font-bold text-white">
+              Engineering & Leadership
             </h3>
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
-                At MIT College of Engineering, I don't just study machines; I bring them to life. My journey is fueled by a curiosity for how
-                <span className="text-primary font-medium"> Embedded Systems</span> interact with the human world.
+                Currently pursuing my degree at MIT College of Engineering, I have developed a strong foundation in both hardware and software domains. My focus is on creating integrated systems that solve real-world problems.
               </p>
               <p>
-                But technology doesn't live in a vacuum. As a <span className="text-purple-500 font-medium">Community Leader</span>,
-                I organize hackathons and tech events, proving that the best circuits we build are the connections between people.
+                In addition to my technical work, I serve as a leader in various student organizations, organizing technical events and fostering a culture of innovation among peers.
               </p>
               <p>
-                Whether I'm soldering a PCB or managing a 50-person volunteer team, my goal remains the same:
-                <span className="text-foreground font-medium decoration-primary decoration-2 underline-offset-4 underline"> Create impact through innovation.</span>
+                <b>Key Focus Areas:</b> IoT Architecture, Web Development, and Event Management.
               </p>
             </div>
           </motion.div>
@@ -133,9 +132,9 @@ export default function About() {
                 <Zap className="h-8 w-8 text-primary" />
               </div>
               <div>
-                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">IoT Architect</h4>
+                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">IoT Development</h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Designing smart, connected solutions using Arduino & modern sensors.
+                  Designing smart, connected solutions using ESP32, Arduino & Sensors.
                 </p>
               </div>
             </motion.div>
@@ -154,9 +153,9 @@ export default function About() {
                 <Users className="h-8 w-8 text-purple-500" />
               </div>
               <div>
-                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-purple-500 transition-colors">Community Lead</h4>
+                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-purple-500 transition-colors">Team Leadership</h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Orchestrating large-scale tech events and fostering peer mentorship.
+                  Managing technical teams and organizing large-scale events.
                 </p>
               </div>
             </motion.div>
@@ -175,9 +174,9 @@ export default function About() {
                 <Lightbulb className="h-8 w-8 text-blue-500" />
               </div>
               <div>
-                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-blue-500 transition-colors">Problem Solver</h4>
+                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-blue-500 transition-colors">Strategic Planning</h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Turning abstract challenges into tangible, efficient systems.
+                  Executing projects with a focus on efficiency and scalability.
                 </p>
               </div>
             </motion.div>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Github, Linkedin, Instagram } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import HeroNetwork from "@/components/ui/hero-network"
 
 export default function Hero() {
   const words = ["Engineer", "•", "Leader", "•", "Innovator"]
@@ -47,14 +48,11 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Gradient background layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-background to-blue-900/10 pointer-events-none"></div>
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5 pointer-events-none"></div>
-
-      {/* Animated gradient orbs */}
-      <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-zinc-950">
+      {/* Hybrid Network/Aurora Background */}
+      <div className="absolute inset-0 z-0">
+        <HeroNetwork />
+      </div>
 
       <div className="container mx-auto px-4 relative z-10 py-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -71,45 +69,18 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Hi, I'm <br />
+                Yash <br />
                 <span className="bg-gradient-to-r from-purple-400 via-primary to-blue-500 bg-clip-text text-transparent animate-gradient">
-                  Yash
+                  Ghodele
                 </span>
               </motion.h1>
               <motion.h2
-                className="text-xl md:text-2xl lg:text-3xl font-medium text-muted-foreground min-h-[3rem]"
+                className="text-xl md:text-2xl lg:text-3xl font-medium text-muted-foreground"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="flex flex-wrap gap-2 items-center">
-                  {displayedWords.map((word, index) => (
-                    <motion.span
-                      key={`${word}-${index}`}
-                      initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{
-                        duration: 0.5,
-                        type: "spring",
-                        stiffness: 200,
-                        damping: 15
-                      }}
-                      className={`inline-block ${word === "•" ? "text-primary/50" : "text-foreground font-semibold"
-                        }`}
-                    >
-                      {word}
-                    </motion.span>
-                  ))}
-                  {displayedWords.length < words.length && (
-                    <motion.span
-                      className="animate-blink text-primary"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                    >
-                      |
-                    </motion.span>
-                  )}
-                </div>
+                Full Stack Developer & IoT Engineer
               </motion.h2>
             </div>
 
@@ -119,7 +90,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Building the future of connected systems. I blend IoT expertise with leadership skills to create impactful solutions that bridge hardware and software.
+              Building scalable web applications and intelligent connected systems. I bridge the gap between hardware logic and software user experiences.
             </motion.p>
 
             <motion.div
@@ -130,20 +101,13 @@ export default function Hero() {
             >
               <Button
                 size="lg"
-                className="group relative overflow-hidden bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white shadow-lg shadow-purple-500/30 hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 border-0"
+                className="group relative overflow-hidden bg-white text-black hover:bg-gray-200 transition-all duration-300 border-0"
                 onClick={() => scrollToSection("projects")}
               >
-                <span className="relative z-10 flex items-center">
-                  View My Work
+                <span className="relative z-10 flex items-center font-semibold">
+                  View Projects
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
-                {/* Shine effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.6 }}
-                />
               </Button>
               <Button
                 size="lg"
@@ -230,7 +194,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
         </div>
-      </div>
+      </div >
 
       <motion.div
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block z-20"
@@ -259,6 +223,6 @@ export default function Hero() {
           />
         </motion.button>
       </motion.div>
-    </section>
+    </section >
   )
 }

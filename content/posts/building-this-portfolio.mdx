@@ -1,0 +1,58 @@
+---
+title: 'Building a Developer Portfolio with Next.js 14'
+publishedAt: '2025-12-16'
+summary: 'A deep dive into the architecture of this portfolio, featuring Framer Motion animations, Resend email integration, and a clean dark-mode aesthetic.'
+---
+
+# Building a Developer Portfolio that Stands Out
+
+When I set out to build this portfolio, I didn't just want a static showcase of projects. I wanted a platform that reflects my engineering philosophy: **clean, efficient, and scalable.**
+
+This site is built with the latest web technologies to ensure performance and accessibility while delivering a premium user experience.
+
+## The Tech Stack
+
+I chose a modern stack that balances developer experience with end-user performance:
+
+-   **Framework:** [Next.js 14](https://nextjs.org/) (App Router) for server-side rendering and routing.
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/) for a utility-first, maintainable design system.
+-   **Animations:** [Framer Motion](https://www.framer.com/motion/) for fluid, hardware-accelerated transitions.
+-   **Email:** [Resend](https://resend.com/) + [React Email](https://react.email/) for a professional communication layer.
+-   **Content:** MDX for writing blog posts (like this one!) in Markdown with React components.
+
+## Key Features
+
+### 1. Professional Dark Mode
+Gone are the days of cluttered, "gamer" aesthetics. I opted for a **professional dark theme** using `zinc-950` backgrounds and subtle gradients. This ensures readability while maintaining a modern feel.
+
+### 2. Contact Form with Resend
+Instead of using generic `mailto` links, I integrated a fully functional contact form.
+-   **Backend:** A server action (`sendEmail`) validates input using `Zod`.
+-   **Delivery:** Resend API sends the email instantly.
+-   **Feedback:** An auto-reply ("Receipt") is sent to the sender, confirming their message was received.
+
+```typescript
+// Example of the server action logic
+import { Resend } from 'resend';
+
+export const sendEmail = async (formData) => {
+  const { name, email, message } = formData;
+  await resend.emails.send({
+    from: 'Portfolio <onboarding@resend.dev>',
+    to: 'yash@example.com',
+    subject: `New Contact: ${name}`,
+    react: <ContactEmail name={name} message={message} />
+  });
+};
+```
+
+### 3. Dynamic Content
+The "Projects" and "Testimonials" sections are designed to be scalable. Using React components, I can easily add new case studies or feedback without restructuring the page.
+
+## What's Next?
+I plan to expand this platform by:
+-   Adding a dedicated **Case Studies** section.
+-   Implementing **Cloudflare Turnstile** for spam protection.
+-   Experimenting with **3D elements** using Three.js for specific interaction points.
+
+Stay tuned as I continue to ship updates!
