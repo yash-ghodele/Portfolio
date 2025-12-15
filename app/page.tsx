@@ -9,6 +9,8 @@ import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
 
+export const runtime = 'edge'
+
 export const metadata: Metadata = {
   title: "Yash Ghodele | Portfolio",
   description:

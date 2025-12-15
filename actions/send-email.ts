@@ -1,6 +1,6 @@
 "use server"
 
-export const runtime = 'edge'
+
 
 
 import { z } from "zod"

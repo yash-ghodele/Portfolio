@@ -7,6 +7,8 @@ import { ArrowLeft, ExternalLink, Github, Calendar, Layers } from "lucide-react"
 import { projects } from "@/lib/data"
 import { Metadata } from "next"
 
+export const runtime = 'edge'
+
 // Generate static params for all projects
 export async function generateStaticParams() {
     return projects.map((project) => ({
