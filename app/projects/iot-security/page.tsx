@@ -146,7 +146,7 @@ export default function IoTSecurityPage() {
             <section className="container px-6 py-24 mx-auto max-w-5xl border-t border-white/5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                    <div className="space-y-8 sticky top-24">
+                    <div className="space-y-8 md:sticky md:top-24">
                         <h2 className="text-4xl md:text-5xl font-bold">
                             Event-Driven <span className="text-cyan-500">Defense</span>.
                         </h2>

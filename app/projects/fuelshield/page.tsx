@@ -144,7 +144,7 @@ export default function FuelShieldPage() {
             <section className="container px-6 py-24 mx-auto max-w-5xl border-t border-white/5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                    <div className="space-y-8 sticky top-24">
+                    <div className="space-y-8 md:sticky md:top-24">
                         <h2 className="text-4xl md:text-5xl font-bold">
                             Data from the <span className="text-purple-500">Tank</span>.
                         </h2>
@@ -201,7 +201,7 @@ export default function FuelShieldPage() {
                                 <span className="text-fuchsia-400">const</span> client = mqtt.<span className="text-yellow-200">connect</span>(BROKER_URL);<br />
                                 <br />
                                 <span className="text-zinc-500">// Listen for sensor anomalies</span><br />
-                                client.<span className="text-yellow-200">on</span>(<span className="text-green-400">'message'</span>, (topic, message) => {'{'}<br />
+                                client.<span className="text-yellow-200">on</span>(<span className="text-green-400">'message'</span>, (topic, message) =&gt; {'{'}<br />
                                 <span className="text-fuchsia-400">const</span> data = JSON.<span className="text-yellow-200">parse</span>(message.toString());<br />
                                 <br />
                                 <span className="text-zinc-500">// Check for sudden fuel drop</span><br />

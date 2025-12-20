@@ -151,7 +151,7 @@ export default function SanjivaniPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
                     {/* Text Content */}
-                    <div className="space-y-8 sticky top-24">
+                    <div className="space-y-8 md:sticky md:top-24">
                         <h2 className="text-4xl md:text-5xl font-bold">
                             Engineered for the <span className="text-emerald-500">Edge</span>.
                         </h2>
