@@ -1,12 +1,13 @@
 import { MetadataRoute } from 'next'
-import { projects } from '@/lib/data'
+import { getProjects } from '@/lib/mdx'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://yash-ghodele.netlify.app'
+    const baseUrl = 'https://yash-ghodele.pages.dev'
+    const projects = getProjects()
 
     const projectUrls = projects.map((project) => ({
         url: `${baseUrl}/projects/${project.slug}`,
-        lastModified: new Date(),
+        lastModified: new Date(project.metadata.publishedAt),
         changeFrequency: 'monthly' as const,
         priority: 0.8,
     }))

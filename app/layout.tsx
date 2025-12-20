@@ -16,6 +16,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Yash Ghodele | Portfolio",
+  metadataBase: new URL('https://yash-ghodele.pages.dev'),
   description:
     "Portfolio of Yash Ghodele - B.Tech ECE Student, Event Manager, IoT Enthusiast, and Community Leader at MIT College of Engineering, Aurangabad",
   manifest: "/manifest.json",
@@ -33,7 +34,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Yash Ghodele",
-    url: "https://yash-ghodele.netlify.app",
+    url: "https://yash-ghodele.pages.dev",
     sameAs: [
       "https://linkedin.com/in/yash-ghodele",
       "https://github.com/yash-ghodele",

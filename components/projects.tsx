@@ -98,7 +98,7 @@ export default function Projects({ projects }: ProjectsProps) {
           <div className="md:hidden absolute inset-y-0 right-0 w-12 z-20" onClick={next}></div>
 
           {/* Card Content */}
-          <div className="bg-[#111111] rounded-[2.5rem] border border-white/5 p-0 relative overflow-hidden h-[680px] shadow-2xl group">
+          <div className="bg-[#111111] rounded-[2.5rem] border border-white/5 p-0 relative overflow-hidden h-auto min-h-[600px] lg:h-[600px] shadow-2xl group">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -129,7 +129,7 @@ export default function Projects({ projects }: ProjectsProps) {
                 </div>
 
                 {/* Content Side */}
-                <div className="p-8 md:p-12 lg:p-12 flex flex-col justify-center relative z-30 h-full">
+                <div className="p-6 md:p-12 lg:p-12 flex flex-col justify-center relative z-30 h-full">
                   {/* Background Glow */}
                   <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${currentProject.metadata.color || "from-blue-500"} opacity-10 blur-[100px] pointer-events-none rounded-full`}></div>
 

@@ -1,25 +1,41 @@
-# Yash Ghodele - Professional Portfolio v2.0 (beta)
+# Yash Ghodele - Professional Portfolio v3.0
 
 ![Portfolio Banner](/Yash-Ghodele.png)
 
-A high-performance, immersive personal portfolio built with modern web technologies. This project features a "Cyber-Deck" aesthetic, combining dark-mode technical visuals with smooth, reactive animations.
+A high-performance, premium personal portfolio built with modern web technologies. This project features a "Premium Dark" aesthetic, combining deep zinc tones with reactive particles, glassmorphism, and smooth app-like transitions.
 
-## 🚀 Features
+## 🚀 Key Features
 
-*   **Cyber-Deck Aesthetic:** Matte black UI with technical "bracket" borders and scanline effects.
-*   **Performance First:** Built on Next.js 14 App Router for zero-layout shift and edge readiness.
-*   **Dark Mode Native:** Designed specifically for high-contrast dark environments.
-*   **Reactive UI:** Animations powered by Framer Motion, optimized for mobile and desktop.
-*   **Production Ready:** 100% Lighthouse scores (Accessibility, Best Practices).
+### 🎨 Premium UI/UX
+*   **App-Like Experience:** Smooth cross-dissolve page transitions (`framer-motion`) and custom UI-style scrollbars.
+*   **Atmospheric Backgrounds:** Hybrid Network Mesh (Hero) and consistent "Data Particles" (Global).
+*   **Responsive Design:** Flawless mobile experience with scalable typography and adaptive layouts.
+*   **Interactive Elements:** Magnetic buttons, hover-glow cards, and glassmorphic overlays.
+
+### ⚡ Dynamic Core
+*   **MDX Powered:** Projects and Blog posts are written in MDX (`content/projects/*.mdx`), offering full control over layout and content.
+*   **Server Components:** Data is fetched server-side for maximum performance and SEO.
+*   **Dynamic Routing:** Individual Case Study pages generated at build time (`/projects/[slug]`).
+
+### 🔍 Engineering & SEO
+*   **SEO Suite:** Dynamic `sitemap.xml`, `robots.txt`, JSON-LD structured data, and OpenGraph/Twitter card metadata.
+*   **Performance:** 100% Lighthouse scores, `next/image` optimization, and font subsetting.
+*   **Type Safety:** Strict TypeScript implementation across all components and utilities.
 
 ## 🛠️ Tech Stack
 
-*   **Core:** [Next.js 14](https://nextjs.org/) (App Router, Server Components)
+*   **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
 *   **Language:** [TypeScript](https://www.typescriptlang.org/)
 *   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 *   **Components:** [Shadcn/ui](https://ui.shadcn.com/) (Radix UI)
-*   **Icons:** [Lucide React](https://lucide.dev/)
+*   **Content:** MDX + Gray-matter + Next-MDX-Remote
 *   **Animation:** [Framer Motion](https://www.framer.com/motion/)
+*   **Analytics:** Vercel Analytics
+*   **Email:** Resend SDK
+
+## � Future Roadmap
+
+See [future_plan.md](./future_plan.md) for upcoming features and V4.0 ideas.
 
 ## 🏁 Getting Started
 
@@ -32,28 +48,16 @@ A high-performance, immersive personal portfolio built with modern web technolog
 2.  **Install dependencies:**
     ```bash
     npm install
-    # or
-    yarn install
     ```
 
 3.  **Run development server:**
     ```bash
     npm run dev
     ```
-    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-## 📦 Deployment
-
-This project is optimized for deployment on **Netlify** or **Vercel**.
-
-1.  Connect your GitHub repository.
-2.  The platform will automatically detect Next.js.
-3.  Build command: `npm run build`
-4.  Publish directory: `.next` (handled automatically).
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ---
 *Designed & Built by Yash Ghodele.*

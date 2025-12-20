@@ -54,17 +54,17 @@ export default function Hero() {
         <HeroNetwork />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 py-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div className="container mx-auto px-4 relative z-10 py-24 md:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
             <div className="space-y-6">
               <motion.h1
-                className="text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1]"
+                className="text-4xl md:text-6xl lg:text-8xl font-black leading-[1.1]"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}

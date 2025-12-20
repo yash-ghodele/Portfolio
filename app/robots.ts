@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/private/',
         },
-        sitemap: 'https://yash-ghodele.netlify.app/sitemap.xml',
+        sitemap: 'https://yash-ghodele.pages.dev/sitemap.xml',
+        host: 'https://yash-ghodele.pages.dev',
     }
 }
