@@ -68,3 +68,19 @@ If you want to extend the UI further, these libraries match the current "Premium
     *   *Best for:* Native-feeling mobile drawers/modals (perfect for the Mobile Menu).
 4.  **[Recharts](https://recharts.org/):**
     *   *Best for:* Adding data visualization charts to deep-dive case study pages.
+
+## 🏗️ Architecture Scalability (Post-V3.0)
+
+Since V3.0 enforced **Strict Routing** (removing generic templates), here is the strategy for future growth:
+
+### Phase 17: Hybrid Routing Strategy
+*   **Problem:** If you have 50+ projects, manually creating bespoke folders (`/projects/xyz`) works but is tedious.
+*   **Solution:** Re-introduce `app/projects/[slug]` as a *fallback only*.
+    *   **Logic:** If a bespoke folder exists, Next.js uses it. If not, it falls back to the generic MDX layout.
+    *   **Action:** Only needed when you start adding "Archive" or "Minor" projects that don't need a custom design.
+
+### Phase 18: Content Management System (CMS)
+*   **Trigger:** When `content/projects/*.mdx` files become too hard to manage in VS Code.
+*   **Plan:** Connect a Headless CMS (Sanity.io or KeystoneJS) to generate the MDX.
+    *   *Note:* This will require re-enabling the Dynamic Routes to render CMS content.
+
