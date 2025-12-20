@@ -13,9 +13,10 @@ A high-performance, premium personal portfolio built with modern web technologie
 *   **Interactive Elements:** Magnetic buttons, hover-glow cards, and glassmorphic overlays.
 
 ### ⚡ Dynamic Core
-*   **MDX Powered:** Projects and Blog posts are written in MDX (`content/projects/*.mdx`), offering full control over layout and content.
+*   **MDX Integration:** Project content is managed via MDX for ease of updates, tightly integrated into the bespoke layouts.
 *   **Server Components:** Data is fetched server-side for maximum performance and SEO.
-*   **Dynamic Routing:** Individual Case Study pages generated at build time (`/projects/[slug]`).
+*   **Bespoke Project Pages:** Custom-designed, theme-specific layouts for flagship projects (FuelShield, Sanjivani, etc.), ensuring maximum visual impact.
+*   **Strict Routing:** Generic templates removed in favor of premium, handcrafted experiences for every case study.
 
 ### 🔍 Engineering & SEO
 *   **SEO Suite:** Dynamic `sitemap.xml`, `robots.txt`, JSON-LD structured data, and OpenGraph/Twitter card metadata.
