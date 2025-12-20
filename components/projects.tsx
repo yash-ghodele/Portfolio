@@ -48,7 +48,7 @@ export default function Projects({ projects }: ProjectsProps) {
   const next = () => setCurrent((curr) => (curr + 1) % projects.length)
   const prev = () => setCurrent((curr) => (curr - 1 + projects.length) % projects.length)
 
-  if (!mounted) return <div className="py-24 text-center text-white">Loading Projects...</div>
+  // if (!mounted) return <div className="py-24 text-center text-white">Loading Projects...</div>
   if (projects.length === 0) return null
 
   const currentProject = projects[current]
@@ -62,7 +62,7 @@ export default function Projects({ projects }: ProjectsProps) {
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
@@ -102,7 +102,7 @@ export default function Projects({ projects }: ProjectsProps) {
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}

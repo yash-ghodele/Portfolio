@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const projects = getProjects()
+  console.log('SERVER PROJECTS:', projects)
 
   return (
     <div className="min-h-screen bg-background">

@@ -25,8 +25,14 @@ export type ProjectMetadata = {
 }
 
 function getMDXFiles(dir: string) {
-    if (!fs.existsSync(dir)) return []
-    return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
+    console.log('MDX READ DIR:', dir)
+    if (!fs.existsSync(dir)) {
+        console.log('MDX DIR MISSING')
+        return []
+    }
+    const files = fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
+    console.log('MDX FILES FOUND:', files)
+    return files
 }
 
 function readMDXFile(filePath: string) {
@@ -55,7 +61,9 @@ export function getBlogPosts() {
 }
 
 export function getProjects() {
-    return getMDXData(path.join(process.cwd(), 'content', 'projects')).map(project => ({
+    const dir = path.join(process.cwd(), 'content', 'projects')
+    console.log('GET PROJECTS FROM:', dir)
+    return getMDXData(dir).map(project => ({
         ...project,
         metadata: project.metadata as ProjectMetadata
     }))
