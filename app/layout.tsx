@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "Portfolio of Yash Ghodele - B.Tech ECE Student, Event Manager, IoT Enthusiast, and Community Leader at MIT College of Engineering, Aurangabad",
   manifest: "/manifest.json",
   other: {
-    "google-site-verification": "verification_token_placeholder", // User can replace this later
+    "google-site-verification": "tj2Zot6aCoCAHmYE1sfIDUsdS6ZqNAW3MlswpsRhK1A",
   }
 }
 
