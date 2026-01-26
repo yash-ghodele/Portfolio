@@ -7,7 +7,6 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, ChevronRight, ChevronLeft, Layout, Cpu, Terminal, Shield, LucideIcon } from "lucide-react"
-import BackgroundParticles from "@/components/ui/background-particles"
 import { ProjectMetadata } from "@/lib/mdx"
 
 // Icon Mapping
@@ -55,10 +54,7 @@ export default function Projects({ projects }: ProjectsProps) {
   const IconComponent = iconMap[currentProject.metadata.iconName] || Terminal
 
   return (
-    <section id="projects" className="py-24 relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
-      <BackgroundParticles />
-      {/* Subtle Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 to-transparent pointer-events-none"></div>
+    <section id="projects" className="py-24 relative min-h-[90vh] flex flex-col justify-center">
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <motion.div

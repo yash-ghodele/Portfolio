@@ -4,7 +4,6 @@ import { useState } from "react"
 import { motion, AnimatePresence, Variants } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Code2, Cpu, Smartphone, Wrench, Megaphone, Users } from "lucide-react"
-import BackgroundParticles from "@/components/ui/background-particles"
 
 export default function TechStack() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -98,15 +97,7 @@ export default function TechStack() {
   }
 
   return (
-    <section id="tech-stack" className="py-32 relative overflow-hidden">
-      <BackgroundParticles />
-      {/* HUD Background Grid - Isometric/Cyberpunk feel (Restoring subtly or just keeping clean?) 
-          User said "constant background for all pages except hero". 
-          So I will leave it CLEAN (transparent to global bg). 
-      */}
-
-      {/* Ambient Glows (Retained for subtle depth) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-primary/20 blur-[120px] rounded-full pointer-events-none opacity-50"></div>
+    <section id="tech-stack" className="py-32 relative">
 
       <div className="container mx-auto px-4 relative z-10 perspective-1000">
         <motion.div

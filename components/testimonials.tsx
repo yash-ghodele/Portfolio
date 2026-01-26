@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
-import BackgroundParticles from "@/components/ui/background-particles"
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0)
@@ -74,10 +73,7 @@ export default function Testimonials() {
   if (!mounted) return null
 
   return (
-    <section id="testimonials" className="py-24 relative overflow-hidden">
-      <BackgroundParticles />
-      {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+    <section id="testimonials" className="py-24 relative">
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10 mb-12">
         <div className="text-center mb-16">

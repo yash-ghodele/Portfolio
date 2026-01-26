@@ -4,7 +4,6 @@ import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Award, Users, Zap, Calendar, ChevronRight, Trophy, Star, Target, Shield } from "lucide-react"
-import BackgroundParticles from "@/components/ui/background-particles"
 
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -71,10 +70,7 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-32 relative overflow-hidden" ref={containerRef}>
-      <BackgroundParticles />
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.05),transparent_70%)] pointer-events-none"></div>
+    <section id="experience" className="py-32 relative" ref={containerRef}>
 
       <div className="container mx-auto px-4 relative z-10 max-w-5xl">
         <motion.div

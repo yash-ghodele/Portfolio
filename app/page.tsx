@@ -9,6 +9,7 @@ import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
 import { getProjects } from "@/lib/mdx"
+import BackgroundParticles from "@/components/ui/background-particles"
 
 export const metadata: Metadata = {
   title: "Yash Ghodele | Portfolio",
@@ -25,12 +26,17 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <TechStack />
-        <Projects projects={projects} />
-        <Experience />
-        <Testimonials />
-        <Contact />
+
+        {/* Continuous Background Wrapper */}
+        <div className="relative w-full bg-gradient-to-b from-black via-zinc-900/10 to-black">
+          <BackgroundParticles />
+          <About />
+          <TechStack />
+          <Projects projects={projects} />
+          <Experience />
+          <Testimonials />
+          <Contact />
+        </div>
       </main>
       <Footer />
     </div>

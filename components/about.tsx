@@ -4,7 +4,6 @@ import { motion, Variants } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Zap, Users, Lightbulb } from "lucide-react"
-import BackgroundParticles from "@/components/ui/background-particles"
 
 export default function About() {
   const fadeIn: Variants = {
@@ -48,10 +47,7 @@ export default function About() {
   }
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden">
-      <BackgroundParticles />
-      {/* Background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-purple-900/5 to-background pointer-events-none"></div>
+    <section id="about" className="py-32 relative">
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header Section */}

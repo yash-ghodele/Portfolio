@@ -10,7 +10,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/hooks/use-toast"
 import { Mail, MapPin, Phone, Github, Linkedin, Instagram, Send, Loader2 } from "lucide-react"
 import { sendEmail } from "@/actions/send-email"
-import BackgroundParticles from "@/components/ui/background-particles"
 
 interface FormData {
   name: string
@@ -76,11 +75,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-32 relative min-h-screen flex items-center justify-center overflow-hidden">
-      <BackgroundParticles />
-      {/* Ambient Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(100,50,255,0.1),transparent_50%)] pointer-events-none"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,50,150,0.05),transparent_50%)] pointer-events-none"></div>
+    <section id="contact" className="py-32 relative min-h-screen flex items-center justify-center">
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
