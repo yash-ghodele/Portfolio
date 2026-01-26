@@ -51,7 +51,7 @@ export async function sendEmail(prevState: FormState, formData: FormData): Promi
         const ownerEmail = await resend.emails.send({
             from: 'Portfolio Contact <onboarding@resend.dev>',
             replyTo: email,
-            to: 'ghodeleyash2004@gmail.com',
+            to: process.env.CONTACT_EMAIL || 'ghodeleyash2004@gmail.com',
             subject: `Contact Form: ${subject}`,
             html: `
             <!DOCTYPE html>

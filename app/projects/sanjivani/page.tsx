@@ -157,10 +157,10 @@ export default function SanjivaniPage() {
                         </h2>
                         <div className="space-y-6 text-xl text-zinc-400 leading-relaxed">
                             <p>
-                                The core challenge wasn't just accuracy—it was <strong>accessibility</strong>. Rural farmers have <span className="text-white">zero latency tolerance</span> and spotty connection.
+                                The core challenge wasn&apos;t just accuracy—it was <strong>accessibility</strong>. Rural farmers have <span className="text-white">zero latency tolerance</span> and spotty connection.<br />
                             </p>
                             <p>
-                                We utilized a "Store-and-Forward" architecture. Images are cached locally in IndexedDB and predictions are served immediately from the device's model or a lightweight local server, syncing only when possible.
+                                We utilized a &quot;Store-and-Forward&quot; architecture. Images are cached locally in IndexedDB and predictions are served immediately from the device&apos;s model or a lightweight local server, syncing only when possible.<br />
                             </p>
                         </div>
 
@@ -205,14 +205,14 @@ export default function SanjivaniPage() {
                         </div>
                         <div className="p-6 overflow-x-auto">
                             <pre className="text-sm font-mono leading-relaxed">
-                                <span className="text-fuchsia-400">@app.route</span>(<span className="text-green-400">'/predict'</span>, methods=[<span className="text-green-400">'POST'</span>])<br />
+                                <span className="text-fuchsia-400">@app.route</span>(<span className="text-green-400">&apos;/predict&apos;</span>, methods=[<span className="text-green-400">&apos;POST&apos;</span>])<br />
                                 <span className="text-blue-400">def</span> <span className="text-yellow-200">predict</span>():<br />
                                 <span className="text-zinc-500"># 1. Validate Input</span><br />
-                                <span className="text-fuchsia-400">if</span> <span className="text-green-400">'file'</span> <span className="text-fuchsia-400">not in</span> request.files:<br />
-                                <span className="text-fuchsia-400">return</span> jsonify({'{'}<span className="text-green-400">'error'</span>: <span className="text-green-400">'No file'</span>{'}'})<br />
+                                <span className="text-fuchsia-400">if</span> <span className="text-green-400">&apos;file&apos;</span> <span className="text-fuchsia-400">not in</span> request.files:<br />
+                                <span className="text-fuchsia-400">return</span> jsonify({'{'}<span className="text-green-400">&apos;error&apos;</span>: <span className="text-green-400">&apos;No file&apos;</span>{'}'})<br />
                                 <br />
                                 <span className="text-zinc-500"># 2. Pre-process for MobileNet</span><br />
-                                img_bytes = request.files[<span className="text-green-400">'file'</span>].read()<br />
+                                img_bytes = request.files[<span className="text-green-400">&apos;file&apos;</span>].read()<br />
                                 tensor = transform_image(img_bytes)<br />
                                 <br />
                                 <span className="text-zinc-500"># 3. Inference Time</span><br />
@@ -220,8 +220,8 @@ export default function SanjivaniPage() {
                                 confidence = torch.softmax(prediction)<br />
                                 <br />
                                 <span className="text-fuchsia-400">return</span> jsonify({'{'}<br />
-                                <span className="text-green-400">'class'</span>: class_names[prediction.argmax()],<br />
-                                <span className="text-green-400">'confidence'</span>: confidence.item()<br />
+                                <span className="text-green-400">&apos;class&apos;</span>: class_names[prediction.argmax()],<br />
+                                <span className="text-green-400">&apos;confidence&apos;</span>: confidence.item()<br />
                                 {'}'})
                             </pre>
                         </div>

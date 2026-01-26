@@ -200,19 +200,19 @@ export default function SmartCRMPage() {
                         </div>
                         <div className="p-6 overflow-x-auto">
                             <pre className="text-sm font-mono leading-relaxed">
-                                <span className="text-zinc-500">' 1. Optimization: Read 100k rows into RAM</span><br />
+                                <span className="text-zinc-500">&apos; 1. Optimization: Read 100k rows into RAM</span><br />
                                 <span className="text-blue-400">Dim</span> DataArray <span className="text-blue-400">As Variant</span><br />
-                                DataArray = Range(<span className="text-orange-300">"A1:Z100000"</span>).Value<br />
+                                DataArray = Range(<span className="text-orange-300">&quot;A1:Z100000&quot;</span>).Value<br />
                                 <br />
-                                <span className="text-zinc-500">' 2. Process in Memory (Millisecond speed)</span><br />
+                                <span className="text-zinc-500">&apos; 2. Process in Memory (Millisecond speed)</span><br />
                                 <span className="text-fuchsia-400">For</span> i = <span className="text-blue-400">LBound</span>(DataArray) <span className="text-fuchsia-400">To</span> <span className="text-blue-400">UBound</span>(DataArray)<br />
                                 <span className="text-fuchsia-400">If</span> IsValidEmail(DataArray(i, 5)) <span className="text-fuchsia-400">Then</span><br />
-                                DataArray(i, 6) = <span className="text-orange-300">"Verified"</span><br />
+                                DataArray(i, 6) = <span className="text-orange-300">&quot;Verified&quot;</span><br />
                                 <span className="text-fuchsia-400">End If</span><br />
                                 <span className="text-fuchsia-400">Next</span> i<br />
                                 <br />
-                                <span className="text-zinc-500">' 3. Dump back to Sheet (Single Op)</span><br />
-                                Range(<span className="text-orange-300">"A1:Z100000"</span>).Value = DataArray
+                                <span className="text-zinc-500">&apos; 3. Dump back to Sheet (Single Op)</span><br />
+                                Range(<span className="text-orange-300">&quot;A1:Z100000&quot;</span>).Value = DataArray
                             </pre>
                         </div>
                     </div>

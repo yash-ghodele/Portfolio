@@ -96,7 +96,7 @@ export default function Contact() {
               Contact
             </Badge>
             <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter">
-              Let's start a <br />
+              Let&apos;s start a <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">conversation.</span>
             </h2>
             <p className="text-xl text-gray-400 mb-12 max-w-lg leading-relaxed">

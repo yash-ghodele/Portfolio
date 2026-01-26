@@ -200,22 +200,22 @@ export default function IoTSecurityPage() {
                         </div>
                         <div className="p-6 overflow-x-auto">
                             <pre className="text-sm font-mono leading-relaxed">
-                                <span className="text-zinc-500">// Interrupt Service Routine</span><br />
+                                <span className="text-zinc-500">{'// Interrupt Service Routine'}</span><br />
                                 <span className="text-fuchsia-400">void IRAM_ATTR</span> <span className="text-yellow-200">detectFinger</span>() {'{'}<br />
                                 <span className="text-fuchsia-400">if</span> (systemState == <span className="text-blue-400">IDLE</span>) {'{'}<br />
-                                <span className="text-zinc-500">// Immediate State Transition</span><br />
+                                <span className="text-zinc-500">{'// Immediate State Transition'}</span><br />
                                 <span className="text-blue-400">systemState</span> = <span className="text-blue-400">AUTH_WAIT</span>;<br />
                                 wakeUpTime = <span className="text-blue-400">millis</span>();<br />
                                 <br />
-                                <span className="text-zinc-500">// Wake ESP8266 from Light Sleep</span><br />
+                                <span className="text-zinc-500">{'// Wake ESP8266 from Light Sleep'}</span><br />
                                 wifi_fpm_do_wakeup();<br />
                                 <br />
-                                <span className="text-zinc-500">// Push Websocket Alert</span><br />
-                                Blynk.<span className="text-yellow-200">virtualWrite</span>(V1, <span className="text-green-400">"Motion Detected"</span>);<br />
+                                <span className="text-zinc-500">{'// Push Websocket Alert'}</span><br />
+                                Blynk.<span className="text-yellow-200">virtualWrite</span>(V1, <span className="text-green-400">&quot;Motion Detected&quot;</span>);<br />
                                 {'}'}<br />
                                 {'}'}<br />
                                 <br />
-                                <span className="text-zinc-500">// Hardware Attach</span><br />
+                                <span className="text-zinc-500">{'// Hardware Attach'}</span><br />
                                 attachInterrupt(<span className="text-blue-400">digitalPinToInterrupt</span>(D2), <span className="text-yellow-200">detectFinger</span>, <span className="text-blue-400">RISING</span>);
                             </pre>
                         </div>

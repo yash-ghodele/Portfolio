@@ -200,17 +200,17 @@ export default function FuelShieldPage() {
                             <pre className="text-sm font-mono leading-relaxed">
                                 <span className="text-fuchsia-400">const</span> client = mqtt.<span className="text-yellow-200">connect</span>(BROKER_URL);<br />
                                 <br />
-                                <span className="text-zinc-500">// Listen for sensor anomalies</span><br />
-                                client.<span className="text-yellow-200">on</span>(<span className="text-green-400">'message'</span>, (topic, message) =&gt; {'{'}<br />
+                                <span className="text-zinc-500">{'// Listen for sensor anomalies'}</span><br />
+                                client.<span className="text-yellow-200">on</span>(<span className="text-green-400">&apos;message&apos;</span>, (topic, message) =&gt; {'{'}<br />
                                 <span className="text-fuchsia-400">const</span> data = JSON.<span className="text-yellow-200">parse</span>(message.toString());<br />
                                 <br />
-                                <span className="text-zinc-500">// Check for sudden fuel drop</span><br />
+                                <span className="text-zinc-500">{'// Check for sudden fuel drop'}</span><br />
                                 <span className="text-fuchsia-400">if</span> (data.<span className="text-blue-400">drop_rate</span> &gt; <span className="text-orange-300">THRESHOLD</span>) {'{'}<br />
-                                <span className="text-zinc-500">// Trigger critical alert</span><br />
+                                <span className="text-zinc-500">{'// Trigger critical alert'}</span><br />
                                 <span className="text-yellow-200">sendAlert</span>({'{'}<br />
                                 truckId: data.<span className="text-blue-400">id</span>,<br />
                                 location: data.<span className="text-blue-400">gps</span>,<br />
-                                severity: <span className="text-green-400">'CRITICAL'</span><br />
+                                severity: <span className="text-green-400">&apos;CRITICAL&apos;</span><br />
                                 {'}'});<br />
                                 {'}'}<br />
                                 {'}'});
