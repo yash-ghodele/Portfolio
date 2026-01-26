@@ -34,3 +34,17 @@ Once verified in Search Console:
 3.  Click **Submit**.
 
 Google will now crawl your site! 🚀
+
+## Also List on Bing (Bing Webmaster Tools)
+Don't forget Microsoft Bing!
+
+1.  **Go to Bing Webmaster Tools**: [bing.com/webmasters](https://www.bing.com/webmasters)
+2.  **Sign In** (You can use your Google account).
+3.  **Import**: Click **"Import"** from Google Search Console (Easiest Method).
+    - This will copy your verification and sitemaps from Google automatically.
+    - No code changes needed!
+4.  **OR Manual Verification**:
+    - If you prefer, get the XML file or Meta Tag.
+    - If Meta Tag: Copy the `content` code (e.g., `A1B2...`).
+    - Open `app/layout.tsx` and replace `"bing_verification_token_placeholder"` with your code.
+
