@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useMemo } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Award, Users, Zap, Calendar, ChevronRight, Trophy, Star, Target, Shield } from "lucide-react"
@@ -9,14 +9,14 @@ export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start center", "end center"]
   })
 
-  // Transform scroll progress into beam height
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
+  // Transform scroll progress into beam height (Clamped to avoid over-extension)
+  const lineHeight = useTransform(scrollYProgress, [0, 0.9], ["0%", "100%"])
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1])
 
-  const experiences = [
+  const experiences = useMemo(() => [
     {
       icon: <Award className="h-6 w-6" />,
       title: "Executive Head",
@@ -44,9 +44,9 @@ export default function Experience() {
       highlights: ["Event Coordination", "Team Collaboration", "Community Building"],
       side: "left"
     },
-  ]
+  ], [])
 
-  const achievements = [
+  const achievements = useMemo(() => [
     {
       icon: <Trophy className="w-5 h-5" />,
       title: "InnoHack 2025 & 2.0",
@@ -67,10 +67,10 @@ export default function Experience() {
       title: "Community Leadership",
       description: "Mentored 50+ students in IoT, embedded systems, and event management"
     },
-  ]
+  ], [])
 
   return (
-    <section id="experience" className="py-32 relative" ref={containerRef}>
+    <section id="experience" aria-labelledby="experience-heading" className="py-32 relative" ref={containerRef}>
 
       <div className="container mx-auto px-4 relative z-10 max-w-5xl">
         <motion.div
@@ -80,7 +80,7 @@ export default function Experience() {
           <Badge variant="outline" className="mb-4 text-sm font-medium border-primary/50 text-foreground py-1 px-3 backdrop-blur-md">
             Journey
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
+          <h2 id="experience-heading" className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
             Experience
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
@@ -99,8 +99,9 @@ export default function Experience() {
 
           <div className="space-y-16">
             {experiences.map((exp, index) => (
-              <motion.div
+              <motion.article
                 key={index}
+                aria-label={`${exp.title} at ${exp.organization}`}
                 initial={{ opacity: 0, x: exp.side === "left" ? -50 : 50, rotateX: 20 }}
                 whileInView={{ opacity: 1, x: 0, rotateX: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -109,9 +110,14 @@ export default function Experience() {
               >
                 {/* Timeline Node & Connector */}
                 <div className="absolute left-[20px] md:left-1/2 top-12 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 flex items-center justify-center z-20">
-                  <div className="w-4 h-4 rounded-full bg-black border-2 border-primary shadow-[0_0_10px_rgba(168,85,247,0.8)] relative z-10">
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0.5 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-4 h-4 rounded-full bg-black border-2 border-primary shadow-[0_0_10px_rgba(168,85,247,0.8)] relative z-10"
+                  >
                     <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20"></div>
-                  </div>
+                  </motion.div>
                   {/* Horizontal Connector Line (Desktop) */}
                   <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 h-[1px] bg-gradient-to-r from-primary/60 to-transparent w-24 ${exp.side === "right" ? "-right-4 flex-row-reverse origin-right" : "-left-4 origin-left"}`}></div>
 
@@ -124,7 +130,7 @@ export default function Experience() {
 
                 {/* Card Content */}
                 <div className={`w-full flex-1 pl-12 md:pl-0 ${exp.side === "left" ? "md:pr-16" : "md:pl-16"}`}>
-                  <div className="relative group cursor-pointer perspective-1000">
+                  <div className="relative group perspective-1000">
                     {/* Animated Border Gradient */}
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-2xl opacity-10 group-hover:opacity-50 blur transition duration-500"></div>
 
@@ -157,20 +163,22 @@ export default function Experience() {
 
                       <div className="flex flex-wrap gap-2">
                         {exp.highlights.map((tag, i) => (
-                          <span key={i} className="text-xs font-medium px-2.5 py-1 rounded bg-white/5 border border-white/5 text-gray-300 group-hover:text-white transition-colors">
+                          <span key={i} className="text-xs font-medium px-2.5 py-1 rounded bg-white/5 border border-white/5 text-gray-300 group-hover:text-white group-hover:bg-primary/20 group-hover:border-primary/40 transition-colors">
                             {tag}
                           </span>
                         ))}
                       </div>
 
-                      {/* Hover Arrow */}
+                      {/* Valid Semantic Link (Optional Future Expansion) */}
+                      {/* 
                       <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">
                         <ChevronRight className="w-5 h-5 text-primary" />
-                      </div>
+                      </div> 
+                      */}
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
@@ -187,7 +195,7 @@ export default function Experience() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {achievements.map((item, i) => (
-              <div key={i} className="relative group cursor-pointer">
+              <div key={i} className="relative group">
                 {/* Gradient Blur Border */}
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-2xl opacity-10 group-hover:opacity-50 blur transition duration-500"></div>
 

@@ -1,5 +1,7 @@
 # 🔮 Future Plans & Roadmap
 
+> **Latest Update (Jan 2026):** Sanjivani V2 has been launched as a fully bespoke experience! Verification & Launch Readiness checks have been integrated.
+
 This document tracks ideas for **future versions (V4.0+)** while keeping the main `README.md` focused on the **current stable production release**.
 
 ---
@@ -53,8 +55,8 @@ This document tracks ideas for **future versions (V4.0+)** while keeping the mai
 
 ### Phase 14: Engagement & Content Expansion
 - [ ] **Content Backlog (High Priority)**
-  - [ ] **Expand Existing Stubs:**  
-    Rewrite `sanjivani.mdx`, `smart-crm.mdx`, and `iot-security.mdx` with technical depth (architecture, challenges, decisions).
+  - [x] **Expand Existing Stubs:**  
+    `sanjivani.mdx` has been superseded by the bespoke `app/projects/sanjivani-v2` page. `smart-crm.mdx` and `iot-security.mdx` still need updates.
   - [ ] **Add Missing Projects:**  
     Create MDX files for **Hackathon Platform** and **Underwater ROV** (assets already exist in `/public`).
   - [ ] **First Blog Post:**  

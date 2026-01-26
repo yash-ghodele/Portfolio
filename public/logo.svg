@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <!-- Subtle Bloom Filter for the Neon -->
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    
+    <!-- Mask to create the "Y" channel as true negative space (Transparency) -->
+    <mask id="y-cutout">
+      <!-- Reveal everything by default -->
+      <rect x="-250" y="-250" width="1000" height="1000" fill="white"/>
+      
+      <!-- The "Y" Channel Shapes (Black = Hidden/Transparent) -->
+      <!-- Top Face -->
+      <path d="M 0 0 L 60.6 -35 L 0 -70 L -60.6 -35 Z" fill="black"/>
+      <!-- Right Face -->
+      <path d="M 0 0 L 60.6 -35 L 60.6 35 L 0 70 Z" fill="black"/>
+      <!-- Left Face -->
+      <path d="M 0 0 L -60.6 -35 L -60.6 35 L 0 70 Z" fill="black"/>
+    </mask>
+  </defs>
+  
+  <!-- Group: Isometric Hexagon Core -->
+  <!-- Centered perfectly at 250, 250 -->
+  <!-- Scaled up by 1.3x for better fit -->
+  <g transform="translate(250, 250) scale(1.3)">
+    
+    <!-- Outer Hexagon Frame (Ghost) - clearly visible -->
+    <path d="M 0 -110 L 95.26 -55 L 95.26 55 L 0 110 L -95.26 55 L -95.26 -55 Z" 
+          fill="none" stroke="#E6FF00" stroke-width="2" opacity="0.3"/>
+
+    <!-- Inner Solid Hexagon Block (The Core) -->
+    <!-- Applied Mask to cut out the Y shape -->
+    <g mask="url(#y-cutout)">
+        <path d="M 0 -90 L 77.94 -45 L 77.94 45 L 0 90 L -77.94 45 L -77.94 -45 Z" 
+              fill="#E6FF00" filter="url(#neon-glow)" opacity="0.9"/>
+    </g>
+    
+    <!-- Internal Circuitry (The "Nerve") -->
+    <!-- Glinting center connection -->
+    <circle cx="0" cy="0" r="5" fill="#FFFFFF" filter="url(#neon-glow)"/>
+    
+    <path d="M 0 0 L 0 -50" stroke="#E6FF00" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 0 0 L 43.3 25" stroke="#E6FF00" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 0 0 L -43.3 25" stroke="#E6FF00" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Orbital Satellites (Refined) -->
+    <!-- Dashed Orbit -->
+    <circle cx="0" cy="0" r="145" fill="none" stroke="#E6FF00" stroke-width="1" stroke-dasharray="3,6" opacity="0.4"/>
+    
+    <!-- Node 1 (Top Right) -->
+    <g transform="rotate(45)">
+        <circle cx="145" cy="0" r="4" fill="#FFFFFF"/>
+        <line x1="110" y1="0" x2="145" y2="0" stroke="#E6FF00" stroke-width="1" opacity="0.5"/>
+    </g>
+    
+    <!-- Node 2 (Bottom Left) -->
+    <g transform="rotate(225)">
+        <circle cx="145" cy="0" r="4" fill="#FFFFFF"/>
+        <line x1="110" y1="0" x2="145" y2="0" stroke="#E6FF00" stroke-width="1" opacity="0.5"/>
+    </g>
+  </g>
+</svg>
