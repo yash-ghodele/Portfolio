@@ -11,6 +11,7 @@ A high-performance, premium personal portfolio built with modern web technologie
 *   **Atmospheric Backgrounds:** Hybrid Network Mesh (Hero) and consistent "Data Particles" (Global).
 *   **Responsive Design:** Flawless mobile experience with scalable typography and adaptive layouts.
 *   **Interactive Elements:** Magnetic buttons, hover-glow cards, and glassmorphic overlays.
+*   **Swipe Gestures:** Mobile-optimized touch navigation for project carousels with elastic feedback.
 
 ### ⚡ Dynamic Core
 *   **MDX Integration:** Project content is managed via MDX for ease of updates, tightly integrated into the bespoke layouts.
@@ -19,7 +20,7 @@ A high-performance, premium personal portfolio built with modern web technologie
 *   **Strict Routing:** Generic templates removed in favor of premium, handcrafted experiences for every case study.
 
 ### 🔍 Engineering & SEO
-*   **SEO Suite:** Dynamic `sitemap.xml`, `robots.txt`, JSON-LD structured data, and OpenGraph/Twitter card metadata. (See [SEO Guide](./docs/SEO.md))
+*   **SEO Suite:** Dynamic `sitemap.xml`, `robots.txt`, JSON-LD structured data, and OpenGraph/Twitter card metadata.
 *   **Performance:** 100% Lighthouse scores, `next/image` optimization, and font subsetting.
 *   **Type Safety:** Strict TypeScript implementation across all components and utilities.
 
@@ -33,6 +34,7 @@ A high-performance, premium personal portfolio built with modern web technologie
 *   **Animation:** [Framer Motion](https://www.framer.com/motion/)
 *   **Analytics:** Vercel Analytics
 *   **Email:** Resend SDK
+*   **Deployment:** [Cloudflare Pages](https://pages.cloudflare.com/) (Edge Runtime)
 
 ## � Future Roadmap
 
@@ -40,7 +42,6 @@ See [future_plan.md](./future_plan.md) for upcoming features and V4.0 ideas.
  
 ## 📚 Documentation
  
-*   [SEO Guide](./docs/SEO.md) - How to submit to Google/Bing.
 *   [Future Roadmap](./future_plan.md) - Upcoming features and ideas.
 
 ## 🏁 Getting Started
