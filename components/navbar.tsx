@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 
@@ -9,15 +9,15 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [activeSection, setActiveSection] = useState("home")
 
-    const navLinks = [
+    const navLinks = useMemo(() => [
         { name: "Home", href: "#home" },
         { name: "About", href: "#about" },
         { name: "Tech Stack", href: "#tech-stack" },
         { name: "Projects", href: "#projects" },
         { name: "Experience", href: "#experience" },
-        { name: "Testimonials", href: "#testimonials" },
+        // { name: "Testimonials", href: "#testimonials" },
         { name: "Contact", href: "#contact" }
-    ]
+    ], [])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -38,7 +38,7 @@ export default function Navbar() {
 
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
+    }, [navLinks])
 
     const scrollToSection = (href: string) => {
         const element = document.querySelector(href)
