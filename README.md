@@ -1,6 +1,6 @@
 # Yash Ghodele - Portfolio V3
 
-![Portfolio Banner](/Yash-Ghodele.png)
+![Portfolio Banner](/Yash-Ghodele.jpg)
 
 > **Engineering meets Art.** A premium portfolio experience built to demonstrate full-stack mastery, creative design, and performance optimization.
 
