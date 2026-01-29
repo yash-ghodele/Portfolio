@@ -8,10 +8,11 @@ import Image from "next/image"
 import HeroNetwork from "@/components/ui/hero-network"
 
 export default function Hero() {
-  const words = ["Engineer", "•", "Leader", "•", "Innovator"]
   const [displayedWords, setDisplayedWords] = useState<string[]>([])
 
   useEffect(() => {
+    const words = ["Engineer", "•", "Leader", "•", "Innovator"]
+
     // Reset displayed words on mount
     setDisplayedWords([])
 
@@ -165,31 +166,33 @@ export default function Hero() {
             }}
             className="relative w-auto max-w-full mx-auto inline-block"
           >
-            {/* Subtle background glow */}
-            <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl -z-10"></div>
-
-            {/* Main image container */}
+            {/* Main image container with aurora background */}
             <motion.div
               className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-3xl overflow-hidden shadow-2xl group inline-block"
               whileHover={{ scale: 1.02, boxShadow: "0 25px 50px -12px rgba(var(--primary-rgb), 0.3)" }}
               transition={{ duration: 0.3 }}
             >
+              {/* Aurora gradient background matching hero - sized to match image */}
+              <div className="absolute inset-0 bg-zinc-950 rounded-3xl overflow-hidden -z-10">
+                <div className="absolute top-[-20%] left-[-20%] w-[60%] h-[60%] bg-purple-900/30 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }}></div>
+                <div className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] bg-blue-900/20 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }}></div>
+                <div className="absolute top-[40%] left-[50%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '12s', animationDelay: '2s' }}></div>
+              </div>
+
               <Image
-                src="/Yash-Ghodele.png"
+                src="/Yash-Ghodele.jpg"
                 alt="Yash - Engineer, Leader, Innovator"
                 width={600}
                 height={800}
-                className="block h-auto object-contain group-hover:scale-105 transition-transform duration-500 relative z-10"
+                className="block object-cover group-hover:scale-105 transition-transform duration-500 relative z-10"
                 style={{
-                  maxWidth: '100%',
-                  maxHeight: 'min(600px, 80vh)',
-                  width: 'auto',
-                  height: 'auto'
+                  height: 'min(600px, 80vh)',
+                  width: 'auto'
                 }}
                 priority
               />
 
-              {/* Simple overlay gradient for depth */}
+              {/* Gradient overlay for depth */}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent pointer-events-none"></div>
             </motion.div>
           </motion.div>

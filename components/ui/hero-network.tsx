@@ -18,7 +18,7 @@ export default function HeroNetwork() {
         let height = window.innerHeight
 
         // Configuration
-        const particleCount = 45 // Not too crowded
+        const particleCount = 50 // Not too crowded
         const connectionDistance = 150
         const moveSpeed = 0.5
 

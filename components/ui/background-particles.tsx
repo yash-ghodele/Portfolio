@@ -26,8 +26,8 @@ export default function BackgroundParticles() {
         window.addEventListener("resize", handleResize)
         handleResize()
 
-        // Particle Config - Subtle & Sparse
-        const particleCount = 20 // Very few, just for atmosphere
+        // Particle Config - Enhanced Coverage
+        const particleCount = 80 // Increased for fuller coverage
         const particles: { x: number; y: number; speed: number; size: number; opacity: number }[] = []
 
         for (let i = 0; i < particleCount; i++) {
