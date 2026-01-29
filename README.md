@@ -108,8 +108,6 @@ npm run pages:build
 
 *   [x] **v3.0 Transition**: Complete move from generic routing to bespoke layouts.
 *   [x] **Swipe Navigation**: Mobile gesture support.
-*   [ ] **Command Menu (`cmd+k`)**: Fast global navigation.
-*   [ ] **Blog Integration**: Technical writing section (Planned v3.1).
 
 See [future_plan.md](./future_plan.md) for the detailed vision.
 
