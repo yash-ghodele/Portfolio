@@ -14,7 +14,37 @@ import BackgroundParticles from "@/components/ui/background-particles"
 export const metadata: Metadata = {
   title: "Yash Ghodele | Portfolio",
   description:
-    "Portfolio of Yash - B.Tech ECE Student, Event Manager, IoT Enthusiast, and Community Leader at MIT College of Engineering, Aurangabad",
+    "Yash Ghodele is a Full Stack Developer and IoT Engineer building real-world web platforms, embedded systems, and scalable student-led tech products. B.Tech ECE at MIT Aurangabad. Organizer of large-scale hackathons and technical communities.",
+
+  openGraph: {
+    title: "Yash Ghodele | Portfolio",
+    description:
+      "Building production-grade web apps, IoT systems, and real-world student tech platforms. Full Stack Developer & IoT Engineer from MIT Aurangabad.",
+    url: "https://yash-ghodele.pages.dev",
+    siteName: "Yash Ghodele Portfolio",
+    images: [
+      {
+        url: "/Yash-Ghodele.jpg",
+        width: 600,
+        height: 800,
+        alt: "Yash Ghodele – Full Stack Developer & IoT Engineer",
+      },
+    ],
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Yash Ghodele | Portfolio",
+    description:
+      "Full Stack Developer & IoT Engineer building real-world systems, web platforms, and embedded products.",
+    images: ["/Yash-Ghodele.jpg"],
+    creator: "@why_be_yashhh",
+  },
+
+  alternates: {
+    canonical: "https://yash-ghodele.pages.dev",
+  },
 }
 
 export default function Home() {
@@ -34,7 +64,7 @@ export default function Home() {
           <TechStack />
           <Projects projects={projects} />
           <Experience />
-          <Testimonials />
+          {/* <Testimonials /> */}
           <Contact />
         </div>
       </main>
