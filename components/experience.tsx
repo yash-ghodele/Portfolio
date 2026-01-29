@@ -20,7 +20,7 @@ export default function Experience() {
     {
       icon: <Award className="h-6 w-6" />,
       title: "Executive Head",
-      organization: "BotBuddies (S2P Robotics Pvt. Ltd.)",
+      organization: "BotBuddies (Nextechminds Pvt. Ltd & S2P Robotics Pvt. Ltd.)",
       period: "2024 - Present",
       description: "Leading robotics initiatives and managing team operations for innovative IoT and robotics projects.",
       highlights: ["Team Leadership", "Project Management", "Innovation Strategy"],
@@ -80,7 +80,7 @@ export default function Experience() {
           <Badge variant="outline" className="mb-4 text-sm font-medium border-primary/50 text-foreground py-1 px-3 backdrop-blur-md">
             Journey
           </Badge>
-          <h2 id="experience-heading" className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
+          <h2 id="experience-heading" className="text-4xl md:text-6xl font-black tracking-tight text-white mb-4">
             Experience
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">

@@ -90,7 +90,7 @@ export default function Contact() {
             <Badge variant="outline" className="mb-6 py-1 px-3 border-white/10 bg-white/5 text-white/80 backdrop-blur-md">
               Contact
             </Badge>
-            <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter">
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tight">
               Let&apos;s start a <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">conversation.</span>
             </h2>

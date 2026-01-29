@@ -47,6 +47,16 @@ export default function Projects({ projects }: ProjectsProps) {
   const next = () => setCurrent((curr) => (curr + 1) % projects.length)
   const prev = () => setCurrent((curr) => (curr - 1 + projects.length) % projects.length)
 
+  // Handle drag end for swipe gestures
+  const handleDragEnd = (event: any, info: any) => {
+    const swipeThreshold = 50 // pixels to trigger swipe
+    if (info.offset.x > swipeThreshold) {
+      prev()
+    } else if (info.offset.x < -swipeThreshold) {
+      next()
+    }
+  }
+
   // if (!mounted) return <div className="py-24 text-center text-white">Loading Projects...</div>
   if (projects.length === 0) return null
 
@@ -63,7 +73,7 @@ export default function Projects({ projects }: ProjectsProps) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Featured Projects</h2>
+          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight">Featured Projects</h2>
         </motion.div>
 
         {/* Main Card Container */}
@@ -89,12 +99,14 @@ export default function Projects({ projects }: ProjectsProps) {
             <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </button>
 
-          {/* Mobile Tap Areas (Invisible) */}
-          <div className="md:hidden absolute inset-y-0 left-0 w-12 z-20" onClick={prev}></div>
-          <div className="md:hidden absolute inset-y-0 right-0 w-12 z-20" onClick={next}></div>
-
-          {/* Card Content */}
-          <div className="bg-[#111111] rounded-[2.5rem] border border-white/5 p-0 relative overflow-hidden h-auto min-h-[600px] lg:h-[600px] shadow-2xl group">
+          {/* Card Content with Drag Support */}
+          <motion.div
+            className="bg-[#111111] rounded-[2.5rem] border border-white/5 p-0 relative overflow-hidden h-auto min-h-[600px] lg:h-[600px] shadow-2xl group cursor-grab active:cursor-grabbing"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -178,7 +190,7 @@ export default function Projects({ projects }: ProjectsProps) {
                 </div>
               </motion.div>
             </AnimatePresence>
-          </div>
+          </motion.div>
         </div>
 
         {/* Bottom Progress Bar */}
@@ -213,6 +225,6 @@ export default function Projects({ projects }: ProjectsProps) {
         </div>
 
       </div>
-    </section>
+    </section >
   )
 }
