@@ -63,14 +63,14 @@ export default function About() {
             Overview
           </Badge>
           <motion.h2
-            className="text-5xl md:text-7xl font-black mb-8 tracking-tight"
+            className="text-4xl md:text-6xl font-black mb-8 tracking-tight"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
           >
             <span className="text-white">
-              Professional Profile
+              Systems, Technology & Execution
             </span>
           </motion.h2>
           <motion.p
@@ -79,7 +79,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            B.Tech ECE Student specializing in <span className="text-foreground font-semibold">Embedded Systems</span> and <span className="text-foreground font-semibold">Full Stack Development</span>.
+            Designing and operating real-world systems — from embedded devices and software platforms to large-scale technical events.
           </motion.p>
         </motion.div>
 
@@ -94,19 +94,37 @@ export default function About() {
             viewport={{ once: true }}
             variants={slideInLeft}
           >
-            <h3 className="text-3xl font-bold text-white">
-              Engineering & Leadership
+            <h3 className="text-2xl font-semibold text-white">
+              How I work
             </h3>
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+            <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
               <p>
-                Currently pursuing my degree at MIT College of Engineering, I have developed a strong foundation in both hardware and software domains. My focus is on creating integrated systems that solve real-world problems.
+                I design systems that have to work in the real world — not just demos. My work lives where embedded hardware, software platforms, and execution collide.
               </p>
+
               <p>
-                In addition to my technical work, I serve as a leader in various student organizations, organizing technical events and fostering a culture of innovation among peers.
+                I&apos;m pursuing a B.Tech in Electronics and Communication Engineering, but most of my learning comes from shipping real systems — from IoT security platforms to large-scale hackathons with hundreds of participants.
               </p>
+
               <p>
-                <b>Key Focus Areas:</b> IoT Architecture, Web Development, and Event Management.
+                Leading teams and events taught me what textbooks don&apos;t: assumptions fail, coordination breaks, and clarity beats speed when pressure hits.
               </p>
+
+              <p className="pt-3 text-base text-foreground font-semibold">
+                My work converges around three areas:
+              </p>
+
+              <ul className="space-y-2 pl-5 text-base">
+                <li>
+                  <span className="text-foreground font-semibold">IoT & Embedded Systems</span> — devices built for unpredictable environments
+                </li>
+                <li>
+                  <span className="text-foreground font-semibold">Full Stack Platforms</span> — software that makes hardware usable
+                </li>
+                <li>
+                  <span className="text-foreground font-semibold">Execution & Systems</span> — people, processes, and timelines that actually ship
+                </li>
+              </ul>
             </div>
           </motion.div>
 
@@ -128,9 +146,9 @@ export default function About() {
                 <Zap className="h-8 w-8 text-primary" />
               </div>
               <div>
-                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">IoT Development</h4>
+                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">Embedded Systems & Devices</h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Designing smart, connected solutions using ESP32, Arduino & Sensors.
+                  Building IoT solutions with ESP32, Arduino, and sensors that operate in unpredictable real-world conditions.
                 </p>
               </div>
             </motion.div>
@@ -149,9 +167,9 @@ export default function About() {
                 <Users className="h-8 w-8 text-purple-500" />
               </div>
               <div>
-                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-purple-500 transition-colors">Team Leadership</h4>
+                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-purple-500 transition-colors">Team & System Leadership</h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Managing technical teams and organizing large-scale events.
+                  Leading teams through execution pressure — InnoHack (200+ participants), BotBuddies, and ECESA technical communities.
                 </p>
               </div>
             </motion.div>
@@ -170,9 +188,9 @@ export default function About() {
                 <Lightbulb className="h-8 w-8 text-blue-500" />
               </div>
               <div>
-                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-blue-500 transition-colors">Strategic Planning</h4>
+                <h4 className="text-xl font-bold mb-2 text-foreground group-hover:text-blue-500 transition-colors">Execution & Tradeoffs</h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Executing projects with a focus on efficiency and scalability.
+                  Making systems ship under real constraints — balancing scope, timelines, and team coordination when assumptions break.
                 </p>
               </div>
             </motion.div>
