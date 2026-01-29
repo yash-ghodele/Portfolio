@@ -9,6 +9,7 @@ The Projects section showcases your portfolio work through an interactive carous
 
 **Title:** Featured Projects
 **Format:** Carousel with auto-play functionality
+**New Feature:** Swipe gestures for mobile navigation
 
 ---
 

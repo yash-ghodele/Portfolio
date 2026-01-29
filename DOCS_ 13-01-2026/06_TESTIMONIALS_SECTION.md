@@ -1,5 +1,8 @@
 # Testimonials Section - Endorsements Documentation
 
+> [!NOTE]
+> **HIDDEN SECTION**: This section is currently hidden in the production build (commented out in code) but preserved here for future use.
+
 ## Overview
 The Testimonials section features endorsements from professors, team members, event participants, and peers through a three-card carousel display.
 

@@ -25,11 +25,13 @@ The Tech Stack section provides a comprehensive breakdown of your technical prof
 - Arduino
 - React
 - C/C++
-- IoTSkills & Proficiency:
+- IoT
+
+#### Skills & Proficiency:
 - **Python** - 90%
 - **Arduino** - 90%
 - **React** - 80%
-- **Flutter** - 75%
+- **TypeScript** - 85%
 - **C/C++** - 80%
 - **IoT** - 90% (Strong suit)
 
@@ -58,8 +60,11 @@ The Tech Stack section provides a comprehensive breakdown of your technical prof
 - Next.js
 - Tailwind CSS
 - Responsive Design
-- UI/UX**React** - 80%
-- **Flutter** - 75%
+- UI/UX
+
+#### Skills & Proficiency:
+- **React** - 80%
+- **Next.js** - 85%
 - **Tailwind CSS** - 90%
 - **Responsive Design** - 85%
 - **UI/UX** - 80%
@@ -89,11 +94,14 @@ The Tech Stack section provides a comprehensive breakdown of your technical prof
 - VS Code
 - Figma
 - Firebase
-- FastAPI**Git/GitHub** - 85%
+- FastAPI
+
+#### Skills & Proficiency:
+- **Git/GitHub** - 85%
 - **VS Code** - 90%
 - **Figma** - 75%
 - **Firebase** - 80%
-- **Linux** - 80%
+- **FastAPI** - 80%
 
 ---
 
@@ -123,7 +131,7 @@ The Tech Stack section provides a comprehensive breakdown of your technical prof
 - Hover effects on each badge:
   - Border brightens to primary color
   - Background becomes slightly more opaque
-- Primary color theme throughoutors
+- Primary color theme throughout
 - Color-coded visualizations matching category theme
 
 ### Hover Effects
@@ -157,13 +165,14 @@ The Tech Stack section provides a comprehensive breakdown of your technical prof
 - UI/UX
 - Git/GitHub
 - Firebase
-- Linux
+- FastAPI
+- TypeScript
+- Next.js
 - Social Media
 - Content Creation
 - Campaign Management
 
 ### Proficient Skills (75-79%):
-- Flutter
 - Figma
 - Analytics
 
