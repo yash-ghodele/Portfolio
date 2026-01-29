@@ -111,8 +111,6 @@ npm run pages:build
 *   [ ] **Command Menu (`cmd+k`)**: Fast global navigation.
 *   [ ] **Blog Integration**: Technical writing section (Planned v3.1).
 
-See [future_plan.md](./future_plan.md) for the detailed vision.
-
 ---
 
 ## 📄 License
