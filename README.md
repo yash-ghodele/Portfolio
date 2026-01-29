@@ -1,6 +1,8 @@
 # Yash Ghodele - Portfolio V3
 
-![Portfolio Banner](public/Yash-Ghodele.jpg)
+<div align="center">
+  <img src="public/logo.svg" alt="Yash Ghodele Portfolio" width="120" />
+</div>
 
 > **Engineering meets Art.** A premium portfolio experience built to demonstrate full-stack mastery, creative design, and performance optimization.
 
