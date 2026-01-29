@@ -9,6 +9,8 @@ import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] })
 
+export const runtime = "edge"
+
 export const viewport: Viewport = {
   themeColor: "#000000",
 }
