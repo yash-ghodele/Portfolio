@@ -1,13 +1,14 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 
-import { Inter } from "next/font/google"
+import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { Toaster } from "@/components/ui/toaster"
 
 import { Analytics } from "@vercel/analytics/react"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -95,7 +96,7 @@ export const metadata: Metadata = {
       "Full Stack Developer & IoT Engineer building real-world systems, scalable web applications, and innovative IoT platforms. Organizing hackathons with 200+ participants.",
     images: [
       {
-        url: "/Yash-Ghodele.jpg",
+        url: "/images/hero/yash-ghodele.jpg",
         width: 600,
         height: 800,
         alt: "Yash Ghodele - Full Stack Developer & IoT Engineer",
@@ -108,7 +109,7 @@ export const metadata: Metadata = {
     title: "Yash Ghodele | Full Stack Developer & IoT Engineer",
     description:
       "Building real-world systems with Next.js, React, IoT, and Embedded Engineering. Organizing hackathons with 200+ participants.",
-    images: ["/Yash-Ghodele.jpg"],
+    images: ["/images/hero/yash-ghodele.jpg"],
     creator: "@why_be_yashhh",
   },
 
@@ -133,7 +134,7 @@ export default function RootLayout({
     name: "Yash Ghodele",
     alternateName: "why_be_yashhh",
     url: "https://yash-ghodele.pages.dev",
-    image: "https://yash-ghodele.pages.dev/Yash-Ghodele.jpg",
+    image: "https://yash-ghodele.pages.dev/images/hero/yash-ghodele.jpg",
     description:
       "Full Stack Developer & IoT Engineer building scalable web platforms and real-world embedded systems. Organizing hackathons with 200+ participants.",
     email: "yashghodele.work@gmail.com",
@@ -197,12 +198,13 @@ export default function RootLayout({
       "InnoHack 2.0 Organizer",
       "Executive Head at BotBuddies",
       "Event Head at ECESA",
+      "SPIC MACAY Virasat 2024 Coordinator"
     ],
   }
 
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
