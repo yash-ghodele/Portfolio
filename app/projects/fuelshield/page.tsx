@@ -6,6 +6,25 @@ import { Button } from "@/components/ui/button"
 export const metadata = {
     title: 'FuelShield - IoT Fuel Theft Detection | Yash Ghodele',
     description: 'Real-time fuel theft detection and fleet analytics platform. Reduces fuel losses by 20% using ESP32 sensors and MQTT.',
+    openGraph: {
+        title: 'FuelShield - IoT Fuel Theft Detection | Yash Ghodele',
+        description: 'Real-time fuel theft detection and fleet analytics platform. Reduces fuel losses by 20% using ESP32 sensors and MQTT.',
+        url: 'https://yash-ghodele.pages.dev/projects/fuelshield',
+        siteName: 'Yash Ghodele Portfolio',
+        images: [{ url: '/projects/fuel-monitoring-system.png', width: 1200, height: 630, alt: 'FuelShield IoT System' }],
+        locale: 'en_US',
+        type: 'article',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'FuelShield - IoT Fuel Theft Detection | Yash Ghodele',
+        description: 'Real-time fuel theft detection and fleet analytics platform.',
+        images: ['/projects/fuel-monitoring-system.png'],
+        creator: '@why_be_yashhh',
+    },
+    alternates: {
+        canonical: 'https://yash-ghodele.pages.dev/projects/fuelshield',
+    },
 }
 
 export default function FuelShieldPage() {

@@ -3,10 +3,12 @@
 import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 
-export default function HeroNetwork() {
+export default function HeroNetwork({ showParticles = true }: { showParticles?: boolean }) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
+        if (!showParticles) return
+
         const canvas = canvasRef.current
         if (!canvas) return
 
@@ -120,10 +122,12 @@ export default function HeroNetwork() {
             </div>
 
             {/* Layer 2: The Network Mesh (Canvas) */}
-            <canvas
-                ref={canvasRef}
-                className="absolute inset-0 w-full h-full opacity-60"
-            />
+            {showParticles && (
+                <canvas
+                    ref={canvasRef}
+                    className="absolute inset-0 w-full h-full opacity-60"
+                />
+            )}
 
             {/* Layer 3: Unifying Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>

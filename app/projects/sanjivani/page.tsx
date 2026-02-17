@@ -6,6 +6,25 @@ import { Button } from "@/components/ui/button"
 export const metadata = {
     title: 'Sanjivani - AI Crop Disease Detection | Yash Ghodele',
     description: 'An offline-capable PWA using Deep Learning (MobileNetV2) to detect crop diseases in under 2 seconds. Built for the 2G world.',
+    openGraph: {
+        title: 'Sanjivani - AI Crop Disease Detection | Yash Ghodele',
+        description: 'An offline-capable PWA using Deep Learning (MobileNetV2) to detect crop diseases in under 2 seconds. Built for the 2G world.',
+        url: 'https://yash-ghodele.pages.dev/projects/sanjivani',
+        siteName: 'Yash Ghodele Portfolio',
+        images: [{ url: '/projects/agriculture-ai-crop-disease.jpg', width: 1200, height: 630, alt: 'Sanjivani AI App' }],
+        locale: 'en_US',
+        type: 'article',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Sanjivani - AI Crop Disease Detection | Yash Ghodele',
+        description: 'An offline-capable PWA using Deep Learning (MobileNetV2) to detect crop diseases in under 2 seconds.',
+        images: ['/projects/agriculture-ai-crop-disease.jpg'],
+        creator: '@why_be_yashhh',
+    },
+    alternates: {
+        canonical: 'https://yash-ghodele.pages.dev/projects/sanjivani',
+    },
 }
 
 export default function SanjivaniPage() {
@@ -212,12 +231,12 @@ export default function SanjivaniPage() {
                                 <span className="text-fuchsia-400">return</span> jsonify({'{'}<span className="text-green-400">&apos;error&apos;</span>: <span className="text-green-400">&apos;No file&apos;</span>{'}'})<br />
                                 <br />
                                 <span className="text-zinc-500"># 2. Pre-process for MobileNet</span><br />
-                                img_bytes = request.files[<span className="text-green-400">&apos;file&apos;</span>].read()<br />
-                                tensor = transform_image(img_bytes)<br />
+                                <span className="text-blue-400">img_bytes</span> = request.files[<span className="text-green-400">&apos;file&apos;</span>].read()<br />
+                                <span className="text-blue-400">tensor</span> = transform_image(img_bytes)<br />
                                 <br />
                                 <span className="text-zinc-500"># 3. Inference Time</span><br />
-                                prediction = model(tensor)<br />
-                                confidence = torch.softmax(prediction)<br />
+                                <span className="text-blue-400">prediction</span> = model(tensor)<br />
+                                <span className="text-blue-400">confidence</span> = torch.softmax(prediction)<br />
                                 <br />
                                 <span className="text-fuchsia-400">return</span> jsonify({'{'}<br />
                                 <span className="text-green-400">&apos;class&apos;</span>: class_names[prediction.argmax()],<br />

@@ -3,11 +3,14 @@
 import { useState, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import { usePathname, useRouter } from "next/navigation"
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [activeSection, setActiveSection] = useState("home")
+    const pathname = usePathname()
+    const router = useRouter()
 
     const navLinks = useMemo(() => [
         { name: "Home", href: "#home" },
@@ -15,37 +18,75 @@ export default function Navbar() {
         { name: "Tech Stack", href: "#tech-stack" },
         { name: "Projects", href: "#projects" },
         { name: "Experience", href: "#experience" },
-        // { name: "Testimonials", href: "#testimonials" },
+        { name: "Community", href: "/community" },
         { name: "Contact", href: "#contact" }
     ], [])
 
+    // Update active section based on scroll position (only on home page) or pathname
     useEffect(() => {
+        if (pathname === "/community" || pathname.startsWith("/community/")) {
+            setActiveSection("community")
+            return
+        }
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20)
 
-            // Update active section based on scroll position
-            const sections = navLinks.map(link => link.href.substring(1))
-            const current = sections.find(section => {
-                const element = document.getElementById(section)
-                if (element) {
-                    const rect = element.getBoundingClientRect()
-                    return rect.top <= 100 && rect.bottom >= 100
-                }
-                return false
-            })
-            if (current) setActiveSection(current)
+            // Only check sections on home page
+            if (pathname === "/") {
+                const sections = navLinks
+                    .filter(link => link.href.startsWith("#"))
+                    .map(link => link.href.substring(1))
+
+                const current = sections.find(section => {
+                    const element = document.getElementById(section)
+                    if (element) {
+                        const rect = element.getBoundingClientRect()
+                        return rect.top <= 100 && rect.bottom >= 100
+                    }
+                    return false
+                })
+                if (current) setActiveSection(current)
+            }
         }
 
         window.addEventListener("scroll", handleScroll)
+        // Trigger once to set initial state
+        handleScroll()
+
         return () => window.removeEventListener("scroll", handleScroll)
-    }, [navLinks])
+    }, [navLinks, pathname])
 
     const scrollToSection = (href: string) => {
-        const element = document.querySelector(href)
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" })
+        if (href.endsWith(".pdf")) {
+            window.open(href, "_blank")
+            setIsMobileMenuOpen(false)
+            return
+        }
+
+        if (href.startsWith("#")) {
+            if (pathname === "/") {
+                const element = document.querySelector(href)
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth" })
+                    setIsMobileMenuOpen(false)
+                }
+            } else {
+                router.push(`/${href}`)
+                setIsMobileMenuOpen(false)
+            }
+        } else {
+            router.push(href)
             setIsMobileMenuOpen(false)
         }
+    }
+
+    const isActive = (href: string) => {
+        if (href.endsWith(".pdf")) return false
+        if (href.startsWith("#")) {
+            return activeSection === href.substring(1) && pathname === "/"
+        }
+        return pathname.startsWith(href)
     }
 
     return (
@@ -78,31 +119,34 @@ export default function Navbar() {
 
                             {/* Navigation Links */}
                             <div className="hidden md:flex items-center">
-                                {navLinks.map((link) => (
-                                    <motion.button
-                                        key={link.name}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={() => scrollToSection(link.href)}
-                                        className={`
+                                {navLinks.map((link) => {
+                                    const active = isActive(link.href)
+                                    return (
+                                        <motion.button
+                                            key={link.name}
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onClick={() => scrollToSection(link.href)}
+                                            className={`
                       relative px-2.5 py-1.5 text-xs font-medium rounded-full
                       transition-colors duration-300
-                      ${activeSection === link.href.substring(1)
-                                                ? 'text-primary'
-                                                : 'text-muted-foreground hover:text-foreground'
-                                            }
+                      ${active
+                                                    ? 'text-primary'
+                                                    : 'text-muted-foreground hover:text-foreground'
+                                                }
                     `}
-                                    >
-                                        {link.name}
-                                        {activeSection === link.href.substring(1) && (
-                                            <motion.div
-                                                layoutId="activeSection"
-                                                className="absolute inset-0 bg-primary/10 rounded-full -z-10"
-                                                transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                                            />
-                                        )}
-                                    </motion.button>
-                                ))}
+                                        >
+                                            {link.name}
+                                            {active && (
+                                                <motion.div
+                                                    layoutId="activeSection"
+                                                    className="absolute inset-0 bg-primary/10 rounded-full -z-10"
+                                                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                                />
+                                            )}
+                                        </motion.button>
+                                    )
+                                })}
                             </div>
 
                             {/* Mobile Menu Button */}
@@ -146,26 +190,29 @@ export default function Navbar() {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="max-w-4xl mx-auto space-y-2">
-                                {navLinks.map((link, index) => (
-                                    <motion.button
-                                        key={link.name}
-                                        initial={{ x: -20, opacity: 0 }}
-                                        animate={{ x: 0, opacity: 1 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        onClick={() => scrollToSection(link.href)}
-                                        className={`
+                                {navLinks.map((link, index) => {
+                                    const active = isActive(link.href)
+                                    return (
+                                        <motion.button
+                                            key={link.name}
+                                            initial={{ x: -20, opacity: 0 }}
+                                            animate={{ x: 0, opacity: 1 }}
+                                            transition={{ delay: index * 0.1 }}
+                                            onClick={() => scrollToSection(link.href)}
+                                            className={`
                       w-full text-left px-6 py-4 rounded-2xl
                       font-medium text-lg
                       transition-all duration-300
-                      ${activeSection === link.href.substring(1)
-                                                ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20'
-                                                : 'bg-muted/50 hover:bg-muted text-foreground'
-                                            }
+                      ${active
+                                                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20'
+                                                    : 'bg-muted/50 hover:bg-muted text-foreground'
+                                                }
                     `}
-                                    >
-                                        {link.name}
-                                    </motion.button>
-                                ))}
+                                        >
+                                            {link.name}
+                                        </motion.button>
+                                    )
+                                })}
                             </div>
                         </motion.div>
                     </motion.div>

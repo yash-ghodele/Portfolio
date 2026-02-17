@@ -5,7 +5,26 @@ import { Button } from "@/components/ui/button"
 
 export const metadata = {
     title: 'IoT Security - Smart Lock System | Yash Ghodele',
-    description: '3-Layer Auth Smart Lock with autonomous lockdown and sub-300ms cloud latency.',
+    description: '3-Layer Auth Smart Lock with autonomous lockdown and sub-300ms cloud latency. Event-driven architecture for real-time defense.',
+    openGraph: {
+        title: 'IoT Security - Smart Lock System | Yash Ghodele',
+        description: '3-Layer Auth Smart Lock with autonomous lockdown and sub-300ms cloud latency.',
+        url: 'https://yash-ghodele.pages.dev/projects/iot-security',
+        siteName: 'Yash Ghodele Portfolio',
+        images: [{ url: '/projects/smart-lock-security-system.jpg', width: 1200, height: 630, alt: 'IoT Smart Lock System' }],
+        locale: 'en_US',
+        type: 'article',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'IoT Security - Smart Lock System | Yash Ghodele',
+        description: '3-Layer Auth Smart Lock with autonomous lockdown and sub-300ms cloud latency.',
+        images: ['/projects/smart-lock-security-system.jpg'],
+        creator: '@why_be_yashhh',
+    },
+    alternates: {
+        canonical: 'https://yash-ghodele.pages.dev/projects/iot-security',
+    },
 }
 
 export default function IoTSecurityPage() {

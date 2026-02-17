@@ -8,11 +8,13 @@ import Testimonials from "@/components/testimonials"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
-import { getProjects } from "@/lib/mdx"
+import { getProjects } from "@/lib/sanity/fetch"
 import BackgroundParticles from "@/components/ui/background-particles"
 
 export const metadata: Metadata = {
-  title: "Yash Ghodele | Portfolio",
+  title: {
+    absolute: "Yash Ghodele | Portfolio",
+  },
   description:
     "Yash Ghodele is a Full Stack Developer and IoT Engineer building real-world web platforms, embedded systems, and scalable student-led tech products. B.Tech ECE at MIT Aurangabad. Organizer of large-scale hackathons and technical communities.",
 
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "Yash Ghodele Portfolio",
     images: [
       {
-        url: "/Yash-Ghodele.jpg",
+        url: "/images/hero/yash-ghodele.jpg",
         width: 600,
         height: 800,
         alt: "Yash Ghodele – Full Stack Developer & IoT Engineer",
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     title: "Yash Ghodele | Portfolio",
     description:
       "Full Stack Developer & IoT Engineer building real-world systems, web platforms, and embedded products.",
-    images: ["/Yash-Ghodele.jpg"],
+    images: ["/images/hero/yash-ghodele.jpg"],
     creator: "@why_be_yashhh",
   },
 
@@ -47,8 +49,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Home() {
-  const projects = getProjects()
+export default async function Home() {
+  const projects = await getProjects()
 
   return (
     <div className="min-h-screen bg-background">

@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Github, Linkedin, Instagram } from "lucide-react"
+import { ArrowRight, Github, Linkedin, Instagram, Users } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import Link from "next/link"
 import HeroNetwork from "@/components/ui/hero-network"
 
 export default function Hero() {
@@ -110,6 +111,19 @@ export default function Hero() {
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Button>
+
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-primary/30 backdrop-blur-sm bg-background/50 hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/20"
+                asChild
+              >
+                <Link href="/community">
+                  <Users className="mr-2 h-4 w-4" />
+                  Community
+                </Link>
+              </Button>
+
               <Button
                 size="lg"
                 variant="outline"
@@ -180,7 +194,7 @@ export default function Hero() {
               </div>
 
               <Image
-                src="/Yash-Ghodele.jpg"
+                src="/images/hero/yash-ghodele.jpg"
                 alt="Yash - Engineer, Leader, Innovator"
                 width={600}
                 height={800}

@@ -20,27 +20,40 @@ The design philosophy centers on immersion:
 
 *   **Atmospheric Depth**: Uses a hybrid system of **Network Mesh** (Hero) and **Floating Data Particles** (Global) to create a sense of depth and activity without distracting from the content.
 *   **Physics-Based Interaction**: Magnetic buttons, elastic swipe gestures, and spring-based animations (`framer-motion`) make the UI feel alive.
-*   **Bespoke Layouts**: Unlike standard template portfolios, every major project (`Sanjivani`, `FuelShield`) gets a **dedicated architectural route**, allowing for unique presentation styles tailored to the project's brand.
+*   **Bespoke Layouts**: Unlike standard template portfolios, flagship projects like **Sanjivani V2** and **FuelShield** get **dedicated architectural routes**, allowing for unique presentation styles tailored to the project's brand.
+
+---
+
+## 🚀 Key Features
+
+### 1. Bespoke Case Studies
+High-ticket projects are not just text on a page. They are immersive experiences with custom layouts, specific animations, and branded assets.
+*   **Sanjivani V2**: AI Crop Doctor (Bespoke Layout)
+*   **FuelShield**: IoT Fuel Monitoring (Bespoke Layout)
+
+### 2. Historical & Community Context
+*   **Restored Archives**: **Sanjivani V1** is preserved to showcase the project's evolution and engineering journey.
+*   **Community Leadership**: A dedicated **Community** section (formerly Events) highlighting leadership in tech clubs, hackathons, and cultural initiatives.
+
+### 3. Performance First
+*   **Edge-Ready**: Deployed to **Cloudflare Pages** for sub-100ms globally distributed latency.
+*   **Zero-Layout Shift**: Fonts (`Inter`) are subsetted and preloaded. Images use `unoptimized` output for crisp rendering on static hosts.
+*   **Privacy & Security**: SEO hardening (e.g., `robots.txt` exclusions) to protect sensitive assets like resumes.
 
 ---
 
 ## 🏗️ Architecture & Engineering
 
-### 1. The "Hybrid" Content Strategy
+### The "Hybrid" Content Strategy
 We use a sophisticated mix of **Static Markdown** and **React Server Components**:
 
 *   **Data Layer (`content/projects/*.mdx`)**: Project metadata (titles, stacks, stats) is stored in MDX for easy portability and SSG injection.
-*   **Presentation Layer (`app/projects/*`)**: Instead of a generic `[slug]` route, high-ticket projects have **hardcoded routes**. This allows for "Bespoke Case Studies"—unique layouts, specific animations, and custom assets for each flagship project.
+*   **Presentation Layer (`app/projects/*`)**: Hardcoded routes for flagship projects, ensuring maximum design freedom.
 
-### 2. Performance First
-*   **Edge-Ready**: Deployed to Cloudflare Pages for sub-100ms globally distributed latency.
-*   **Zero-Layout Shift**: Fonts (`Inter`) are subsetted and preloaded. Images use `unoptimized` output for crisp rendering on static hosts.
-*   **Strict Type Safety**: The entire codebase, from MDX parsers (`lib/mdx.ts`) to UI primitives, is strictly typed in TypeScript.
-
-### 3. Interactive UI Core
-*   **Swipe Gestures**: Custom-engineered mobile touch handlers for the project carousel.
+### Interactive UI Core
+*   **Swipe Gestures**: Custom-engineered mobile touch handlers for project navigation.
 *   **Glassmorphism**: Real-time background blur filters used on cards and navigation to maintain context.
-*   **React Context Free**: We removed heavy global providers (like `ThemeProvider`) to strip bundle size, baking the "Dark Mode" directly into CSS variables for maximum performance.
+*   **React Context Free**: "Dark Mode" is baked directly into CSS variables for maximum performance, stripping unnecessary bundle size.
 
 ---
 
@@ -63,15 +76,14 @@ We use a sophisticated mix of **Static Markdown** and **React Server Components*
 ```bash
 portfolio/
 ├── app/                  # Next.js App Router
+│   ├── community/        # Community & Events Section
 │   ├── projects/         # Bespoke Case Study Routes
-│   │   ├── sanjivani-v2/ # Custom Layout for Sanjivani
-│   │   └── fuelshield/   # Custom Layout for FuelShield
+│   │   ├── sanjivani-v2/ # Custom Layout for Sanjivani V2
+│   │   └── sanjivani/    # Restored V1 Layout
 │   ├── layout.tsx        # Global shell & SEO metadata
 │   └── page.tsx          # Landing page composition
 ├── components/           # React Components
 │   ├── ui/               # Shadcn/ui primitives & effects
-│   │   ├── background-particles.tsx # Custom Canvas effect
-│   │   └── hero-network.tsx         # Interactive mesh
 │   └── active-project.tsx # Interactive components
 ├── content/              # MDX Data Source
 │   └── projects/         # Raw project data files
@@ -80,7 +92,7 @@ portfolio/
 
 ---
 
-## 🚀 Getting Started
+## 🏁 Getting Started
 
 Clone the repository and install dependencies:
 
@@ -103,15 +115,6 @@ Build for production (Cloudflare Pages):
 npm run pages:build
 # Output will be in .vercel/output/static or .next/
 ```
-
----
-
-## 🔮 Roadmap
-
-*   [x] **v3.0 Transition**: Complete move from generic routing to bespoke layouts.
-*   [x] **Swipe Navigation**: Mobile gesture support.
-
-See [future_plan.md](./future_plan.md) for the detailed vision.
 
 ---
 

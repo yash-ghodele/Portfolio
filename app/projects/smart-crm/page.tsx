@@ -5,7 +5,26 @@ import { Button } from "@/components/ui/button"
 
 export const metadata = {
     title: 'Smart CRM - Business Automation | Yash Ghodele',
-    description: 'High-throughput VBA automation engine handling 100k+ B2B leads with 99.9% validation accuracy.',
+    description: 'High-throughput VBA automation engine handling 100k+ B2B leads with 99.9% validation accuracy. Replaces manual workflows with RAM-based processing.',
+    openGraph: {
+        title: 'Smart CRM - Business Automation | Yash Ghodele',
+        description: 'High-throughput VBA automation engine handling 100k+ B2B leads with 99.9% validation accuracy.',
+        url: 'https://yash-ghodele.pages.dev/projects/smart-crm',
+        siteName: 'Yash Ghodele Portfolio',
+        images: [{ url: '/projects/crm-business-management.jpg', width: 1200, height: 630, alt: 'Smart CRM Automation' }],
+        locale: 'en_US',
+        type: 'article',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Smart CRM - Business Automation | Yash Ghodele',
+        description: 'High-throughput VBA automation engine handling 100k+ B2B leads with 99.9% validation accuracy.',
+        images: ['/projects/crm-business-management.jpg'],
+        creator: '@why_be_yashhh',
+    },
+    alternates: {
+        canonical: 'https://yash-ghodele.pages.dev/projects/smart-crm',
+    },
 }
 
 export default function SmartCRMPage() {

@@ -6,6 +6,25 @@ import { Button } from "@/components/ui/button"
 export const metadata = {
     title: 'Sanjivani 2.0 - AI Crop Doctor | Yash Ghodele',
     description: 'Production-grade AI agriculture platform. Hybrid CNN+LLM architecture with edge optimization, multilingual support, and comprehensive testing.',
+    openGraph: {
+        title: 'Sanjivani 2.0 - AI Crop Doctor | Yash Ghodele',
+        description: 'Production-grade AI agriculture platform. Hybrid CNN+LLM architecture with edge optimization, multilingual support, and comprehensive testing.',
+        url: 'https://yash-ghodele.pages.dev/projects/sanjivani-v2',
+        siteName: 'Yash Ghodele Portfolio',
+        images: [{ url: '/projects/sanjivani-v2.jpg', width: 1200, height: 630, alt: 'Sanjivani 2.0 Platform' }],
+        locale: 'en_US',
+        type: 'article',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Sanjivani 2.0 - AI Crop Doctor | Yash Ghodele',
+        description: 'Production-grade AI agriculture platform. Hybrid CNN+LLM architecture.',
+        images: ['/projects/sanjivani-v2.jpg'],
+        creator: '@why_be_yashhh',
+    },
+    alternates: {
+        canonical: 'https://yash-ghodele.pages.dev/projects/sanjivani-v2',
+    },
 }
 
 export default function SanjivaniV2Page() {

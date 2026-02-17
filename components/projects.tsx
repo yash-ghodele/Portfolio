@@ -7,7 +7,7 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, ChevronRight, ChevronLeft, Layout, Cpu, Terminal, Shield, LucideIcon } from "lucide-react"
-import { ProjectMetadata } from "@/lib/mdx"
+import { ProjectMetadata } from "@/lib/types"
 
 // Icon Mapping
 const iconMap: Record<string, LucideIcon> = {
@@ -48,7 +48,7 @@ export default function Projects({ projects }: ProjectsProps) {
   const prev = () => setCurrent((curr) => (curr - 1 + projects.length) % projects.length)
 
   // Handle drag end for swipe gestures
-  const handleDragEnd = (event: any, info: any) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: { offset: { x: number } }) => {
     const swipeThreshold = 50 // pixels to trigger swipe
     if (info.offset.x > swipeThreshold) {
       prev()
