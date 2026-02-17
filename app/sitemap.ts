@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next'
 import { getProjects, getEvents } from '@/lib/sanity/fetch'
 import { ProjectMetadata, EventMetadata } from '@/lib/types'
 
+export const runtime = 'edge';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://yash-ghodele.pages.dev'
     const projects = await getProjects()

@@ -1,5 +1,7 @@
 import { PortableText } from 'next-sanity'
 import { getEvents, getEvent } from "@/lib/sanity/fetch"
+
+export const runtime = 'edge';
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, Calendar, MapPin, CheckCircle2, Trophy, Target, BarChart3, Sparkles } from 'lucide-react'

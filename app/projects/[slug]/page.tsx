@@ -1,5 +1,7 @@
 import { PortableText } from 'next-sanity'
 import { getProjects, getProject } from "@/lib/sanity/fetch"
+
+export const runtime = 'edge';
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, ExternalLink, Github, ChevronRight, Layout, Cpu, Terminal, Shield, LucideIcon } from 'lucide-react'
