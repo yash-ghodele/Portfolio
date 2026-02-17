@@ -6,6 +6,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  transpilePackages: ['sanity-plugin-iframe-pane'],
 }
 
 export default nextConfig
