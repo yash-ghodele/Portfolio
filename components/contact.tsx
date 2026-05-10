@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -19,6 +19,7 @@ interface FormData {
 }
 
 export default function Contact() {
+  const [isMounted, setIsMounted] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -27,6 +28,10 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [focusedField, setFocusedField] = useState<string | null>(null)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -42,13 +47,7 @@ export default function Contact() {
     formDataObj.append("email", formData.email)
     formDataObj.append("subject", formData.subject)
     formDataObj.append("message", formData.message)
-    // subject is not in the server action schema currently, but we can send it or ignore it. 
-    // The previous action didn't include subject validation, let's just stick to the main 3 for simplicity or update the action.
-    // Proceeding with the 3 main fields.
 
-    // Note: sendEmail expects prevState as first arg if used with useFormState, but here we can call it directly if we mock the state.
-    // However, server actions are best used directly or via hooks. 
-    // Adapting to direct call pattern suited for simple onSubmit:
     const result = await sendEmail({ message: "", success: false }, formDataObj)
 
     if (result.success) {
@@ -145,93 +144,101 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            {/* Abstract Glow behind form */}
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-blue-500/10 rounded-[2rem] blur-2xl transform rotate-3 scale-105 pointer-events-none"></div>
 
             <div className="relative bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-2xl overflow-hidden group">
-              {/* Subtle Grid Pattern overlay */}
               <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5 pointer-events-none"></div>
-
-              {/* Hover Glow Effect */}
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 blur-[80px] rounded-full pointer-events-none group-hover:bg-primary/30 transition-all duration-1000"></div>
 
-              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {isMounted ? (
+                <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="text-gray-400 text-xs uppercase tracking-wider pl-1">Name</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField("name")}
+                        onBlur={() => setFocusedField(null)}
+                        className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50 focus:bg-black/30 transition-all duration-300 h-12 rounded-xl"
+                        placeholder="John Doe"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="text-gray-400 text-xs uppercase tracking-wider pl-1">Email</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField("email")}
+                        onBlur={() => setFocusedField(null)}
+                        className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50 focus:bg-black/30 transition-all duration-300 h-12 rounded-xl"
+                        placeholder="john@example.com"
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-gray-400 text-xs uppercase tracking-wider pl-1">Name</Label>
+                    <Label htmlFor="subject" className="text-gray-400 text-xs uppercase tracking-wider pl-1">Subject</Label>
                     <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
                       onChange={handleChange}
-                      onFocus={() => setFocusedField("name")}
+                      onFocus={() => setFocusedField("subject")}
                       onBlur={() => setFocusedField(null)}
                       className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50 focus:bg-black/30 transition-all duration-300 h-12 rounded-xl"
-                      placeholder="John Doe"
+                      placeholder="Project Inquiry"
                       required
                     />
                   </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-gray-400 text-xs uppercase tracking-wider pl-1">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
+                    <Label htmlFor="message" className="text-gray-400 text-xs uppercase tracking-wider pl-1">Message</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
                       onChange={handleChange}
-                      onFocus={() => setFocusedField("email")}
+                      onFocus={() => setFocusedField("message")}
                       onBlur={() => setFocusedField(null)}
-                      className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50 focus:bg-black/30 transition-all duration-300 h-12 rounded-xl"
-                      placeholder="john@example.com"
+                      className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50 focus:bg-black/30 transition-all duration-300 min-h-[150px] rounded-xl resize-none"
+                      placeholder="Tell me about your project..."
                       required
                     />
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-gray-400 text-xs uppercase tracking-wider pl-1">Subject</Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField("subject")}
-                    onBlur={() => setFocusedField(null)}
-                    className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50 focus:bg-black/30 transition-all duration-300 h-12 rounded-xl"
-                    placeholder="Project Inquiry"
-                    required
-                  />
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-14 rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                    ) : (
+                      <span className="flex items-center">
+                        Send Message <Send className="w-4 h-4 ml-2" />
+                      </span>
+                    )}
+                  </Button>
+                </form>
+              ) : (
+                <div className="space-y-6 animate-pulse">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="h-12 bg-white/5 rounded-xl" />
+                    <div className="h-12 bg-white/5 rounded-xl" />
+                  </div>
+                  <div className="h-12 bg-white/5 rounded-xl" />
+                  <div className="h-32 bg-white/5 rounded-xl" />
+                  <div className="h-14 bg-white/5 rounded-xl" />
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-gray-400 text-xs uppercase tracking-wider pl-1">Message</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField("message")}
-                    onBlur={() => setFocusedField(null)}
-                    className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50 focus:bg-black/30 transition-all duration-300 min-h-[150px] rounded-xl resize-none"
-                    placeholder="Tell me about your project..."
-                    required
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full h-14 rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  {isSubmitting ? (
-                    <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                  ) : (
-                    <span className="flex items-center">
-                      Send Message <Send className="w-4 h-4 ml-2" />
-                    </span>
-                  )}
-                </Button>
-              </form>
+              )}
             </div>
           </motion.div>
         </div>
