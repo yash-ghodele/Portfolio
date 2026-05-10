@@ -1,24 +1,29 @@
 import { client } from "@/sanity/lib/client";
 import { projectsQuery, eventsQuery, projectBySlugQuery, eventBySlugQuery } from "./queries";
 import { ProjectMetadata, EventMetadata } from "@/lib/types";
+import { STATIC_PROJECTS } from "@/lib/projects";
 
 const fetchOptions = { next: { revalidate: 60 } } as any;
 
-// Map Sanity response to existing ProjectMetadata shape
-// Note: Sanity returns flat objects, MDX had { metadata: ... } wrapper.
-// usage in components: projects.map(p => p.metadata.title)
-// We need to return structure: { slug: string, metadata: ProjectMetadata }[]
-
 export async function getProjects() {
-    const projects = await client.fetch(projectsQuery, {}, fetchOptions);
-    return projects.map((p: any) => ({
+    const sanityProjects = await client.fetch(projectsQuery, {}, fetchOptions);
+    const mappedSanity = sanityProjects.map((p: any) => ({
         slug: p.slug,
         metadata: {
             ...p,
-            // Ensure arrays are initialized
             tech: p.tech || [],
         } as ProjectMetadata
     }));
+
+    // Merge static and sanity, avoiding duplicates by slug
+    const allProjects = [...STATIC_PROJECTS];
+    mappedSanity.forEach((sp: any) => {
+        if (!allProjects.find(ap => ap.slug === sp.slug)) {
+            allProjects.push(sp);
+        }
+    });
+
+    return allProjects;
 }
 
 export async function getEvents() {
@@ -34,6 +39,10 @@ export async function getEvents() {
 }
 
 export async function getProject(slug: string) {
+    // Check static first
+    const staticProject = STATIC_PROJECTS.find(p => p.slug === slug);
+    if (staticProject) return staticProject.metadata;
+
     return await client.fetch(projectBySlugQuery, { slug }, fetchOptions);
 }
 
