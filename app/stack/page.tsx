@@ -9,10 +9,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://yash-ghodele.pages.dev/stack" },
   openGraph: {
     title: "Stack | Yash Ghodele",
-    description: "Full-stack tools and hardware arsenal — IoT to cloud to UI.",
+    description: "Hardware arsenal and full-stack engineering toolkit — from ESP32 and MQTT to Next.js and Firebase.",
     url: "https://yash-ghodele.pages.dev/stack",
     siteName: "Yash Ghodele Portfolio",
+    images: [{ url: "/images/hero/yash-ghodele.jpg", width: 1200, height: 630, alt: "Tech Stack" }],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stack | Yash Ghodele",
+    description: "Tools, hardware arsenal, and engineering philosophy.",
+    images: ["/images/hero/yash-ghodele.jpg"],
   },
 }
 

@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getProjects, getEvents } from '@/lib/sanity/fetch'
+import { JOURNAL_POSTS } from '@/lib/journal'
 import { ProjectMetadata, EventMetadata } from '@/lib/types'
 
 export const runtime = 'edge';
@@ -29,6 +30,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     })
 
+    const journalUrls = JOURNAL_POSTS.map((post) => ({
+        url: `${baseUrl}/journal/${post.slug}`,
+        lastModified: new Date(post.date),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }))
+
     return [
         {
             url: baseUrl,
@@ -45,5 +53,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         // Dynamic Content
         ...projectUrls,
         ...eventUrls,
+        ...journalUrls,
     ]
 }

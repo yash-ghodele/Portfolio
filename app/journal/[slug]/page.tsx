@@ -5,9 +5,7 @@ export const runtime = 'edge'
 import { JOURNAL_POSTS } from "@/lib/journal"
 import PostClient from "./PostClient"
 
-export async function generateStaticParams() {
-  return JOURNAL_POSTS.map((post) => ({ slug: post.slug }))
-}
+
 
 export async function generateMetadata({
   params,

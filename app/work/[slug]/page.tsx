@@ -17,13 +17,6 @@ const iconMap: Record<string, LucideIcon> = {
     "Shield": Shield
 }
 
-export async function generateStaticParams() {
-    const projects = await getProjects()
-    return projects.map((project: { slug: string }) => ({
-        slug: project.slug,
-    }))
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
     const project = await getProject(slug)

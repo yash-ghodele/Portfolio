@@ -18,7 +18,22 @@ type CommunityEvent = {
 
 export const metadata = {
     title: 'Events & Community | Yash Ghodele',
-    description: 'Community building, event leadership, and real-world execution — from organizing InnoHack (200+ participants) to coordinating SPIC MACAY cultural festivals.',
+    description: 'Chronicle of community building, hackathon leadership, and cultural festival coordination. Executive Head at BotBuddies and InnoHack organizer.',
+    alternates: { canonical: "https://yash-ghodele.pages.dev/events" },
+    openGraph: {
+        title: "Events | Yash Ghodele",
+        description: "Community building and event leadership — InnoHack, BotBuddies, and SPIC MACAY.",
+        url: "https://yash-ghodele.pages.dev/events",
+        siteName: "Yash Ghodele Portfolio",
+        images: [{ url: "/images/hero/yash-ghodele.jpg", width: 1200, height: 630, alt: "Events" }],
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Events | Yash Ghodele",
+        description: "Leading communities through industrial-scale hackathons and cultural festivals.",
+        images: ["/images/hero/yash-ghodele.jpg"],
+    },
 }
 
 const STATS = [

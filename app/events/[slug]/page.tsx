@@ -9,12 +9,7 @@ import { EventClientFeatures } from '@/components/event-client-features'
 import { notFound } from 'next/navigation'
 import { portableTextComponents, preprocessPortableText } from "@/lib/sanity/portable-text-components"
 
-export async function generateStaticParams() {
-    const events = await getEvents()
-    return events.map((event: { slug: string }) => ({
-        slug: event.slug,
-    }))
-}
+
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
