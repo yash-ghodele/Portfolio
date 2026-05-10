@@ -1,8 +1,13 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Footer from "@/components/footer"
-export const runtime = 'edge'
 import { JOURNAL_POSTS } from "@/lib/journal"
+
+export async function generateStaticParams() {
+  return JOURNAL_POSTS.map((post) => ({
+    slug: post.slug,
+  }))
+}
 import PostClient from "./PostClient"
 
 

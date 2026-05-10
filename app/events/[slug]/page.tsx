@@ -1,15 +1,17 @@
-import { PortableText } from 'next-sanity'
-import { getEvents, getEvent } from "@/lib/sanity/fetch"
-
-export const runtime = 'edge'
+import { getEvents, getEvent } from "@/lib/fetch"
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, Calendar, MapPin, CheckCircle2, Trophy, Target, BarChart3, Sparkles } from 'lucide-react'
 import { EventClientFeatures } from '@/components/event-client-features'
 import { notFound } from 'next/navigation'
-import { portableTextComponents, preprocessPortableText } from "@/lib/sanity/portable-text-components"
+import { ContentRenderer } from '@/components/ui/content-renderer'
 
-
+export async function generateStaticParams() {
+    const events = await getEvents()
+    return events.map((event) => ({
+        slug: event.slug,
+    }))
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
@@ -56,7 +58,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
 
     return (
         <div
-            className="event-page min-h-screen bg-zinc-950 text-white selection:bg-violet-500/30 font-sans antialiased"
+            className="event-page min-h-screen bg-zinc-950 text-white selection:bg-violet-500/30 font-sans antialiased pt-20"
             style={{ ['--accent-hue' as string]: hue } as React.CSSProperties}
         >
             <EventClientFeatures accentHue={hue} />
@@ -279,7 +281,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
 
                     {/* ── Article Content ── */}
                     <div className="lg:col-span-8 order-1 lg:order-2">
-                        <article className="event-prose prose prose-invert prose-lg max-w-none
+                        <div className="event-prose prose prose-invert prose-lg max-w-none
                             prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white
                             prose-h2:text-3xl prose-h2:md:text-4xl prose-h2:mt-20 prose-h2:mb-8 prose-h2:pb-5 prose-h2:border-b prose-h2:border-white/[0.06]
                             prose-h3:text-xl prose-h3:md:text-2xl prose-h3:mt-14 prose-h3:mb-4 prose-h3:font-semibold
@@ -299,57 +301,8 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                                 ['--tw-prose-code' as string]: 'var(--a-text)',
                             } as React.CSSProperties}
                         >
-                            <PortableText
-                                value={preprocessPortableText(content)}
-                                components={
-                                    {
-                                        ...portableTextComponents,
-                                        types: {
-                                            ...portableTextComponents.types,
-                                            highlight: ({ value: v }: { value: { text: string } }) => (
-                                                <div className="relative my-16 group not-prose">
-                                                    <div className="absolute -inset-px rounded-2xl blur-sm"
-                                                        style={{ background: `linear-gradient(135deg, var(--a-glow), hsla(${hue + 40}, 50%, 50%, 0.15), var(--a-glow))` }} />
-                                                    <div className="relative p-10 md:p-12 rounded-2xl bg-[#0a0a0f]/90 backdrop-blur-xl" style={{ border: '1px solid var(--a-border)' }}>
-                                                        <div className="absolute top-6 left-8 text-6xl font-serif leading-none select-none" style={{ color: 'var(--a-quote-mark)' }}>&ldquo;</div>
-                                                        <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-center italic leading-relaxed px-4" style={{ color: 'var(--a-quote-text)' }}>
-                                                            {v.text}
-                                                        </p>
-                                                        <div className="absolute bottom-6 right-8 text-6xl font-serif leading-none select-none" style={{ color: 'var(--a-quote-mark)' }}>&rdquo;</div>
-                                                    </div>
-                                                </div>
-                                            ),
-                                            gridConfig: ({ value: v }: { value: { cols: number; items: Array<{ title: string; description: string }> } }) => (
-                                                <div className="grid gap-4 my-12 not-prose" style={{ gridTemplateColumns: `repeat(${Math.min(v.cols || 3, 3)}, minmax(0, 1fr))` }}>
-                                                    {v.items?.map((item, i) => (
-                                                        <div key={i} className="event-grid-card relative p-6 rounded-xl bg-white/[0.02]">
-                                                            <span className="absolute top-4 right-4 text-xs font-mono tracking-wider" style={{ color: 'var(--a-card-num)' }}>
-                                                                {String(i + 1).padStart(2, '0')}
-                                                            </span>
-                                                            <div className="accent-line w-8 h-0.5 rounded-full mb-4"
-                                                                style={{ background: `linear-gradient(to right, var(--a-dot), transparent)` }} />
-                                                            <h4 className="text-base font-semibold text-white mb-2 tracking-tight">{item.title}</h4>
-                                                            <p className="text-sm text-stone-400/90 leading-relaxed">{item.description}</p>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            ),
-                                        },
-                                        block: {
-                                            ...portableTextComponents.block,
-                                            blockquote: ({ children }: { children?: React.ReactNode }) => (
-                                                <blockquote className="relative my-16 pl-8 md:pl-10 py-6 not-prose" style={{ borderLeft: '2px solid var(--a-blockquote-border)' }}>
-                                                    <div className="absolute -left-[5px] top-8 w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--a-dot)' }} />
-                                                    <p className="text-xl md:text-2xl font-serif italic leading-relaxed" style={{ color: 'var(--a-blockquote-text)' }}>
-                                                        {children}
-                                                    </p>
-                                                </blockquote>
-                                            ),
-                                        },
-                                    } as any
-                                }
-                            />
-                        </article>
+                            <ContentRenderer content={content || []} hue={hue} />
+                        </div>
 
                         {/* Bottom Navigation */}
                         <div className="mt-24 pt-10 border-t border-white/[0.06]">

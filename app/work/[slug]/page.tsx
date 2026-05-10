@@ -1,20 +1,23 @@
-import { PortableText } from 'next-sanity'
-import { getProjects, getProject } from "@/lib/sanity/fetch"
-
-export const runtime = 'edge'
-
+import { getProjects, getProject } from "@/lib/fetch"
 import Link from 'next/link'
-import Image from 'next/image'
-import { ArrowLeft, ExternalLink, Github, ChevronRight, Layout, Cpu, Terminal, Shield, LucideIcon } from 'lucide-react'
+import { ArrowLeft, ExternalLink, Github, Terminal, LucideIcon, Layout, Cpu, Shield } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { ContentRenderer } from "@/components/ui/content-renderer"
 
 const iconMap: Record<string, LucideIcon> = {
     "Layout": Layout,
     "Cpu": Cpu,
     "Terminal": Terminal,
     "Shield": Shield
+}
+
+export async function generateStaticParams() {
+    const projects = await getProjects()
+    return projects.map((project) => ({
+        slug: project.slug,
+    }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -61,7 +64,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     const IconComponent = iconMap[iconName] || Terminal
 
     return (
-        <div className="min-h-screen bg-black text-white selection:bg-purple-500/30">
+        <div className="min-h-screen bg-black text-white selection:bg-purple-500/30 pt-20">
             {/* 1. Hero Section */}
             <section className="relative h-[85vh] w-full flex flex-col justify-center items-center px-6 overflow-hidden">
                 <div className={`absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] ${color || "from-purple-900/40 via-black to-black"} opacity-60`}></div>
@@ -121,22 +124,22 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
             {/* 3. Main Content */}
             <section className="container px-6 py-24 mx-auto max-w-4xl">
-                <article className="prose prose-invert prose-lg max-w-none 
+                <div className="prose prose-invert prose-lg max-w-none 
                             prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white
                             prose-p:text-zinc-400 prose-p:leading-relaxed
                             prose-strong:text-white
                             prose-a:text-purple-400 prose-a:no-underline hover:prose-a:text-purple-300
                             prose-img:rounded-xl prose-img:shadow-2xl prose-img:border prose-img:border-white/10
                         ">
-                    <PortableText value={content} />
-                </article>
+                    <ContentRenderer content={content || []} />
+                </div>
             </section>
 
             {/* Footer */}
             <section className="border-t border-white/5 py-12 bg-zinc-900/30">
                 <div className="container px-6 mx-auto flex justify-between items-center text-sm text-zinc-500">
-                    <Link href="/" className="flex items-center hover:text-white transition-colors">
-                        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
+                    <Link href="/work" className="flex items-center hover:text-white transition-colors">
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Work
                     </Link>
                 </div>
             </section>
