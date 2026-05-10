@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Footer from "@/components/footer"
+export const runtime = 'edge'
 import { JOURNAL_POSTS } from "@/lib/journal"
 import PostClient from "./PostClient"
 
