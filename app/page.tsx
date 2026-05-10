@@ -1,22 +1,16 @@
 import type { Metadata } from "next"
 import Hero from "@/components/hero"
-import About from "@/components/about"
-import TechStack from "@/components/tech-stack"
-import Projects from "@/components/projects"
-import Experience from "@/components/experience"
-import Testimonials from "@/components/testimonials"
+import BentoGateway from "@/components/bento-gateway"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
-import { getProjects } from "@/lib/sanity/fetch"
-import BackgroundParticles from "@/components/ui/background-particles"
 
 export const metadata: Metadata = {
   title: {
     absolute: "Yash Ghodele | Portfolio",
   },
   description:
-    "Yash Ghodele is a Full Stack Developer and IoT Engineer building real-world web platforms, embedded systems, and scalable student-led tech products. B.Tech ECE at MIT Aurangabad. Organizer of large-scale hackathons and technical communities.",
+    "Yash Ghodele is a Full Stack Developer, IoT Engineer, and Founder of Ugam Digital Studio. Building real-world web platforms, embedded systems, and scalable student-led tech products from Aurangabad.",
 
   openGraph: {
     title: "Yash Ghodele | Portfolio",
@@ -50,24 +44,13 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-  const projects = await getProjects()
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <main>
         <Hero />
-
-        {/* Continuous Background Wrapper */}
-        <div className="relative w-full bg-gradient-to-b from-black via-zinc-900/10 to-black">
-          <BackgroundParticles />
-          <About />
-          <TechStack />
-          <Projects projects={projects} />
-          <Experience />
-          {/* <Testimonials /> */}
-          <Contact />
-        </div>
+        <BentoGateway />
+        <Contact />
       </main>
       <Footer />
     </div>
