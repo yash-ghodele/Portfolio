@@ -8,7 +8,7 @@
 
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.0-black.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
-[![Sanity.io](https://img.shields.io/badge/Sanity-3.0-red.svg)](https://www.sanity.io/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-cyan.svg)](https://tailwindcss.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-cyan.svg)](https://tailwindcss.com/)
 [![Cloudflare Pages](https://img.shields.io/badge/Deployed_on-Cloudflare-orange.svg)](https://pages.cloudflare.com/)
 
@@ -27,11 +27,11 @@ The design philosophy centers on immersion:
 
 ## 🚀 Key Features
 
-### 1. Headless CMS Architecture (Sanity.io)
-The portfolio is fully decoupled, with content managed via **Sanity Studio**:
-*   **Projects/Work**: Rich text descriptions, impact metrics, and tech stacks.
-*   **Events**: Dynamic cover images, roles, and attendance chronicles.
-*   **Live Preview**: Real-time content synchronization.
+### 1. Localized Static Architecture
+The portfolio uses a high-performance **Local Data Architecture**, replacing legacy CMS dependencies:
+*   **Projects/Work**: Rich metadata, impact metrics, and tech stacks stored in `lib/projects.ts`.
+*   **Events**: DynamicRecap, roles, and attendance chronicles stored in `lib/events.ts`.
+*   **Zero-Runtime Latency**: No external API calls for content; pre-rendered at build time.
 
 ### 2. High-Fidelity Chronicles
 The platform transitions from simple project lists to immersive "Chronicles of Execution".
@@ -62,8 +62,8 @@ We use a streamlined routing hierarchy for maximum SEO and performance:
 
 | Domain | Technology | Rationale |
 | :--- | :--- | :--- |
-| **Framework** | **Next.js 15** | Server Components & Promise-based routing |
-| **CMS** | **Sanity.io** | Headless content management |
+| **Framework** | **Next.js 15** | Server Components & SSG |
+| **Styling** | **Tailwind CSS** | Utility-first design system |
 | **Styling** | **Tailwind CSS** | Utility-first design system |
 | **Motion** | **Framer Motion** | Complex scroll orchestrations |
 | **Deployment** | **Cloudflare Pages** | Global edge distribution |

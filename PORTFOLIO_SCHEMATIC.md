@@ -9,21 +9,20 @@ The site uses a streamlined, professional routing hierarchy optimized for SEO an
 | Path | Type | Purpose |
 | :--- | :--- | :--- |
 | `/` | Static | Landing Page (Bento Gateway). Teasers for all sections. |
-| `/work` | Dynamic | Unified project hub (IoT, Web, Embedded). |
-| `/work/[slug]` | Dynamic | Individual project case studies fetched from Sanity. |
-| `/events` | Dynamic | Chronicle of community leadership and event execution. |
-| `/events/[slug]` | Dynamic | Deep-dives into specific events (recap, metrics, role). |
+| `/work` | Static | Unified project hub (IoT, Web, Embedded). |
+| `/work/[slug]` | SSG | Individual project case studies fetched from local static files. |
+| `/events` | Static | Chronicle of community leadership and event execution. |
+| `/events/[slug]` | SSG | Deep-dives into specific events (recap, metrics, role). |
 | `/stack` | Static | Hardware arsenal and engineering tech stack. |
 | `/about` | Static | Interactive bio and founder journey. |
-| `/journal` | Dynamic | Engineering insights and technical writing. |
-| `/studio` | Dynamic | Sanity CMS configuration panel. |
+| `/journal` | SSG | Engineering insights and technical writing. |
 
 ---
 
 ## 2. Technical Stack (Finalized)
 
 *   **Framework**: Next.js 15.0+ (App Router)
-*   **CMS**: Sanity.io (Headless)
+*   **Data Layer**: Local Static Providers (`lib/*.ts`)
 *   **Styling**: Tailwind CSS (Minimalist Authority System)
 *   **Motion**: Framer Motion (Scroll Orchestration)
 *   **Deployment**: Cloudflare Pages
@@ -54,10 +53,12 @@ portfolio/
 │   ├── ui/               # Design system primitives
 │   ├── contact.tsx       # Hardened contact form
 │   └── navbar.tsx        # Route-based navigation
-├── lib/                  # Logic & Types
-│   ├── sanity/           # GROQ Fetch Clients
+├── lib/                  # Logic & Data
+│   ├── fetch.ts          # Centralized data fetcher
+│   ├── projects.ts       # Static Project Data
+│   ├── events.ts         # Static Event Data
 │   └── types.ts          # Shared TS interfaces
-└── sanity/               # Headless CMS Config
+└── public/               # Static Assets & Images
 ```
 
 ---

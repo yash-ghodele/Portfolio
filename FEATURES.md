@@ -8,13 +8,13 @@ This portfolio is a high-performance, full-stack application built to showcase t
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) with a curated "Minimalist Authority" design system.
 - **Animations**: [Framer Motion](https://www.framer.com/motion/) for hardware-accelerated scroll and layout transitions.
 
-## ⚡ Content Management (CMS)
-Integrated with **Sanity.io** as a headless CMS for dynamic content orchestration.
-- **Sanity Studio**: Embedded admin dashboard at `/studio` with custom dark-mode schemas.
-- **Dynamic Routing**:
-  - **Work**: Automatically generates pages at `/work/[slug]` with rich text and media.
-  - **Events**: Manages community engagements at `/events/[slug]` with structured data.
-- **Portable Text**: Complex content rendering including custom blocks for grids and highlights.
+## ⚡ Content Management (Static)
+The portfolio utilizes a high-performance **Localized Data Architecture**.
+- **Static Data Providers**: Projects and events are stored in type-safe TypeScript files (`lib/projects.ts`, `lib/events.ts`).
+- **Dynamic SSG Routing**:
+  - **Work**: Pre-renders pages at `/work/[slug]` with impact metrics and case study details.
+  - **Events**: Pre-renders pages at `/events/[slug]` with structured REC-Recaps.
+- **Content Renderer**: A custom block-based rendering engine for complex layouts, grids, and highlights.
 
 ## 🎨 UI/UX Design (Minimalist Authority)
 A premium aesthetic focused on high-contrast precision and interactive depth.
