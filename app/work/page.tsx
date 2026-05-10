@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Footer from "@/components/footer"
 import WorkClient from "@/components/work-client"
-import { getProjects } from "@/lib/sanity/fetch"
+import { getProjects } from "@/lib/fetch"
 
 export const metadata: Metadata = {
   title: "Work — Yash Ghodele",

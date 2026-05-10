@@ -3,7 +3,6 @@
 import { motion, Variants } from "framer-motion"
 import Link from "next/link"
 import { ArrowUpRight, MapPin, Cpu, Globe, ExternalLink } from "lucide-react"
-import { AnimatedCounter } from "@/components/ui/animated-counter"
 import { JOURNAL_POSTS } from "@/lib/journal"
 
 const fadeUp: Variants = {
@@ -22,12 +21,6 @@ const TECH_PILLS = [
   { label: "Firebase", color: "text-amber-400 border-amber-500/30 bg-amber-500/5" },
   { label: "Flutter", color: "text-sky-400 border-sky-500/30 bg-sky-500/5" },
   { label: "Python", color: "text-yellow-400 border-yellow-500/30 bg-yellow-500/5" },
-]
-
-const STATS = [
-  { value: "200+", label: "Vehicles Deployed" },
-  { value: "50+", label: "Projects Shipped" },
-  { value: "14ms", label: "Sensor Latency" },
 ]
 
 export default function BentoGateway() {
@@ -105,30 +98,6 @@ export default function BentoGateway() {
           </div>
         </motion.div>
 
-        {/* ── Cell 2: Impact Stats ── */}
-        <motion.div
-          custom={1}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          className="group rounded-2xl border border-white/5 bg-zinc-950 p-6 overflow-hidden
-                     hover:border-primary/20 transition-colors duration-500"
-        >
-          <p className="text-xs font-mono tracking-widest text-muted-foreground uppercase mb-5">
-            Impact
-          </p>
-          <div className="space-y-4">
-            {STATS.map((stat, i) => (
-              <div key={i} className="flex items-baseline justify-between">
-                <span className="text-2xl font-black text-white tabular-nums">
-                  <AnimatedCounter target={stat.value} />
-                </span>
-                <span className="text-xs text-muted-foreground text-right ml-2">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* ── Cell 3: Latest Journal ── */}
         <motion.div

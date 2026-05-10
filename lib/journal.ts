@@ -266,3 +266,4 @@ export const JOURNAL_POSTS: JournalPost[] = [
     ],
   },
 ]
+export const STATIC_POSTS = JOURNAL_POSTS

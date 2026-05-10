@@ -1,4 +1,4 @@
-import { getEvents } from "@/lib/sanity/fetch"
+import { getEvents } from "@/lib/fetch"
 import EventsTimeline from '@/components/events-timeline'
 import Link from 'next/link'
 import Image from 'next/image'
