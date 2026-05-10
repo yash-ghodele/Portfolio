@@ -1,50 +1,45 @@
-# Project Features & Capabilities
+# Project Features & Capabilities (V3.1)
 
 This portfolio is a high-performance, full-stack application built to showcase technical proficiency, design excellence, and real-world impact.
 
 ## 🚀 Core Technology
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router) for server-side rendering and static generation.
-- **Language**: [TypeScript](https://www.typescriptlang.org/) for strict type safety and developer experience.
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with a custom design system and [Radix UI](https://www.radix-ui.com/) primitives.
-- **Animations**: [Framer Motion](https://www.framer.com/motion/) for fluid, hardware-accelerated interactions.
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router) with Turbopack for lightning-fast development and optimized builds.
+- **Language**: [TypeScript](https://www.typescriptlang.org/) for strict type safety across the entire data lifecycle.
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with a curated "Minimalist Authority" design system.
+- **Animations**: [Framer Motion](https://www.framer.com/motion/) for hardware-accelerated scroll and layout transitions.
 
 ## ⚡ Content Management (CMS)
-Integrated with **Sanity.io** as a headless CMS for dynamic content updates without code changes.
-- **Sanity Studio**: Embedded admin dashboard at `/studio` with a custom dark/purple theme.
+Integrated with **Sanity.io** as a headless CMS for dynamic content orchestration.
+- **Sanity Studio**: Embedded admin dashboard at `/studio` with custom dark-mode schemas.
 - **Dynamic Routing**:
-  - **Projects**: Automatically generates pages at `/projects/[slug]` with rich text and media.
-  - **Events**: Manages community engagements at `/community/[slug]` with structured data.
-- **Portable Text**: Rich text rendering for complex content layouts (headers, lists, images, code blocks).
-- **Real-time Updates**: Instant content propagation via Next.js revalidation.
+  - **Work**: Automatically generates pages at `/work/[slug]` with rich text and media.
+  - **Events**: Manages community engagements at `/events/[slug]` with structured data.
+- **Portable Text**: Complex content rendering including custom blocks for grids and highlights.
 
-## 🎨 UI/UX Design
-A "Dark Mode First" aesthetic focused on depth, lighting, and interactivity.
-- **Hero Section**: Interactive network background with mouse-tracking particles and a glowing beam effect.
-- **Glassmorphism**: Advanced backdrop filters and translucent layers for a modern, depth-rich feel.
-- **Scroll Animations**: Elements fade, slide, and scale into view as the user scrolls.
-- **Responsive Layouts**: Fully adaptive designs for Mobile, Tablet, and Desktop viewports.
-- **Custom Components**:
-  - `BentoGrid`: Modern grid layout for highlighting key skills and stats.
-  - `ProjectCard`: Interactive 3D-tilt cards with hover states.
-  - `Timeline`: Vertical timeline for experience and education tracking.
+## 🎨 UI/UX Design (Minimalist Authority)
+A premium aesthetic focused on high-contrast precision and interactive depth.
+- **Bento Gateway**: A card-based home page that acts as a portal to all sub-sections.
+- **Hero Network**: Interactive background logic with deterministic mouse-tracking.
+- **Impact Scoreboard**: Animated counters for quantitative performance metrics.
+- **Chronicles**: Immersive vertical timelines with scroll-linked progress tracking.
+- **Execution Arsenal**: Dedicated sections for highlighting technical/operational strengths.
 
-## 🛠️ Technical Features
-- **SEO Optimized**: Dynamic metadata generation for every page and project.
+## 🛠️ Technical Hardening
+- **Next.js 15 Compatibility**: Fully migrated to Promise-based route parameters (`await params`).
+- **Hydration Determinism**: Eliminated SSR mismatches through robust `isMounted` state patterns.
+- **SEO Architecture**: Dynamic metadata, canonical links, and OpenGraph/Twitter card integration.
 - **Performance**:
-  - Automatic image optimization with `next/image`.
-  - Font optimization with `next/font`.
-  - Code splitting and lazy loading.
-- **Type Safety**: End-to-end type safety from the CMS content (GROQ queries) to the React components.
-- **Forms**: Contact form with client-side validation using **Zod** and **React Hook Form**.
+  - Zero-layout shift through pre-subsetted fonts.
+  - Efficient image management via Next.js Image component.
+  - Sub-1s page transitions.
 
-## 📂 Project Structure
-- `app/`: Next.js App Router structure.
-- `components/`: Reusable UI components (buttons, cards, layout).
-- `lib/`: Utility functions, CMS fetch logic, and type definitions.
-- `sanity/`: CMS configuration, schemas (project, event), and structure builder.
-- `public/`: Static assets (images, fonts, resume).
+## 📂 Architecture
+- `app/`: Next.js App Router with consolidated routes (`/work`, `/events`, `/stack`).
+- `components/`: Modular design system following atomic principles.
+- `lib/`: Type-safe Sanity fetch clients and shared utilities.
+- `sanity/`: Custom schemas and studio configuration.
 
-## 🔒 Security & Quality
-- **Sanitization**: All user-generated content from the CMS is sanitized via Portable Text.
-- **Linting**: ESLint and Prettier configuration for consistent code style.
-- **Environment Variables**: Secure management of API keys and dataset IDs.
+## 🔒 Quality Assurance
+- **Production Build**: Verified with zero compilation errors.
+- **Linting**: Consistent code style enforced via ESLint.
+- **Redirects**: Legacy path management (`/community` → `/events`) via `next.config.mjs`.
