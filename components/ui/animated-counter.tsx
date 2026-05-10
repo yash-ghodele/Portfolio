@@ -6,7 +6,12 @@ import { useInView } from "framer-motion"
 export function AnimatedCounter({ target, suffix = "" }: { target: string; suffix?: string }) {
     const ref = useRef<HTMLSpanElement>(null)
     const isInView = useInView(ref, { once: true, margin: "-50px" })
+    const [isMounted, setIsMounted] = useState(false)
     const [count, setCount] = useState(0)
+
+    useEffect(() => {
+        setIsMounted(true)
+    }, [])
 
     // Extract number from target string like "500+" or "₹50k+"
     const numericPart = parseInt(target.replace(/[^0-9]/g, ""))
@@ -14,7 +19,7 @@ export function AnimatedCounter({ target, suffix = "" }: { target: string; suffi
     const suffixPart = target.match(/[^0-9]*$/)?.[0] || ""
 
     useEffect(() => {
-        if (!isInView) return
+        if (!isInView || !isMounted) return
 
         let start = 0
         const duration = 2000
@@ -30,11 +35,11 @@ export function AnimatedCounter({ target, suffix = "" }: { target: string; suffi
         }, 16)
 
         return () => clearInterval(timer)
-    }, [isInView, numericPart])
+    }, [isInView, isMounted, numericPart])
 
     return (
         <span ref={ref}>
-            {prefix}{isInView ? count : 0}{suffixPart}
+            {prefix}{isMounted && isInView ? count : 0}{suffixPart}
         </span>
     )
 }
