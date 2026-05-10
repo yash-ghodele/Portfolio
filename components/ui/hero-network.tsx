@@ -110,7 +110,7 @@ export default function HeroNetwork({ showParticles = true }: { showParticles?: 
             window.removeEventListener("resize", handleResize)
             cancelAnimationFrame(animationFrameId)
         }
-    }, [])
+    }, [showParticles])
 
     return (
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
