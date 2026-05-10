@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const events = await getEvents()
 
     const projectUrls = projects.map((project: { slug: string; metadata: ProjectMetadata }) => ({
-        url: `${baseUrl}/projects/${project.slug}`,
+        url: `${baseUrl}/work/${project.slug}`,
         lastModified: new Date(project.metadata.publishedAt),
         changeFrequency: 'monthly' as const,
         priority: 0.8,
@@ -22,7 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             date = new Date()
         }
         return {
-            url: `${baseUrl}/community/${event.slug}`,
+            url: `${baseUrl}/events/${event.slug}`,
             lastModified: date,
             changeFrequency: 'monthly' as const,
             priority: 0.7,
@@ -36,18 +36,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'yearly',
             priority: 1,
         },
-        {
-            url: `${baseUrl}/community`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.8,
-        },
-        // Hardcoded Projects (Legacy/Featured)
-        { url: `${baseUrl}/projects/fuelshield`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-        { url: `${baseUrl}/projects/sanjivani`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-        { url: `${baseUrl}/projects/sanjivani-v2`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-        { url: `${baseUrl}/projects/iot-security`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-        { url: `${baseUrl}/projects/smart-crm`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+        // New segmented routes
+        { url: `${baseUrl}/work`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+        { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+        { url: `${baseUrl}/stack`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+        { url: `${baseUrl}/journal`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+        { url: `${baseUrl}/events`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
         // Dynamic Content
         ...projectUrls,
         ...eventUrls,
