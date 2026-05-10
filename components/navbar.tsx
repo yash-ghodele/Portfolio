@@ -6,87 +6,51 @@ import { Menu, X } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 
 export default function Navbar() {
+    const [isMounted, setIsMounted] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-    const [activeSection, setActiveSection] = useState("home")
     const pathname = usePathname()
     const router = useRouter()
 
+    useEffect(() => {
+        setIsMounted(true)
+    }, [])
+
     const navLinks = useMemo(() => [
-        { name: "Home", href: "#home" },
-        { name: "About", href: "#about" },
-        { name: "Tech Stack", href: "#tech-stack" },
-        { name: "Projects", href: "#projects" },
-        { name: "Experience", href: "#experience" },
-        { name: "Community", href: "/community" },
-        { name: "Contact", href: "#contact" }
+        { name: "Home", href: "/" },
+        { name: "Work", href: "/work" },
+        { name: "About", href: "/about" },
+        { name: "Stack", href: "/stack" },
+        { name: "Events", href: "/events" },
+        { name: "Journal", href: "/journal" },
+        { name: "Contact", href: "/#contact" },
     ], [])
 
-    // Update active section based on scroll position (only on home page) or pathname
+    // Track scroll state
     useEffect(() => {
-        if (pathname === "/community" || pathname.startsWith("/community/")) {
-            setActiveSection("community")
-            return
-        }
-
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20)
-
-            // Only check sections on home page
-            if (pathname === "/") {
-                const sections = navLinks
-                    .filter(link => link.href.startsWith("#"))
-                    .map(link => link.href.substring(1))
-
-                const current = sections.find(section => {
-                    const element = document.getElementById(section)
-                    if (element) {
-                        const rect = element.getBoundingClientRect()
-                        return rect.top <= 100 && rect.bottom >= 100
-                    }
-                    return false
-                })
-                if (current) setActiveSection(current)
-            }
-        }
-
+        const handleScroll = () => setIsScrolled(window.scrollY > 20)
         window.addEventListener("scroll", handleScroll)
-        // Trigger once to set initial state
         handleScroll()
-
         return () => window.removeEventListener("scroll", handleScroll)
-    }, [navLinks, pathname])
+    }, [])
 
     const scrollToSection = (href: string) => {
-        if (href.endsWith(".pdf")) {
-            window.open(href, "_blank")
-            setIsMobileMenuOpen(false)
+        setIsMobileMenuOpen(false)
+        if (href === "/#contact") {
+            if (pathname === "/") {
+                document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
+            } else {
+                router.push("/#contact")
+            }
             return
         }
-
-        if (href.startsWith("#")) {
-            if (pathname === "/") {
-                const element = document.querySelector(href)
-                if (element) {
-                    element.scrollIntoView({ behavior: "smooth" })
-                    setIsMobileMenuOpen(false)
-                }
-            } else {
-                router.push(`/${href}`)
-                setIsMobileMenuOpen(false)
-            }
-        } else {
-            router.push(href)
-            setIsMobileMenuOpen(false)
-        }
+        router.push(href)
     }
 
-    const isActive = (href: string) => {
-        if (href.endsWith(".pdf")) return false
-        if (href.startsWith("#")) {
-            return activeSection === href.substring(1) && pathname === "/"
-        }
-        return pathname.startsWith(href)
+    const isActive = (link: { name: string; href: string }) => {
+        if (link.href === "/") return pathname === "/"
+        if (link.href === "/#contact") return false
+        return pathname.startsWith(link.href)
     }
 
     return (
@@ -119,8 +83,8 @@ export default function Navbar() {
 
                             {/* Navigation Links */}
                             <div className="hidden md:flex items-center">
-                                {navLinks.map((link) => {
-                                    const active = isActive(link.href)
+                                {isMounted && navLinks.map((link) => {
+                                    const active = isActive(link)
                                     return (
                                         <motion.button
                                             key={link.name}
@@ -150,19 +114,21 @@ export default function Navbar() {
                             </div>
 
                             {/* Mobile Menu Button */}
-                            <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                className="md:hidden p-2 rounded-full hover:bg-primary/10 transition-colors"
-                                aria-label="Toggle menu"
-                            >
-                                {isMobileMenuOpen ? (
-                                    <X className="h-5 w-5" />
-                                ) : (
-                                    <Menu className="h-5 w-5" />
-                                )}
-                            </motion.button>
+                            {isMounted && (
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                    className="md:hidden p-2 rounded-full hover:bg-primary/10 transition-colors"
+                                    aria-label="Toggle menu"
+                                >
+                                    {isMobileMenuOpen ? (
+                                        <X className="h-5 w-5" />
+                                    ) : (
+                                        <Menu className="h-5 w-5" />
+                                    )}
+                                </motion.button>
+                            )}
                         </div>
                     </motion.div>
                 </div>
@@ -191,7 +157,7 @@ export default function Navbar() {
                         >
                             <div className="max-w-4xl mx-auto space-y-2">
                                 {navLinks.map((link, index) => {
-                                    const active = isActive(link.href)
+                                    const active = isActive(link)
                                     return (
                                         <motion.button
                                             key={link.name}
