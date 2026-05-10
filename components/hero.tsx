@@ -9,9 +9,11 @@ import Link from "next/link"
 import HeroNetwork from "@/components/ui/hero-network"
 
 export default function Hero() {
+  const [isMounted, setIsMounted] = useState(false)
   const [displayedWords, setDisplayedWords] = useState<string[]>([])
 
   useEffect(() => {
+    setIsMounted(true)
     const words = ["Engineer", "•", "Leader", "•", "Innovator"]
 
     // Reset displayed words on mount
@@ -84,6 +86,25 @@ export default function Hero() {
               >
                 Full Stack Developer & IoT Engineer
               </motion.h2>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+              >
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 backdrop-blur-sm bg-background/50 text-sm text-muted-foreground">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0" />
+                  Founder,{" "}
+                  <a
+                    href="https://ugamstudio.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Ugam Digital Studio
+                  </a>
+                </span>
+              </motion.div>
             </div>
 
             <motion.p
@@ -101,37 +122,49 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Button
-                size="lg"
-                className="group relative overflow-hidden bg-white text-black hover:bg-gray-200 transition-all duration-300 border-0"
-                onClick={() => scrollToSection("projects")}
-              >
-                <span className="relative z-10 flex items-center font-semibold">
-                  View Projects
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Button>
+              {isMounted ? (
+                <Button
+                  size="lg"
+                  className="group relative overflow-hidden bg-white text-black hover:bg-gray-200 transition-all duration-300 border-0"
+                  onClick={() => scrollToSection("projects")}
+                >
+                  <span className="relative z-10 flex items-center font-semibold">
+                    View Projects
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Button>
+              ) : (
+                <div className="h-12 w-40 bg-white/5 rounded-md animate-pulse" />
+              )}
 
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-primary/30 backdrop-blur-sm bg-background/50 hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/20"
-                asChild
-              >
-                <Link href="/community">
-                  <Users className="mr-2 h-4 w-4" />
-                  Community
-                </Link>
-              </Button>
+              {isMounted ? (
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-primary/30 backdrop-blur-sm bg-background/50 hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/20"
+                  asChild
+                >
+                  <Link href="/events">
+                    <Users className="mr-2 h-4 w-4" />
+                    Events
+                  </Link>
+                </Button>
+              ) : (
+                <div className="h-12 w-40 bg-white/5 rounded-md animate-pulse" />
+              )}
 
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-primary/30 backdrop-blur-sm bg-background/50 hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/20"
-                onClick={() => scrollToSection("contact")}
-              >
-                Contact Me
-              </Button>
+              {isMounted ? (
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-primary/30 backdrop-blur-sm bg-background/50 hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/20"
+                  onClick={() => scrollToSection("contact")}
+                >
+                  Contact Me
+                </Button>
+              ) : (
+                <div className="h-12 w-40 bg-white/5 rounded-md animate-pulse" />
+              )}
             </motion.div>
 
             <motion.div
@@ -140,20 +173,14 @@ export default function Hero() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             >
-              {[
-                { icon: Github, href: "https://github.com/yash-ghodele", label: "GitHub" },
-                { icon: Linkedin, href: "https://linkedin.com/in/yash-ghodele", label: "LinkedIn" },
-                { icon: Instagram, href: "https://www.instagram.com/why_be_yashhh/", label: "Instagram" }
-              ].map(({ icon: Icon, href, label }, index) => (
-                <motion.div
-                  key={label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.2, y: -5 }}
-                  whileTap={{ scale: 0.9 }}
-                >
+              {isMounted ? (
+                [
+                  { icon: Github, href: "https://github.com/yash-ghodele", label: "GitHub" },
+                  { icon: Linkedin, href: "https://linkedin.com/in/yash-ghodele", label: "LinkedIn" },
+                  { icon: Instagram, href: "https://www.instagram.com/why_be_yashhh/", label: "Instagram" }
+                ].map(({ icon: Icon, href, label }) => (
                   <Button
+                    key={label}
                     variant="outline"
                     size="icon"
                     className="rounded-full border-2 hover:bg-primary/10 hover:border-primary hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
@@ -163,8 +190,14 @@ export default function Hero() {
                       <Icon className="h-5 w-5 hover:text-primary transition-colors" />
                     </a>
                   </Button>
-                </motion.div>
-              ))}
+                ))
+              ) : (
+                <div className="flex gap-4">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="h-10 w-10 bg-white/5 rounded-full animate-pulse" />
+                  ))}
+                </div>
+              )}
             </motion.div>
           </motion.div>
 
@@ -219,26 +252,28 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.8 }}
       >
-        <motion.button
-          onClick={() => scrollToSection("about")}
+        {isMounted && (
+          <motion.button
+            onClick={() => scrollToSection("about")}
 
-          className="p-2 rounded-full hover:bg-primary/10 transition-all duration-300 relative group"
-          aria-label="Scroll to about section"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ArrowRight className="h-6 w-6 transform rotate-90 text-primary relative z-10" />
-          <motion.div
-            className="absolute inset-0 rounded-full border-2 border-primary"
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.5, 0, 0.5],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </motion.button>
+            className="p-2 rounded-full hover:bg-primary/10 transition-all duration-300 relative group"
+            aria-label="Scroll to about section"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ArrowRight className="h-6 w-6 transform rotate-90 text-primary relative z-10" />
+            <motion.div
+              className="absolute inset-0 rounded-full border-2 border-primary"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 0, 0.5],
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </motion.button>
+        )}
       </motion.div>
     </section >
   )

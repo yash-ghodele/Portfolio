@@ -95,7 +95,7 @@ function TimelineCard({ event, index }: { event: EventItem; index: number }) {
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 className="relative z-20 w-full md:w-1/2 pl-20 md:pl-0"
             >
-                <Link href={`/community/${event.slug}`} className="block group">
+                <Link href={`/events/${event.slug}`} className="block group">
                     <div className="relative overflow-hidden rounded-xl bg-[#0a0a0a] border border-white/10 transition-all duration-500 hover:border-violet-500/30 group-hover:shadow-[0_10px_40px_-10px_rgba(139,92,246,0.15)]">
 
                         {/* Image Section */}
