@@ -42,7 +42,7 @@ export const STATIC_EVENTS: { slug: string; metadata: EventMetadata }[] = [
         },
         {
           "type": "p",
-          "text": "The hackathon theme was designed to challenge students to think beyond theory and build practical solutions. Problem statements focused on strict industry domains."
+          "text": "The hackathon theme was designed to challenge students to think beyond theory and build practical solutions. Problem statements were centered around strict industry domains."
         },
         {
           "type": "gridConfig",
@@ -126,7 +126,7 @@ export const STATIC_EVENTS: { slug: string; metadata: EventMetadata }[] = [
       "subtitle": "Bridging the Gap Between Legend & Learner",
       "location": "Maharashtra, India",
       "verified": true,
-      "accentColor": 30,
+      "accentColor": 10,
       "content": [
         {
           "type": "p",
