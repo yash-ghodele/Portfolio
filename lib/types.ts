@@ -1,3 +1,11 @@
+export type ContentSection = {
+    type: "p" | "h3" | "interactive" | "highlight" | "gridConfig" | "blockquote"
+    text?: string
+    component?: string
+    cols?: number
+    items?: Array<{ title: string; description: string }>
+}
+
 export type EventMetadata = {
     title: string
     role: string
@@ -10,6 +18,8 @@ export type EventMetadata = {
     subtitle?: string
     location?: string
     verified?: boolean
+    accentColor?: number
+    content?: ContentSection[]
 }
 
 export type ProjectMetadata = {
@@ -24,4 +34,6 @@ export type ProjectMetadata = {
     codeLink: string
     color: string
     publishedAt: string
+    accentColor?: number
+    content?: ContentSection[]
 }

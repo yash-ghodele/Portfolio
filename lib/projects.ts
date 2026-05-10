@@ -40,7 +40,7 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
       subtitle: "Production-Grade AI",
       image: "/images/projects/sanjivani-v2.jpg",
       iconName: "Globe",
-      description: "Production-grade AI agriculture platform. Hybrid CNN+LLM architecture with edge optimization, multilingual support, and comprehensive testing.",
+      description: "Production-grade AI agriculture platform. Hybrid CNN+LLM architecture with edge optimization, multilingual support, and comprehensive testing built for real farmers and technical interviews.",
       stats: "< 100ms Inference Latency",
       tech: ["Next.js 14", "FastAPI", "TensorFlow", "Firebase", "Gemini 1.5"],
       color: "from-teal-900/40",

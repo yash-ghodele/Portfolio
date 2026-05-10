@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getProjects, getEvents } from '@/lib/sanity/fetch'
+import { getProjects, getEvents } from '@/lib/fetch'
 import { JOURNAL_POSTS } from '@/lib/journal'
 import { ProjectMetadata, EventMetadata } from '@/lib/types'
 
