@@ -96,7 +96,7 @@ export default function Hero() {
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0" />
                   Founder,{" "}
                   <a
-                    href="https://ugamstudio.vercel.app"
+                    href="https://ugamdigitalstudio.tech"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:underline font-medium"

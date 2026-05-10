@@ -132,7 +132,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-    const jsonLd = {
+  const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": "https://yash-ghodele.pages.dev/#person",
@@ -178,12 +178,11 @@ export default function RootLayout({
       {
         "@type": "Organization",
         "name": "Ugam Digital Studio",
-        "url": "https://ugamstudio.vercel.app/"
+        "url": "https://ugamdigitalstudio.tech"
       },
       {
         "@type": "Organization",
-        "name": "BotBuddies (Nextechminds Pvt. Ltd & S2P Robotics Pvt. Ltd.)",
-        "url": "https://www.botbuddies.in/"
+        "name": "BotBuddies"
       }
     ],
     alumniOf: {

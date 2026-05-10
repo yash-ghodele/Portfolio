@@ -77,13 +77,13 @@ export default function BentoGateway() {
                 skill accessible.
               </p>
               <a
-                href="https://ugamstudio.vercel.app"
+                href="https://ugamdigitalstudio.tech"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline font-medium"
               >
                 <Globe className="w-3.5 h-3.5" />
-                ugamstudio.vercel.app
+                ugamdigitalstudio.tech
                 <ExternalLink className="w-3 h-3 opacity-60" />
               </a>
             </div>
@@ -221,7 +221,7 @@ export default function BentoGateway() {
               built for Bharat&apos;s industrial heartland.
             </p>
             <a
-              href="https://ugamstudio.vercel.app"
+              href="https://ugamdigitalstudio.tech"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/40 bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 hover:border-primary/60 transition-all duration-300 group/btn"

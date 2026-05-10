@@ -219,7 +219,7 @@ export default function WorkClient({ projects }: WorkClientProps) {
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               We build at{" "}
               <a
-                href="https://ugamstudio.vercel.app"
+                href="https://ugamdigitalstudio.tech"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"
@@ -232,7 +232,7 @@ export default function WorkClient({ projects }: WorkClientProps) {
             </p>
           </div>
           <a
-            href="https://ugamstudio.vercel.app"
+            href="https://ugamdigitalstudio.tech"
             target="_blank"
             rel="noopener noreferrer"
             className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary/40 bg-primary/10 text-primary font-semibold hover:bg-primary/20 hover:border-primary/60 transition-all duration-300"

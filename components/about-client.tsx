@@ -115,7 +115,7 @@ export default function AboutClient() {
           <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
             I&apos;m Yash Ghodele — an ECE engineer from MIT Aurangabad who builds full-stack products and IoT systems.
             I founded{" "}
-            <a href="https://ugamstudio.vercel.app" target="_blank" rel="noopener noreferrer"
+            <a href="https://ugamdigitalstudio.tech" target="_blank" rel="noopener noreferrer"
               className="text-primary hover:underline font-medium">
               Ugam Digital Studio
             </a>{" "}
@@ -286,7 +286,7 @@ export default function AboutClient() {
           className="flex flex-col sm:flex-row gap-4"
         >
           <a
-            href="https://ugamstudio.vercel.app"
+            href="https://ugamdigitalstudio.tech"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
