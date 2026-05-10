@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { Toaster } from "@/components/ui/toaster"
+import Preloader from "@/components/ui/preloader"
 
 import { Analytics } from "@vercel/analytics/react"
 
@@ -122,12 +123,16 @@ export const metadata: Metadata = {
   },
 }
 
+import Navbar from "@/components/navbar"
+import SmoothScroll from "@/components/ui/smooth-scroll"
+import PageTransition from "@/components/ui/page-transition"
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const jsonLd = {
+    const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": "https://yash-ghodele.pages.dev/#person",
@@ -136,7 +141,7 @@ export default function RootLayout({
     url: "https://yash-ghodele.pages.dev",
     image: "https://yash-ghodele.pages.dev/images/hero/yash-ghodele.jpg",
     description:
-      "Full Stack Developer & IoT Engineer building scalable web platforms and real-world embedded systems. Organizing hackathons with 200+ participants.",
+      "Full Stack Developer & IoT Engineer building scalable web platforms and real-world embedded systems. Founder of Ugam Digital Studio.",
     email: "yashghodele.work@gmail.com",
     telephone: "+917666168561",
     address: {
@@ -150,10 +155,10 @@ export default function RootLayout({
       "https://github.com/yash-ghodele",
       "https://instagram.com/why_be_yashhh",
     ],
-    jobTitle: "Full Stack Developer & IoT Engineer",
+    jobTitle: "Founder at Ugam Digital Studio & Full Stack Developer",
     hasOccupation: {
       "@type": "Occupation",
-      name: "Full Stack Developer & IoT Engineer",
+      name: "Founder & IoT Engineer",
       occupationLocation: {
         "@type": "Country",
         name: "India",
@@ -169,11 +174,18 @@ export default function RootLayout({
         "TypeScript",
       ],
     },
-    worksFor: {
-      "@type": "Organization",
-      name: "BotBuddies (Nextechminds Pvt. Ltd & S2P Robotics Pvt. Ltd.)",
-      url: "https://www.botbuddies.in/"
-    },
+    worksFor: [
+      {
+        "@type": "Organization",
+        "name": "Ugam Digital Studio",
+        "url": "https://ugamstudio.vercel.app/"
+      },
+      {
+        "@type": "Organization",
+        "name": "BotBuddies (Nextechminds Pvt. Ltd & S2P Robotics Pvt. Ltd.)",
+        "url": "https://www.botbuddies.in/"
+      }
+    ],
     alumniOf: {
       "@type": "EducationalOrganization",
       name: "MIT College of Engineering, Aurangabad",
@@ -203,13 +215,19 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="dark">
       <body className={`${inter.variable} ${playfair.variable} font-sans`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
+        {/* <Preloader /> */}
+        <SmoothScroll>
+          <Navbar />
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </SmoothScroll>
         <Toaster />
         <Analytics />
       </body>
