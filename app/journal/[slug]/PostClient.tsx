@@ -101,6 +101,41 @@ export default function PostClient({ post }: { post: JournalPost }) {
                 </p>
               )
             }
+            if (block.type === "blockquote") {
+              return (
+                <blockquote
+                  key={i}
+                  className="my-6 pl-5 border-l-2 border-primary/50 text-base md:text-lg italic text-muted-foreground bg-white/[0.01] py-4 pr-4 rounded-r-xl leading-relaxed whitespace-pre-line"
+                >
+                  {block.text}
+                </blockquote>
+              )
+            }
+            if (block.type === "ul") {
+              return (
+                <ul
+                  key={i}
+                  className="list-none my-6 pl-4 text-base text-muted-foreground leading-[1.85] font-light space-y-3"
+                >
+                  {block.items?.map((item, index) => (
+                    <li key={index} className="flex items-start gap-2.5 text-muted-foreground">
+                      <span className="text-primary font-black select-none mt-[3px]">↳</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
+            if (block.type === "code") {
+              return (
+                <pre
+                  key={i}
+                  className="my-8 p-6 rounded-2xl bg-zinc-900/60 border border-white/5 font-mono text-sm text-zinc-300 overflow-x-auto leading-relaxed shadow-inner"
+                >
+                  <code className="whitespace-pre-wrap">{block.text}</code>
+                </pre>
+              )
+            }
             if (block.type === "interactive" && block.component === "LatencySim") {
               return (
                 <div
