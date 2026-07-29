@@ -43,11 +43,7 @@ export default function Hero() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.scrollY
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      })
+      element.scrollIntoView({ behavior: "smooth", block: "start" })
     }
   }
 
@@ -126,12 +122,14 @@ export default function Hero() {
                 <Button
                   size="lg"
                   className="group relative overflow-hidden bg-white text-black hover:bg-gray-200 transition-all duration-300 border-0"
-                  onClick={() => scrollToSection("projects")}
+                  asChild
                 >
-                  <span className="relative z-10 flex items-center font-semibold">
-                    View Projects
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
+                  <Link href="/work">
+                    <span className="relative z-10 flex items-center font-semibold">
+                      View Projects
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </Link>
                 </Button>
               ) : (
                 <div className="h-12 w-40 bg-white/5 rounded-md animate-pulse" />

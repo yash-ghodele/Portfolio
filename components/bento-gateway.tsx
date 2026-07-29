@@ -27,7 +27,7 @@ export default function BentoGateway() {
   const latestPost = JOURNAL_POSTS[0]
 
   return (
-    <section className="relative w-full py-20 px-4 md:px-8 max-w-7xl mx-auto" aria-label="Founder overview">
+    <section id="about" className="relative w-full py-20 px-4 md:px-8 max-w-7xl mx-auto scroll-mt-20" aria-label="Founder overview">
       {/* Section label */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
