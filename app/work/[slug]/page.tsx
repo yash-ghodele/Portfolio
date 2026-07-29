@@ -6,6 +6,27 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ContentRenderer } from "@/components/ui/content-renderer"
 
+// Import custom templates to restore the rich legacy designs
+import FuelShield from "@/components/projects-templates/fuelshield"
+import Sanjivani from "@/components/projects-templates/sanjivani"
+import SanjivaniV2 from "@/components/projects-templates/sanjivani-v2"
+import IoTSecurity from "@/components/projects-templates/iot-security"
+import SmartCRM from "@/components/projects-templates/smart-crm"
+import UgamCampus from "@/components/projects-templates/ugam-campus"
+import WireFlow from "@/components/projects-templates/wireflow"
+import LocalMD from "@/components/projects-templates/localmd"
+
+const templates: Record<string, React.ComponentType> = {
+    "fuelshield": FuelShield,
+    "sanjivani": Sanjivani,
+    "sanjivani-v2": SanjivaniV2,
+    "iot-security": IoTSecurity,
+    "smart-crm": SmartCRM,
+    "ugam-campus": UgamCampus,
+    "wireflow": WireFlow,
+    "localmd": LocalMD
+}
+
 const iconMap: Record<string, LucideIcon> = {
     "Layout": Layout,
     "Cpu": Cpu,
@@ -60,11 +81,49 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
     if (!project) notFound()
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "name": project.title,
+                "description": project.description,
+                "image": project.image ? `https://yash-ghodele.pages.dev${project.image}` : undefined,
+                "applicationCategory": "EngineeringApplication",
+                "operatingSystem": "Web, Embedded",
+                "author": {
+                    "@type": "Person",
+                    "name": "Yash Ghodele",
+                    "url": "https://yash-ghodele.pages.dev"
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yash-ghodele.pages.dev" },
+                    { "@type": "ListItem", "position": 2, "name": "Work", "item": "https://yash-ghodele.pages.dev/work" },
+                    { "@type": "ListItem", "position": 3, "name": project.title, "item": `https://yash-ghodele.pages.dev/work/${slug}` }
+                ]
+            }
+        ]
+    }
+
+    // Render custom high-fidelity template if available
+    const Template = templates[slug]
+
     const { title, subtitle, image, iconName, description, stats, tech, demoLink, codeLink, color, content } = project
     const IconComponent = iconMap[iconName] || Terminal
 
     return (
-        <div className="min-h-screen bg-black text-white selection:bg-purple-500/30 pt-20">
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            {Template ? (
+                <Template />
+            ) : (
+                <div className="min-h-screen bg-black text-white selection:bg-purple-500/30 pt-20">
             {/* 1. Hero Section */}
             <section className="relative h-[85vh] w-full flex flex-col justify-center items-center px-6 overflow-hidden">
                 <div className={`absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] ${color || "from-purple-900/40 via-black to-black"} opacity-60`}></div>
@@ -144,5 +203,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 </div>
             </section>
         </div>
-    )
+      )}
+    </>
+  )
 }

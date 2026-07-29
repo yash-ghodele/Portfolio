@@ -5,6 +5,16 @@ import { ArrowLeft, Calendar, MapPin, CheckCircle2, Trophy, Target, BarChart3, S
 import { EventClientFeatures } from '@/components/event-client-features'
 import { notFound } from 'next/navigation'
 import { ContentRenderer } from '@/components/ui/content-renderer'
+import React from "react"
+
+// Import custom templates — one file per event slug
+import InnoHack from "@/components/event-templates/innohack"
+import SpicMacayVirasat from "@/components/event-templates/spic-macay-virasat"
+
+const templates: Record<string, React.ComponentType> = {
+    "innohack": InnoHack,
+    "spic-macay-virasat": SpicMacayVirasat,
+}
 
 export async function generateStaticParams() {
     const events = await getEvents()
@@ -52,11 +62,52 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
     const event = await getEvent(slug)
     if (!event) notFound()
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Event",
+                "name": event.title,
+                "description": event.summary,
+                "image": event.image ? `https://yash-ghodele.pages.dev${event.image}` : undefined,
+                "startDate": event.date,
+                "location": {
+                    "@type": "Place",
+                    "name": event.location || "Chhatrapati Sambhajinagar"
+                },
+                "organizer": {
+                    "@type": "Person",
+                    "name": "Yash Ghodele",
+                    "url": "https://yash-ghodele.pages.dev"
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yash-ghodele.pages.dev" },
+                    { "@type": "ListItem", "position": 2, "name": "Events", "item": "https://yash-ghodele.pages.dev/events" },
+                    { "@type": "ListItem", "position": 3, "name": event.title, "item": `https://yash-ghodele.pages.dev/events/${slug}` }
+                ]
+            }
+        ]
+    }
+
+    // Render custom template if available
+    const Template = templates[slug]
+
     const { content, title, subtitle, image, role, date, location, verified, metrics, skills, summary, attendees, accentColor } = event
 
     const hue = accentColor ?? 270
 
     return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            {Template ? (
+                <Template />
+            ) : (
         <div
             className="event-page min-h-screen bg-zinc-950 text-white selection:bg-violet-500/30 font-sans antialiased pt-20"
             style={{ ['--accent-hue' as string]: hue } as React.CSSProperties}
@@ -320,7 +371,9 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                 </div>
             </div>
         </div>
-    )
+      )}
+    </>
+  )
 }
 
 function ParallaxHeroImage({ src, alt }: { src: string, alt: string }) {

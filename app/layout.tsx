@@ -4,7 +4,6 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { Toaster } from "@/components/ui/toaster"
-import Preloader from "@/components/ui/preloader"
 
 import { Analytics } from "@vercel/analytics/react"
 
@@ -134,93 +133,146 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": "https://yash-ghodele.pages.dev/#person",
-    name: "Yash Ghodele",
-    alternateName: "why_be_yashhh",
-    url: "https://yash-ghodele.pages.dev",
-    image: "https://yash-ghodele.pages.dev/images/hero/yash-ghodele.jpg",
-    description:
-      "Full Stack Developer & IoT Engineer building scalable web platforms and real-world embedded systems. Founder of Ugam Digital Studio.",
-    email: "yashghodele.work@gmail.com",
-    telephone: "+917666168561",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Aurangabad",
-      addressRegion: "Maharashtra",
-      addressCountry: "IN",
-    },
-    sameAs: [
-      "https://linkedin.com/in/yash-ghodele",
-      "https://github.com/yash-ghodele",
-      "https://instagram.com/why_be_yashhh",
-    ],
-    jobTitle: "Founder at Ugam Digital Studio & Full Stack Developer",
-    hasOccupation: {
-      "@type": "Occupation",
-      name: "Founder & IoT Engineer",
-      occupationLocation: {
-        "@type": "Country",
-        name: "India",
-      },
-      skills: [
-        "Full Stack Development",
-        "IoT Engineering",
-        "React",
-        "Next.js",
-        "Python",
-        "Arduino",
-        "Embedded Systems",
-        "TypeScript",
-      ],
-    },
-    worksFor: [
+    "@graph": [
       {
-        "@type": "Organization",
-        "name": "Ugam Digital Studio",
-        "url": "https://ugamdigitalstudio.tech"
+        "@type": "Person",
+        "@id": "https://yash-ghodele.pages.dev/#person",
+        name: "Yash Ghodele",
+        alternateName: ["why_be_yashhh", "Yash Ghodele Portfolio"],
+        url: "https://yash-ghodele.pages.dev",
+        image: "https://yash-ghodele.pages.dev/images/hero/yash-ghodele.jpg",
+        description:
+          "Full Stack Developer & IoT Engineer building scalable web platforms and real-world embedded systems. Founder of Ugam Digital Studio.",
+        email: "yashghodele.work@gmail.com",
+        telephone: "+917666168561",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Aurangabad",
+          addressRegion: "Maharashtra",
+          addressCountry: "IN",
+        },
+        sameAs: [
+          "https://linkedin.com/in/yash-ghodele",
+          "https://github.com/yash-ghodele",
+          "https://instagram.com/why_be_yashhh",
+        ],
+        jobTitle: "Founder at Ugam Digital Studio & Full Stack Developer",
+        hasOccupation: {
+          "@type": "Occupation",
+          name: "Founder & IoT Engineer",
+          occupationLocation: {
+            "@type": "Country",
+            name: "India",
+          },
+          skills: [
+            "Full Stack Development",
+            "IoT Engineering",
+            "React",
+            "Next.js",
+            "Python",
+            "Arduino",
+            "Embedded Systems",
+            "TypeScript",
+          ],
+        },
+        worksFor: [
+          {
+            "@type": "Organization",
+            name: "Ugam Digital Studio",
+            url: "https://ugamdigitalstudio.tech"
+          },
+          {
+            "@type": "Organization",
+            name: "BotBuddies"
+          }
+        ],
+        alumniOf: {
+          "@type": "EducationalOrganization",
+          name: "MIT College of Engineering, Aurangabad",
+        },
+        knowsAbout: [
+          "Full Stack Development",
+          "IoT Engineering",
+          "React",
+          "Next.js",
+          "Python",
+          "Arduino",
+          "Embedded Systems",
+          "Web Development",
+          "Robotics",
+          "Event Management",
+          "Team Leadership",
+          "TypeScript",
+          "Flutter",
+        ],
+        award: [
+          "InnoHack 2025 Organizer (200+ participants)",
+          "InnoHack 2.0 Organizer",
+          "Executive Head at BotBuddies",
+          "Event Head at ECESA",
+          "SPIC MACAY Virasat 2024 Coordinator"
+        ],
+        creator: [
+          { "@type": "SoftwareApplication", name: "FuelShield", url: "https://yash-ghodele.pages.dev/work/fuelshield" },
+          { "@type": "SoftwareApplication", name: "Sanjivani", url: "https://yash-ghodele.pages.dev/work/sanjivani" },
+          { "@type": "SoftwareApplication", name: "WireFlow", url: "https://yash-ghodele.pages.dev/work/wireflow" },
+          { "@type": "SoftwareApplication", name: "LocalMD", url: "https://yash-ghodele.pages.dev/work/localmd" },
+          { "@type": "SoftwareApplication", name: "Smart CRM", url: "https://yash-ghodele.pages.dev/work/smart-crm" },
+          { "@type": "SoftwareApplication", name: "Ugam Campus Projects", url: "https://yash-ghodele.pages.dev/work/ugam-campus" }
+        ],
+        publishingPrinciples: "https://yash-ghodele.pages.dev/journal"
       },
       {
-        "@type": "Organization",
-        "name": "BotBuddies"
+        "@type": "WebSite",
+        "@id": "https://yash-ghodele.pages.dev/#website",
+        url: "https://yash-ghodele.pages.dev",
+        name: "Yash Ghodele Portfolio",
+        description: "Official portfolio of Yash Ghodele — Full Stack Developer & IoT Engineer.",
+        publisher: { "@id": "https://yash-ghodele.pages.dev/#person" }
+      },
+      {
+        "@type": "ItemList",
+        name: "Projects & Work Portfolio",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "FuelShield - IoT Fuel Theft Detection", url: "https://yash-ghodele.pages.dev/work/fuelshield" },
+          { "@type": "ListItem", position: 2, name: "Sanjivani - AI Plant Disease Detection", url: "https://yash-ghodele.pages.dev/work/sanjivani" },
+          { "@type": "ListItem", position: 3, name: "WireFlow - Industrial Manufacturing Dashboard", url: "https://yash-ghodele.pages.dev/work/wireflow" },
+          { "@type": "ListItem", position: 4, name: "LocalMD - Offline Medical Assistant", url: "https://yash-ghodele.pages.dev/work/localmd" },
+          { "@type": "ListItem", position: 5, name: "Smart CRM & Fleet Platform", url: "https://yash-ghodele.pages.dev/work/smart-crm" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        name: "Engineering Journal & Articles",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Every Event Fails the Same Way", url: "https://yash-ghodele.pages.dev/journal/event-failure-patterns" },
+          { "@type": "ListItem", position: 2, name: "Analysis, Design, and Synthesis", url: "https://yash-ghodele.pages.dev/journal/analysis-design-synthesis" },
+          { "@type": "ListItem", position: 3, name: "From Hardware Circuits to Web Interfaces", url: "https://yash-ghodele.pages.dev/journal/hardware-to-web" },
+          { "@type": "ListItem", position: 4, name: "Building FuelShield Case Study", url: "https://yash-ghodele.pages.dev/journal/fuelshield-case-study" },
+          { "@type": "ListItem", position: 5, name: "Why Manufacturing Dashboards Fail", url: "https://yash-ghodele.pages.dev/journal/manufacturing-dashboards-fail" },
+          { "@type": "ListItem", position: 6, name: "Building Student Projects at Scale", url: "https://yash-ghodele.pages.dev/journal/student-projects-at-scale" },
+          { "@type": "ListItem", position: 7, name: "Why We Obsess Over 14ms Latency", url: "https://yash-ghodele.pages.dev/journal/obsessing-over-latency" },
+          { "@type": "ListItem", position: 8, name: "Aurangabad's Manufacturing Opportunity", url: "https://yash-ghodele.pages.dev/journal/aurangabad-manufacturing-opportunity" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        name: "Events & Community Leadership",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "InnoHack 2025 - Executive Head", url: "https://yash-ghodele.pages.dev/events/innohack" },
+          { "@type": "ListItem", position: 2, name: "SPIC MACAY Virasat 2024 - Head of Hospitality", url: "https://yash-ghodele.pages.dev/events/spic-macay-virasat" }
+        ]
       }
-    ],
-    alumniOf: {
-      "@type": "EducationalOrganization",
-      name: "MIT College of Engineering, Aurangabad",
-    },
-    knowsAbout: [
-      "Full Stack Development",
-      "IoT Engineering",
-      "React",
-      "Next.js",
-      "Python",
-      "Arduino",
-      "Embedded Systems",
-      "Web Development",
-      "Robotics",
-      "Event Management",
-      "Team Leadership",
-      "TypeScript",
-      "Flutter",
-    ],
-    award: [
-      "InnoHack 2025 Organizer (200+ participants)",
-      "InnoHack 2.0 Organizer",
-      "Executive Head at BotBuddies",
-      "Event Head at ECESA",
-      "SPIC MACAY Virasat 2024 Coordinator"
-    ],
+    ]
   }
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" data-scroll-behavior="smooth">
       <body className={`${inter.variable} ${playfair.variable} font-sans`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* <Preloader /> */}
         <SmoothScroll>
           <Navbar />
           <PageTransition>
