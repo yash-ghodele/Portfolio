@@ -6,7 +6,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  transpilePackages: ['sanity-plugin-iframe-pane'],
   async redirects() {
     return [
       {

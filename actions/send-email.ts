@@ -15,8 +15,6 @@ const FormSchema = z.object({
 
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export type FormState = {
     message: string
     success?: boolean
@@ -25,6 +23,36 @@ export type FormState = {
 }
 
 export async function sendEmail(prevState: FormState, formData: FormData): Promise<FormState> {
+    const contactEmail = process.env.CONTACT_EMAIL
+
+    // Dev mode fallback mock for local testing
+    if (process.env.NODE_ENV === 'development' && (!contactEmail || !process.env.RESEND_API_KEY)) {
+        console.warn("DEVELOPMENT MOCK: Simulating successful email submission (missing CONTACT_EMAIL or RESEND_API_KEY).")
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+        return {
+            message: "Message sent! (Simulated locally)",
+            success: true
+        }
+    }
+
+    if (!contactEmail) {
+        console.error("CONFIGURATION ERROR: process.env.CONTACT_EMAIL is not configured.")
+        return {
+            message: "System configuration error: Contact email is not configured.",
+            success: false
+        }
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+        console.error("CONFIGURATION ERROR: process.env.RESEND_API_KEY is not configured.")
+        return {
+            message: "System configuration error: Mail provider API key is not configured.",
+            success: false
+        }
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
+
     const data = Object.fromEntries(formData)
     console.log("SERVER RECEIVED DATA:", data) // Debug log
 
@@ -51,7 +79,7 @@ export async function sendEmail(prevState: FormState, formData: FormData): Promi
         const ownerEmail = await resend.emails.send({
             from: 'Portfolio Contact <onboarding@resend.dev>',
             replyTo: email,
-            to: process.env.CONTACT_EMAIL || 'ghodeleyash2004@gmail.com',
+            to: contactEmail,
             subject: `Contact Form: ${subject}`,
             html: `
             <!DOCTYPE html>
