@@ -5,6 +5,8 @@ import Link from "next/link"
 import { ArrowLeft, Clock, Calendar } from "lucide-react"
 import { JournalPost } from "@/lib/journal"
 
+import Image from "next/image"
+
 const CATEGORY_COLORS: Record<JournalPost["category"], string> = {
   Insights: "text-amber-400 border-amber-500/30 bg-amber-500/5",
   Technical: "text-blue-400 border-blue-500/30 bg-blue-500/5",
@@ -72,6 +74,24 @@ export default function PostClient({ post }: { post: JournalPost }) {
 
           <div className="mt-8 h-px bg-white/5" />
         </motion.header>
+
+        {/* Hero Image */}
+        {post.image && (
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mb-12 border border-white/10 shadow-2xl"
+          >
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          </motion.div>
+        )}
 
         {/* Article Body */}
         <motion.article

@@ -6,6 +6,8 @@ import Link from "next/link"
 import { ArrowUpRight, Clock } from "lucide-react"
 import { JOURNAL_POSTS, JournalPost } from "@/lib/journal"
 
+import Image from "next/image"
+
 const CATEGORIES = ["All", "Insights", "Technical", "Engineering", "Process"] as const
 type Category = typeof CATEGORIES[number]
 
@@ -88,7 +90,7 @@ export default function JournalClient() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="space-y-4"
+            className="space-y-6"
           >
             {filtered.map((post, i) => (
               <motion.div
@@ -100,20 +102,37 @@ export default function JournalClient() {
               >
                 <Link
                   href={`/journal/${post.slug}`}
-                  className="group flex flex-col md:flex-row md:items-center gap-4 p-6 rounded-2xl border border-white/5 bg-white/[0.02]
-                             hover:border-primary/25 hover:bg-primary/[0.03] transition-all duration-300"
+                  className="group flex flex-col md:flex-row md:items-center gap-6 p-6 rounded-2xl border border-white/5 bg-white/[0.02]
+                             hover:border-primary/25 hover:bg-primary/[0.03] transition-all duration-300 overflow-hidden"
                 >
-                  {/* Category + date */}
-                  <div className="flex md:flex-col items-center md:items-start gap-3 md:gap-1 md:w-36 md:flex-shrink-0">
-                    <span className={`px-2.5 py-0.5 rounded-full text-xs border font-medium ${CATEGORY_COLORS[post.category]}`}>
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-muted-foreground/60">{post.date}</span>
-                  </div>
+                  {/* Image Thumbnail */}
+                  {post.image && (
+                    <div className="relative w-full md:w-48 h-40 md:h-32 rounded-xl overflow-hidden flex-shrink-0 border border-white/10 bg-zinc-900">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, 192px"
+                      />
+                    </div>
+                  )}
 
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <h2 className="text-lg font-bold text-white mb-1 leading-snug group-hover:text-primary transition-colors duration-200">
+                  {/* Info & Content */}
+                  <div className="flex-1 min-w-0 space-y-2">
+                    <div className="flex items-center gap-3">
+                      <span className={`px-2.5 py-0.5 rounded-full text-xs border font-medium ${CATEGORY_COLORS[post.category]}`}>
+                        {post.category}
+                      </span>
+                      <span className="text-xs text-muted-foreground/60">{post.date}</span>
+                      <span className="text-xs text-muted-foreground/40">•</span>
+                      <span className="flex items-center gap-1 text-xs text-muted-foreground/60">
+                        <Clock className="w-3 h-3" />
+                        {post.readTime}
+                      </span>
+                    </div>
+
+                    <h2 className="text-xl font-bold text-white leading-snug group-hover:text-primary transition-colors duration-200">
                       {post.title}
                     </h2>
                     <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
@@ -121,13 +140,8 @@ export default function JournalClient() {
                     </p>
                   </div>
 
-                  {/* Read time + arrow */}
-                  <div className="flex items-center gap-3 md:flex-col md:items-end md:gap-2 flex-shrink-0">
-                    <span className="flex items-center gap-1 text-xs text-muted-foreground/50">
-                      <Clock className="w-3 h-3" />
-                      {post.readTime}
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                  <div className="hidden md:flex items-center justify-center flex-shrink-0 pl-2">
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
                   </div>
                 </Link>
               </motion.div>

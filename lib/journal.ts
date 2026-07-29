@@ -21,6 +21,23 @@ export interface JournalPost {
 
 export const JOURNAL_POSTS: JournalPost[] = [
   {
+    slug: "event-failure-patterns",
+    title: "Every Event Fails the Same Way. We Just Keep Giving It New Excuses.",
+    excerpt:
+      "Something breaks at 11 PM the night before. Here's why college fests, hackathons, and community meetups fail the exact same way — and how to build the loop that breaks the cycle.",
+    date: "Jul 25, 2026",
+    author: "Yash Ghodele",
+    category: "Process",
+    readTime: "6 min",
+    image: "/images/journal/event-failure-patterns.png",
+    content: [
+      {
+        type: "p",
+        text: "If you've ever been on an event team — college fest, hackathon, community meetup, doesn't matter which — you already know the ending before it happens."
+      }
+    ]
+  },
+  {
     slug: "analysis-design-synthesis",
     title: "Analysis, Design, and Synthesis — Or: The Structured Side of \"Fuck Around and Find Out\"",
     excerpt:
