@@ -1,5 +1,5 @@
 import { getEvents } from "@/lib/fetch"
-import EventsTimeline from '@/components/events-timeline'
+// import EventsTimeline from '@/components/events-timeline'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowUpRight, Users, Target, Mic, Globe, BarChart, Handshake, Sparkles, Zap, Calendar, MapPin, CheckCircle2 } from 'lucide-react'
@@ -183,7 +183,8 @@ export default async function EventsPage() {
                         </div>
                     </div>
 
-                    {/* ── Chronology ── */}
+                    {/* ── Chronology (Hidden via comments) ── */}
+                    {/* 
                     <div className="mb-32">
                         <div className="flex items-center gap-3 mb-12">
                             <h2 className="text-2xl font-bold tracking-tight whitespace-nowrap">Chronology</h2>
@@ -191,6 +192,7 @@ export default async function EventsPage() {
                         </div>
                         <EventsTimeline events={events} />
                     </div>
+                    */}
 
                     {/* ── Arsenal ── */}
                     <div className="mb-32">

@@ -9,6 +9,9 @@ export function EventClientFeatures({ accentHue }: { accentHue: number }) {
   const [showBackToTop, setShowBackToTop] = useState(false)
 
   useEffect(() => {
+    // Reset scroll position to top when entering event detail page
+    window.scrollTo(0, 0)
+
     const handleScroll = () => {
       const y = window.scrollY
       const height = document.documentElement.scrollHeight - window.innerHeight
