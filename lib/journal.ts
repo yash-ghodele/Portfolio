@@ -19,7 +19,41 @@ export interface JournalPost {
   }[]
 }
 
-export const JOURNAL_POSTS: JournalPost[] = [
+const ALL_JOURNAL_POSTS: JournalPost[] = [
+  {
+    slug: "whatsapp-pipelines-research",
+    title: "From WhatsApp to Dashboard: The Architecture Behind CampusCast",
+    excerpt:
+      "Every practical way to turn a WhatsApp message into a live department display, and the trade-offs that decided CampusCast's architecture.",
+    date: "Sep 15, 2026",
+    author: "Yash Ghodele",
+    category: "Technical",
+    readTime: "9 min",
+    image: "/images/journal/whatsapp-pipelines.jpg",
+    content: [
+      {
+        type: "p",
+        text: "Every practical way to get 'WhatsApp message in → stored in a database → Next.js fetches and displays it,' compared on cost, effort, reliability, and risk."
+      }
+    ]
+  },
+  {
+    slug: "we-are-all-intellectual-omnivores",
+    title: "We Are All Intellectual Omnivores",
+    excerpt:
+      "On paper, none of us had any business being in that conversation. But there's a word for people who wander this far outside their own lane for no reason: intellectual omnivores. Scavengers, not specialists.",
+    date: "Sep 01, 2026",
+    author: "Yash Ghodele",
+    category: "Insights",
+    readTime: "5 min",
+    image: "/images/journal/intellectual-omnivore-main.jpg",
+    content: [
+      {
+        type: "p",
+        text: "There's a particular kind of argument that only happens when nothing is at stake, and it's usually the best kind."
+      }
+    ]
+  },
   {
     slug: "event-failure-patterns",
     title: "Every Event Fails the Same Way. We Just Keep Giving It New Excuses.",
@@ -283,15 +317,15 @@ export const JOURNAL_POSTS: JournalPost[] = [
     ],
   },
   {
-    slug: "hardware-to-web",
-    title: "From Hardware Circuits to High-Performance Web Systems",
+    slug: "hardware-and-software-are-the-same-problem",
+    title: "The Day I Realized Hardware and Software Are the Same Problem",
     excerpt:
-      "The story of how I bridged the gap between ECE fundamentals and high-level software architectures — and why that bridge is Ugam's biggest moat.",
-    date: "Apr 26, 2026",
+      "What electrical engineering taught me about distributed systems, frontend development, and why abstraction layers matter less than most people think.",
+    date: "May 12, 2026",
     author: "Yash Ghodele",
     category: "Insights",
-    readTime: "8 min",
-    image: "/images/journal/hardware-to-web.jpg",
+    readTime: "7 min",
+    image: "/images/journal/hardware-and-software-are-the-same-problem.jpg",
     content: [
       {
         type: "p",
@@ -325,13 +359,13 @@ export const JOURNAL_POSTS: JournalPost[] = [
   },
   {
     slug: "fuelshield-case-study",
-    title: "Building FuelShield: An IoT System From Concept to Production",
+    title: "Building FuelShield: Lessons from 100+ Hours in Truck Yards",
     excerpt:
-      "Deep dive into the architecture, detection logic, and hardware-software integration of our flagship fuel monitoring system for commercial fleets.",
-    date: "Apr 24, 2026",
+      "Real-world IoT is 10% code and 90% dealing with vibration, diesel fumes, power fluctuations, lost GSM signals, and humans determined to bypass your system.",
+    date: "May 02, 2026",
     author: "Yash Ghodele",
-    category: "Technical",
-    readTime: "10 min",
+    category: "Engineering",
+    readTime: "8 min",
     image: "/images/journal/fuelshield.jpg",
     content: [
       {
@@ -374,9 +408,9 @@ export const JOURNAL_POSTS: JournalPost[] = [
   },
   {
     slug: "manufacturing-dashboards-fail",
-    title: "Why Manufacturing Dashboards Fail (And How We Fixed It)",
+    title: "Why Manufacturing Dashboards Fail (And How WireFlow Solves It)",
     excerpt:
-      "Exploring the signal-to-noise problem in industrial UI design and why WireFlow succeeded where expensive enterprise ERPs failed.",
+      "Most factory software is built by people who have never spent a day on a plant floor. The result is dashboards full of information—and empty of action.",
     date: "Apr 22, 2026",
     author: "Yash Ghodele",
     category: "Engineering",
@@ -417,7 +451,7 @@ export const JOURNAL_POSTS: JournalPost[] = [
     slug: "student-projects-at-scale",
     title: "Building Student Projects at Scale: How We Deliver in 48 Hours",
     excerpt:
-      "The internal protocol and templating system that allows Ugam Campus to ship professional-grade engineering projects consistently and fast.",
+      "The systems, templates, and internal workflows that allow Ugam Campus to consistently deliver professional-grade engineering projects in days instead of weeks.",
     date: "Apr 20, 2026",
     author: "Yash Ghodele",
     category: "Process",
@@ -495,7 +529,7 @@ export const JOURNAL_POSTS: JournalPost[] = [
     slug: "aurangabad-manufacturing-opportunity",
     title: "Aurangabad's Manufacturing Opportunity (And Why We're Building Here)",
     excerpt:
-      "A look at the massive untapped industrial ecosystem in regional India and how local engineering talent can close the digital gap.",
+      "Within a 50-kilometer radius, hundreds of manufacturers quietly power global supply chains. Here's why local context matters and how we're building the digital infrastructure for regional manufacturing.",
     date: "Apr 16, 2026",
     author: "Yash Ghodele",
     category: "Insights",
@@ -504,19 +538,23 @@ export const JOURNAL_POSTS: JournalPost[] = [
     content: [
       {
         type: "p",
-        text: "Aurangabad is an industrial giant hiding in plain sight. 500+ wire manufacturing units. 300+ auto component suppliers feeding Bajaj, Volkswagen, and Skoda plants. One of the highest concentrations of precision manufacturing in Maharashtra — and almost none of it is digitized beyond a basic ERP from 2008.",
+        text: "Aurangabad is one of India's most overlooked industrial ecosystems. Within a 50-kilometer radius, hundreds of wire manufacturers, auto-component suppliers, fabrication units, and precision engineering companies quietly power supply chains for some of the country's largest brands.",
       },
       {
         type: "h3",
-        text: "The Gap Nobody Is Filling",
+        text: "An Industrial Hub Hidden in Plain Sight",
       },
       {
         type: "p",
-        text: "Enterprise software companies target Tier 1 companies with 7-figure contracts. Startups target Bangalore and Mumbai. The 200-employee wire unit in Waluj that runs on pen-and-paper shift logs? Nobody is building for them. That's the gap Ugam exists to fill.",
+        text: "Aurangabad is home to more than 500 wire manufacturing units and hundreds of auto-component suppliers serving companies such as Bajaj Auto, Volkswagen, and Škoda Auto.",
+      },
+      {
+        type: "h3",
+        text: "The Gap Nobody Is Building For",
       },
       {
         type: "p",
-        text: "Local context matters enormously. Power outages happen 3-4 times a week. Internet connectivity is intermittent. Workers speak Marathi. An IoT system designed for German factories will fail in Aurangabad within a month. We build offline-first, Marathi-aware, and hardware-resilient from the start.",
+        text: "That leaves an entire segment underserved: the regional manufacturer with 100–500 employees. What they don't need is enterprise complexity or enterprise pricing. That's the gap we're building for.",
       },
       {
         type: "h3",
@@ -524,9 +562,20 @@ export const JOURNAL_POSTS: JournalPost[] = [
       },
       {
         type: "p",
-        text: "MIT Aurangabad produces 2,000+ engineers per year. Most leave for Pune or Bangalore immediately after graduation. We're building a model where local engineers build for local industries — creating a talent-to-market loop that compounds over time. When a Waluj factory manager can call a local engineer who understands both the machine and the software, trust closes the sale faster than any pitch deck.",
+        text: "When local engineers build products for local industries, something powerful happens. They understand the machines, the workflows, the people, and the language.",
       },
     ],
   },
 ]
+
+// Date-based publishing gate: Only posts with date <= current_time are visible on webpage
+export const JOURNAL_POSTS: JournalPost[] = ALL_JOURNAL_POSTS
+  .filter((post) => {
+    const postTime = new Date(post.date).getTime()
+    const nowTime = new Date().getTime()
+    return postTime <= nowTime
+  })
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+export const ALL_POSTS = ALL_JOURNAL_POSTS
 export const STATIC_POSTS = JOURNAL_POSTS
