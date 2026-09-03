@@ -38,6 +38,10 @@ export const metadata: Metadata = {
 
   keywords: [
     "Yash Ghodele",
+    "AuthoSec",
+    "Dual-QR Protocol",
+    "Fintech Security",
+    "Ugam Campus",
     "Full Stack Developer",
     "IoT Engineer",
     "Next.js Developer",
@@ -46,6 +50,10 @@ export const metadata: Metadata = {
     "Python Developer",
     "Arduino",
     "Embedded Systems",
+    "FuelShield",
+    "Sanjivani",
+    "Smart Garbage",
+    "ESP Car",
     "Robotics",
     "Web Development",
     "Flutter Developer",

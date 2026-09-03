@@ -1,107 +1,110 @@
-# Yash Ghodele - Portfolio V3
+# Yash Ghodele — Portfolio V3
 
 <div align="center">
-  <img src="public/logo.svg" alt="Yash Ghodele | Portfolio" width="200" />
+  <img src="public/logo.svg" alt="Yash Ghodele | Portfolio" width="180" />
 </div>
 
-> **Engineering meets Art.** A premium portfolio experience built to demonstrate full-stack mastery, creative design, and headless CMS architecture.
+> **Engineering Meets Art.** A modern digital engineering portfolio built to showcase full-stack web applications, IoT embedded systems, fintech security protocols, and event production systems.
 
-[![Next.js 15](https://img.shields.io/badge/Next.js-15.0-black.svg)](https://nextjs.org/)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16.2-black.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-cyan.svg)](https://tailwindcss.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-cyan.svg)](https://tailwindcss.com/)
-[![Cloudflare Pages](https://img.shields.io/badge/Deployed_on-Cloudflare-orange.svg)](https://pages.cloudflare.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-cyan.svg)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-## 💎 The Concept: "Minimalist Authority"
+## ⚡ Flagship Systems & Engineering Portfolio
 
-This is not just a collection of links. It is a **Curated Digital Experience**.
-The design philosophy centers on immersion:
+### 🛡️ 1. AuthoSec — Fintech Security & Dual-QR Protocol
+* **Domain**: Cryptographic Payment Security & Identity Authentication
+* **Architecture**: Next.js 15, Prisma ORM, Supabase PostgreSQL, AWS SNS SMS OTP, AES-256 GCM, Expo Mobile
+* **Key Innovations**:
+  * **Dual-QR Handshake Protocol (QR1 → QR2)**: Eliminates replay attacks, static QR swap fraud, and identity spoofing.
+  * **Sub-300ms Core Verification**: Core handshake latency executed under 300ms with 2-4s AWS SNS OTP delivery.
+  * **Peer-Reviewed IEEE Academic Integration**: Complete 66-page IEEE standard report PDF available directly within the interface (`/reports/authosec-academic-report.pdf`).
 
-*   **Atmospheric Depth**: Uses a hybrid system of **Hero Network** and high-contrast typography to create a sense of scale and precision.
-*   **System-Driven Interaction**: Magnetic buttons, reveal-on-scroll orchestrations, and deterministic state management make the UI feel solid and responsive.
-*   **Dynamic Theming**: Case studies and event chronicles feature data-driven layouts powered by **Sanity CMS**.
+### ⚙️ 2. Ugam Campus Product Projects
+Commercial & industrial engineering systems developed under the Ugam Campus initiative:
+* **Smart Garbage — Automated Segregation Engine**: Active IR proximity detection, 5-sample analog moisture sampling (A0), and SG90 servo chute routing (20° Wet vs 160° Dry) executed under 50ms.
+* **ESP Car — Wi-Fi Telemetry Vehicle**: ESP8266 NodeMCU V3 SoC, L293D dual H-bridge motor driver, and sub-20ms Blynk IoT Virtual Pin socket packet stream controls (`V0`–`V4`).
 
----
+### ⛽ 3. FuelShield — IoT Fuel Theft & Fleet Telemetry
+* **Domain**: Heavy Fleet Operations & Fluid Telemetry
+* **Tech Stack**: ESP32, MQTT, Firebase Realtime DB, High-Precision Ultrasonic Liquid Level Sensors
+* **Performance**: Sub-second fuel siphoning detection and immediate mobile alert dispatcher.
 
-## 🚀 Key Features
+### 🌿 4. Sanjivani & Sanjivani v2 — Agro-Tech Intelligence
+* **Domain**: Precision Agriculture & Automated Hydroponics
+* **Features**: Environmental sensor matrix, soil NPK analysis, automated fertigation dosing, and crop health diagnostic models.
 
-### 1. Localized Static Architecture
-The portfolio uses a high-performance **Local Data Architecture**, replacing legacy CMS dependencies:
-*   **Projects/Work**: Rich metadata, impact metrics, and tech stacks stored in `lib/projects.ts`.
-*   **Events**: DynamicRecap, roles, and attendance chronicles stored in `lib/events.ts`.
-*   **Zero-Runtime Latency**: No external API calls for content; pre-rendered at build time.
-
-### 2. High-Fidelity Chronicles
-The platform transitions from simple project lists to immersive "Chronicles of Execution".
-*   **Live Scoreboard**: Animated counters for key impact metrics.
-*   **Execution Arsenal**: Highlighted technical and operational strengths.
-*   **Timeline Architecture**: Vertical scroll-linked history of engagement.
-
-### 3. Production Hardening
-*   **Next.js 15+ Ready**: Full support for async route parameters and Turbopack.
-*   **Hydration Safe**: Deterministic mounting patterns eliminate SSR mismatches.
-*   **SEO Optimized**: Dynamic metadata and structured JSON-LD for all entities.
+### 🏢 5. Enterprise B2B Systems & Automation
+* **Smart CRM**: High-throughput automation engine replacing manual spreadsheet bottlenecks with RAM-based ADODB processing for 100k+ B2B leads per session.
+* **WireFlow & LocalMD**: Visual workflow builders and local markdown document processing tools.
 
 ---
 
-## 🏗️ Architecture & Engineering
+## 🏗️ Architecture & Engineering Design
 
-### The "Unified" Route Strategy
-We use a streamlined routing hierarchy for maximum SEO and performance:
-
-*   **`/work`**: The central project hub.
-*   **`/events`**: The community leadership chronicle.
-*   **`/stack`**: Dedicated hardware/software arsenal page.
-*   **`/about`**: Interactive bio and founder journey.
-
----
-
-## ⚡ Tech Stack
-
-| Domain | Technology | Rationale |
-| :--- | :--- | :--- |
-| **Framework** | **Next.js 15** | Server Components & SSG |
-| **Styling** | **Tailwind CSS** | Utility-first design system |
-| **Styling** | **Tailwind CSS** | Utility-first design system |
-| **Motion** | **Framer Motion** | Complex scroll orchestrations |
-| **Deployment** | **Cloudflare Pages** | Global edge distribution |
-
----
-
-## 📂 Project Structure
-
-```bash
-portfolio/
-├── app/                  # Next.js App Router
-│   ├── events/           # Event Chronicle (Dynamic)
-│   ├── work/             # Unified Project Hub
-│   ├── stack/            # Tech Arsenal Page
-│   ├── about/            # Interactive Bio
-│   ├── journal/          # Engineering Blog
-│   ├── studio/           # Embedded Sanity Studio
-│   ├── layout.tsx        # Global shell & SEO
-│   └── page.tsx          # Landing page (Bento)
-├── components/           # React Components
-│   └── ui/               # Design system primitives
-├── sanity/               # CMS Configuration
-├── lib/                  # Fetch clients & Types
-└── public/               # Static Assets
+```
+Portfolio System Architecture
+├── app/                      # Next.js App Router
+│   ├── (home)/               # Landing page with interactive Bento layout
+│   ├── work/                 # Project Hub & Dynamic Template Router (/work/[slug])
+│   ├── events/               # Event Leadership & Hackathon Chronicles
+│   ├── journal/              # Technical Writing & Engineering Essays
+│   ├── stack/                # Interactive Hardware & Software Tech Stack
+│   ├── about/                # Interactive Bio & Timeline Architecture
+│   ├── layout.tsx            # Global metadata, SEO schema & shell
+│   └── sitemap.ts            # Dynamic XML sitemap generator
+├── components/               # UI Design System & Component Library
+│   ├── projects-templates/   # Dedicated custom project case study pages
+│   ├── event-templates/      # Event recap templates (Innohack, Virasat)
+│   └── ui/                   # Primitive design components (Shadcn/Tailwind)
+├── lib/                      # Type-safe static data schemas & metadata stores
+└── public/                   # Media assets, screenshots & PDF academic reports
 ```
 
 ---
 
-## 🏁 Getting Started
+## 🛠️ Tech Stack & Tooling
 
-```bash
-git clone https://github.com/yash-ghodele/portfolio.git
-npm install
-npm run dev
-```
+| Layer | Technologies Used |
+| :--- | :--- |
+| **Frontend Core** | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS |
+| **Design System** | Lucide React, Glassmorphism UI, Custom HSL Color Systems |
+| **Motion & FX** | Tailwind CSS Animations, Smooth Scroll Target Anchors |
+| **Embedded & Hardware** | C++, Arduino IDE, ESP32, ESP8266 (NodeMCU), L293D, SG90, Sensors |
+| **Backend & Cloud** | Node.js, Prisma ORM, Supabase PostgreSQL, Firebase, AWS SNS |
+| **Documentation** | IEEE Standard Academic PDF Reports, Architectural Diagrams |
+
+---
+
+## 🏁 Quick Start & Local Execution
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yash-ghodele/Portfolio.git
+   cd Portfolio
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+4. **Build production bundle**:
+   ```bash
+   npm run build
+   ```
 
 ---
 
 ## 📄 License
 
-MIT License © 2026 Yash Ghodele.
+MIT License © 2026 [Yash Ghodele](https://github.com/yash-ghodele).
