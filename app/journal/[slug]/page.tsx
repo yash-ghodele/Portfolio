@@ -2,12 +2,15 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Footer from "@/components/footer"
 import { JOURNAL_POSTS } from "@/lib/journal"
+import PostClient from "./PostClient"
 import React from "react"
 
 // Import custom templates — one file per post slug
 import EventFailurePatterns from "@/components/blog-templates/event-failure-patterns"
+import WhatsappPipelinesResearch from "@/components/blog-templates/whatsapp-pipelines-research"
+import WeAreIntellectualOmnivores from "@/components/blog-templates/we-are-intellectual-omnivores"
 import AnalysisDesignSynthesis from "@/components/blog-templates/analysis-design-synthesis"
-import HardwareToWeb from "@/components/blog-templates/hardware-to-web"
+import HardwareAndSoftwareSameProblem from "@/components/blog-templates/hardware-and-software-are-the-same-problem"
 import FuelShieldCaseStudy from "@/components/blog-templates/fuelshield-case-study"
 import ManufacturingDashboardsFail from "@/components/blog-templates/manufacturing-dashboards-fail"
 import StudentProjectsAtScale from "@/components/blog-templates/student-projects-at-scale"
@@ -15,9 +18,12 @@ import ObsessingOverLatency from "@/components/blog-templates/obsessing-over-lat
 import AurangabadManufacturingOpportunity from "@/components/blog-templates/aurangabad-manufacturing-opportunity"
 
 const templates: Record<string, React.ComponentType> = {
+  "we-are-all-intellectual-omnivores": WeAreIntellectualOmnivores,
+  "whatsapp-pipelines-research": WhatsappPipelinesResearch,
+  "campuscast-whatsapp-architecture": WhatsappPipelinesResearch,
   "event-failure-patterns": EventFailurePatterns,
   "analysis-design-synthesis": AnalysisDesignSynthesis,
-  "hardware-to-web": HardwareToWeb,
+  "hardware-and-software-are-the-same-problem": HardwareAndSoftwareSameProblem,
   "fuelshield-case-study": FuelShieldCaseStudy,
   "manufacturing-dashboards-fail": ManufacturingDashboardsFail,
   "student-projects-at-scale": StudentProjectsAtScale,
@@ -30,9 +36,6 @@ export async function generateStaticParams() {
     slug: post.slug,
   }))
 }
-import PostClient from "./PostClient"
-
-
 
 export async function generateMetadata({
   params,
@@ -45,7 +48,27 @@ export async function generateMetadata({
   return {
     title: `${post.title} — Yash Ghodele`,
     description: post.excerpt,
+    keywords: [
+      post.title,
+      post.category,
+      "Yash Ghodele",
+      "Ugam Digital Studio",
+      "IoT Engineering",
+      "Software Architecture",
+      "Full Stack Development",
+    ],
     authors: [{ name: post.author }],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     alternates: { canonical: `https://yash-ghodele.pages.dev/journal/${post.slug}` },
     openGraph: {
       title: post.title,
@@ -75,15 +98,21 @@ export default async function JournalPostPage({ params }: { params: Promise<{ sl
     return null
   }
 
+  const isTech = post.category === "Technical" || post.category === "Engineering"
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "BlogPosting",
+        "@type": isTech ? ["TechArticle", "BlogPosting"] : "BlogPosting",
+        "@id": `https://yash-ghodele.pages.dev/journal/${post.slug}#article`,
         "headline": post.title,
         "description": post.excerpt,
         "image": `https://yash-ghodele.pages.dev${post.image}`,
         "datePublished": post.date,
+        "dateModified": post.date,
+        "articleSection": post.category,
+        "keywords": [post.category, post.title, "Yash Ghodele", "Ugam Digital Studio"],
         "author": {
           "@type": "Person",
           "name": post.author,
@@ -93,6 +122,10 @@ export default async function JournalPostPage({ params }: { params: Promise<{ sl
           "@type": "Person",
           "name": "Yash Ghodele",
           "url": "https://yash-ghodele.pages.dev"
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://yash-ghodele.pages.dev/#website"
         },
         "mainEntityOfPage": `https://yash-ghodele.pages.dev/journal/${post.slug}`
       },

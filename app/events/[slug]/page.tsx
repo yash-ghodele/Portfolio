@@ -33,8 +33,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: `${title} | Yash Ghodele`,
         description: summary,
-        keywords: skills,
+        keywords: skills ? [...skills, "Yash Ghodele", "Event Head", "Hackathon Organizer"] : ["Yash Ghodele", "Hackathon Organizer"],
         authors: [{ name: "Yash Ghodele" }],
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                "max-video-preview": -1,
+                "max-image-preview": "large",
+                "max-snippet": -1,
+            },
+        },
         openGraph: {
             title,
             description: summary,
@@ -67,18 +78,35 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
         "@graph": [
             {
                 "@type": "Event",
+                "@id": `https://yash-ghodele.pages.dev/events/${slug}#event`,
                 "name": event.title,
                 "description": event.summary,
                 "image": event.image ? `https://yash-ghodele.pages.dev${event.image}` : undefined,
                 "startDate": event.date,
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "eventStatus": "https://schema.org/EventScheduled",
                 "location": {
                     "@type": "Place",
-                    "name": event.location || "Chhatrapati Sambhajinagar"
+                    "name": event.location || "Chhatrapati Sambhajinagar",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Aurangabad",
+                        "addressRegion": "Maharashtra",
+                        "addressCountry": "IN"
+                    }
                 },
                 "organizer": {
                     "@type": "Person",
                     "name": "Yash Ghodele",
                     "url": "https://yash-ghodele.pages.dev"
+                },
+                "performer": {
+                    "@type": "Person",
+                    "name": "Yash Ghodele"
+                },
+                "isPartOf": {
+                    "@type": "WebSite",
+                    "@id": "https://yash-ghodele.pages.dev/#website"
                 }
             },
             {

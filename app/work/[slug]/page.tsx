@@ -51,8 +51,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: `${title} | Yash Ghodele`,
         description: description,
-        keywords: tech,
+        keywords: tech ? [...tech, "Yash Ghodele", "Ugam Digital Studio", "IoT Engineering"] : ["Yash Ghodele", "Ugam Digital Studio"],
         authors: [{ name: "Yash Ghodele" }],
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                "max-video-preview": -1,
+                "max-image-preview": "large",
+                "max-snippet": -1,
+            },
+        },
         openGraph: {
             title,
             description,
@@ -86,15 +97,31 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         "@graph": [
             {
                 "@type": "SoftwareApplication",
+                "@id": `https://yash-ghodele.pages.dev/work/${slug}#software`,
                 "name": project.title,
                 "description": project.description,
                 "image": project.image ? `https://yash-ghodele.pages.dev${project.image}` : undefined,
                 "applicationCategory": "EngineeringApplication",
-                "operatingSystem": "Web, Embedded",
+                "operatingSystem": "Web, Embedded, Microcontrollers",
+                "keywords": project.tech ? project.tech.join(", ") : undefined,
                 "author": {
                     "@type": "Person",
                     "name": "Yash Ghodele",
                     "url": "https://yash-ghodele.pages.dev"
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": "Yash Ghodele",
+                    "url": "https://yash-ghodele.pages.dev"
+                },
+                "isPartOf": {
+                    "@type": "WebSite",
+                    "@id": "https://yash-ghodele.pages.dev/#website"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
                 }
             },
             {
