@@ -15,6 +15,10 @@ import SmartCRM from "@/components/projects-templates/smart-crm"
 import UgamCampus from "@/components/projects-templates/ugam-campus"
 import WireFlow from "@/components/projects-templates/wireflow"
 import LocalMD from "@/components/projects-templates/localmd"
+import SmartGarbage from "@/components/projects-templates/smart-garbage"
+import ESPCar from "@/components/projects-templates/esp-car"
+// import Backstage from "@/components/projects-templates/backstage"
+import AuthoSec from "@/components/projects-templates/authosec"
 
 const templates: Record<string, React.ComponentType> = {
     "fuelshield": FuelShield,
@@ -24,7 +28,11 @@ const templates: Record<string, React.ComponentType> = {
     "smart-crm": SmartCRM,
     "ugam-campus": UgamCampus,
     "wireflow": WireFlow,
-    "localmd": LocalMD
+    "localmd": LocalMD,
+    "smart-garbage": SmartGarbage,
+    "esp-car": ESPCar,
+    // "backstage": Backstage,
+    "authosec": AuthoSec
 }
 
 const iconMap: Record<string, LucideIcon> = {

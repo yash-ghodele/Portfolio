@@ -125,73 +125,74 @@ export default function WorkClient({ projects }: WorkClientProps) {
                   animate="visible"
                   className="group relative rounded-2xl border border-white/5 bg-[#111111] overflow-hidden
                              hover:border-primary/25 transition-all duration-500
-                             hover:shadow-xl hover:shadow-primary/5"
+                             hover:shadow-xl hover:shadow-primary/5 cursor-pointer"
                 >
-                  {/* Image */}
-                  <div className="relative h-52 overflow-hidden">
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${
-                        project.metadata.color || "from-primary/30 to-purple-800/30"
-                      } opacity-30 z-10`}
-                    />
-                    <Image
-                      src={project.metadata.image || "/placeholder.jpg"}
-                      alt={project.metadata.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                    />
-                    {/* Top-right icon */}
-                    <div className="absolute top-4 left-4 z-20 p-2.5 rounded-xl bg-black/50 backdrop-blur-md border border-white/10">
-                      <Icon className="w-4 h-4 text-white" />
-                    </div>
-                    {/* Category badge */}
-                    <div className="absolute bottom-4 left-4 z-20">
-                      <Badge className="text-xs border border-white/10 bg-black/60 backdrop-blur-md text-white/80 font-medium">
-                        {project.metadata.subtitle}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2 leading-tight group-hover:text-primary transition-colors duration-200">
-                      {project.metadata.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">
-                      {project.metadata.description}
-                    </p>
-
-                    {/* Impact stat */}
-                    {project.metadata.stats && (
-                      <div className="mb-5 px-3 py-2 rounded-lg bg-white/5 border border-white/5">
-                        <p className="text-xs text-muted-foreground mb-0.5">Key Impact</p>
-                        <p className="text-sm font-semibold text-primary truncate">
-                          {project.metadata.stats}
-                        </p>
+                  <Link href={`/work/${project.slug}`} scroll={true} className="block h-full">
+                    {/* Image */}
+                    <div className="relative h-52 overflow-hidden">
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${
+                          project.metadata.color || "from-primary/30 to-purple-800/30"
+                        } opacity-30 z-10`}
+                      />
+                      <Image
+                        src={project.metadata.image || "/placeholder.jpg"}
+                        alt={project.metadata.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      />
+                      {/* Top-right icon */}
+                      <div className="absolute top-4 left-4 z-20 p-2.5 rounded-xl bg-black/50 backdrop-blur-md border border-white/10">
+                        <Icon className="w-4 h-4 text-white" />
                       </div>
-                    )}
-
-                    {/* Tech pills */}
-                    <div className="flex flex-wrap gap-1.5 mb-5">
-                      {project.metadata.tech?.slice(0, 4).map((t, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2.5 py-0.5 rounded-full text-xs border border-white/8 bg-white/4 text-white/60"
-                        >
-                          {t}
-                        </span>
-                      ))}
+                      {/* Category badge */}
+                      <div className="absolute bottom-4 left-4 z-20">
+                        <Badge className="text-xs border border-white/10 bg-black/60 backdrop-blur-md text-white/80 font-medium">
+                          {project.metadata.subtitle}
+                        </Badge>
+                      </div>
                     </div>
 
-                    <Link
-                      href={`/work/${project.slug}`}
-                      className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline group/link"
-                    >
-                      View case study
-                      <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" />
-                    </Link>
-                  </div>
+                    {/* Content */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-white mb-2 leading-tight group-hover:text-primary transition-colors duration-200">
+                        {project.metadata.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">
+                        {project.metadata.description}
+                      </p>
+
+                      {/* Impact stat */}
+                      {project.metadata.stats && (
+                        <div className="mb-5 px-3 py-2 rounded-lg bg-white/5 border border-white/5">
+                          <p className="text-xs text-muted-foreground mb-0.5">Key Impact</p>
+                          <p className="text-sm font-semibold text-primary truncate">
+                            {project.metadata.stats}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Tech pills */}
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {project.metadata.tech?.slice(0, 4).map((t, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2.5 py-0.5 rounded-full text-xs border border-white/8 bg-white/4 text-white/60"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <span
+                        className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:underline group/link"
+                      >
+                        View case study
+                        <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                      </span>
+                    </div>
+                  </Link>
                 </motion.div>
               )
             })}

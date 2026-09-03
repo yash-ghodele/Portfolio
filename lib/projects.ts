@@ -210,12 +210,12 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
       subtitle: "Business Automation",
       image: "/images/projects/smartcrm.png",
       iconName: "Terminal",
-      description: "High-throughput VBA automation engine handling 100k+ B2B leads with 99.9% validation accuracy. Replaces manual workflows with RAM-based processing.",
+      description: "High-throughput automation engine handling 100k+ B2B leads with 100% validation accuracy. Replaces manual workflows with RAM-based ADODB processing.",
       stats: "100k+ Throughput",
       tech: ["VBA", "MS Access", "Excel Automation", "WinAPI", "SQL", "Regex"],
       color: "from-orange-900/40",
-      demoLink: "#",
-      codeLink: "#",
+      demoLink: "",
+      codeLink: "",
       publishedAt: "2024-05-01",
       content: [
         {
@@ -236,7 +236,7 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
         },
         {
           type: "blockquote",
-          text: "Replaced manual spreadsheet validation workflows, achieving a 99.9% validation accuracy and reducing processing time from hours to minutes."
+          text: "Replaced manual spreadsheet validation workflows, achieving a 100% validation accuracy and reducing processing time from hours to seconds."
         },
         {
           type: "h3",
@@ -252,15 +252,15 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
   {
     slug: "localmd",
     metadata: {
-      title: "LocalMD - Local-First Markdown Architecture",
+      title: "LocalMD - Local-First Markdown Suite",
       subtitle: "Local-First Editor",
       image: "/images/projects/localmd.png",
       iconName: "Terminal",
       description: "State-of-the-art, privacy-focused local-first Markdown editor and document transformation engine.",
       stats: "100% Client-Side Processing",
       tech: ["Next.js 16", "React 19", "Tailwind 4", "Mammoth.js", "KaTeX", "PWA"],
-      color: "from-amber-900/40",
-      demoLink: "#",
+      color: "from-indigo-900/40",
+      demoLink: "https://localmd.vercel.app/",
       codeLink: "#",
       publishedAt: "2024-08-01",
       content: []
@@ -277,7 +277,7 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
       description: "Smart manufacturing system with sub-14ms latency goals and offline-first SSR architecture. Replaces SAP for Aurangabad's wire units.",
       stats: "22% Reduction in Downtime",
       tech: ["Next.js", "FastAPI", "MQTT", "SQLite", "Redis", "Framer Motion"],
-      color: "from-blue-900/40",
+      color: "from-rose-900/40",
       demoLink: "#",
       codeLink: "#",
       publishedAt: "2024-06-01",
@@ -313,6 +313,7 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
       ]
     }
   },
+  */
   {
     slug: "ugam-campus",
     metadata: {
@@ -323,8 +324,8 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
       description: "A professional-grade delivery protocol for student engineering projects. 50+ projects shipped with zero plagiarism and deep technical coaching.",
       stats: "50+ Projects Shipped",
       tech: ["React", "Node.js", "Firebase", "Arduino", "Python", "PCB Design"],
-      color: "from-orange-900/40",
-      demoLink: "#",
+      color: "from-amber-900/40",
+      demoLink: "https://www.ugamdigitalstudio.tech/",
       codeLink: "#",
       publishedAt: "2024-07-01",
       content: [
@@ -372,6 +373,75 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
         }
       ]
     }
-  }
+  },
+  {
+    slug: "smart-garbage",
+    metadata: {
+      title: "Smart Garbage - Waste Classification System",
+      subtitle: "Ugam Campus Product Project",
+      image: "/images/projects/smart-garbage.jpg",
+      iconName: "Cpu",
+      description: "Automated wet and dry waste segregation engine built under Ugam Campus using IR proximity detection, analog moisture thresholding, and SG90 servo chute routing.",
+      stats: "< 50ms Classification Latency",
+      tech: ["Ugam Campus Product", "Arduino C++", "IR Sensor", "Moisture Sensor", "SG90 Servo"],
+      color: "from-emerald-900/40",
+      demoLink: "",
+      codeLink: "",
+      publishedAt: "2024-09-01",
+      content: []
+    }
+  },
+  {
+    slug: "esp-car",
+    metadata: {
+      title: "ESP Car - Wi-Fi Robotics & Remote Telemetry",
+      subtitle: "Ugam Campus Product Project",
+      image: "/images/projects/esp-car.jpg",
+      iconName: "Cpu",
+      description: "Smart Wi-Fi robotic vehicle developed under Ugam Campus powered by ESP8266 NodeMCU, L293D motor IC, and low-latency Blynk IoT Virtual Pin stream controls.",
+      stats: "< 20ms Remote Latency",
+      tech: ["Ugam Campus Product", "ESP8266 (NodeMCU)", "C++", "L293D H-Bridge", "Blynk IoT"],
+      color: "from-cyan-900/40",
+      demoLink: "",
+      codeLink: "",
+      publishedAt: "2024-10-01",
+      content: []
+    }
+  },
+  /*
+  {
+    slug: "backstage",
+    metadata: {
+      title: "Backstage - Event Production Cockpit",
+      subtitle: "Event & Logistics OS",
+      image: "/images/projects/backstage.jpg",
+      iconName: "Layout",
+      description: "Modern event coordination cockpit for runsheets, 4-stage logistics pipelines, Cloudflare R2 file storage, and role-isolated team dashboards.",
+      stats: "Zero-Egress File Storage",
+      tech: ["Next.js 14", "TypeScript", "Firebase Auth", "Firestore", "Cloudflare R2"],
+      color: "from-rose-900/40",
+      demoLink: "https://github.com/yash-ghodele/Backstage",
+      codeLink: "https://github.com/yash-ghodele/Backstage",
+      publishedAt: "2024-11-01",
+      content: []
+    }
+  },
   */
+  {
+    slug: "authosec",
+    metadata: {
+      title: "AuthoSec - Fintech Security & Dual QR Protocol",
+      subtitle: "Ugam Campus Product Project",
+      image: "/images/projects/authosec.jpg",
+      iconName: "Shield",
+      description: "Dual-Factor cryptographic payment protocol engineered under Ugam Campus featuring Dual-QR handshakes (QR1→QR2), AWS SNS OTP delivery (2-4s), and AES-256 GCM encryption.",
+      stats: "2-4s OTP Delivery | TC01-TC05 Passed",
+      tech: ["Ugam Campus Product", "Next.js 15", "Prisma ORM", "Supabase PostgreSQL", "AWS SNS", "AES-256 GCM", "Expo Mobile"],
+      color: "from-amber-900/40",
+      demoLink: "https://github.com/aniket3077/authosec--backend-",
+      codeLink: "https://github.com/aniket3077/authosec--backend-",
+      publishedAt: "2024-12-01",
+      content: []
+    }
+  }
 ]
