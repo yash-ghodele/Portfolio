@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowLeft, Clock, Calendar } from "lucide-react"
+import { ArrowLeft, Clock, Calendar, ShieldCheck, Truck, Cpu, AlertTriangle, WifiOff, Activity, CheckCircle2 } from "lucide-react"
 import Footer from "@/components/footer"
 import Image from "next/image"
 
@@ -49,35 +49,34 @@ export default function FuelShieldCaseStudy() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight mb-5">
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight mb-5 text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-emerald-400">
               Building FuelShield: Lessons from 100+ Hours in Truck Yards
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed border-l-2 border-primary/40 pl-4">
-              Real-world IoT is 10% code and 90% dealing with vibration, diesel fumes, lost GSM signals, and drivers who try to bypass your sensors.
+            <p className="text-lg text-muted-foreground leading-relaxed border-l-2 border-emerald-500/40 pl-4 italic">
+              Real-world IoT is 10% code and 90% dealing with vibration, diesel fumes, power fluctuations, lost GSM signals, and humans determined to bypass your system.
             </p>
 
             <div className="mt-6 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-xs font-black text-primary">
+              <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-xs font-black text-emerald-400">
                 YG
               </div>
-              <span className="text-sm text-white font-medium">Yash Ghodele</span>
-              <span className="text-muted-foreground/40">·</span>
-              <span className="text-sm text-muted-foreground">Founder, Ugam Digital Studio</span>
+              <div>
+                <span className="text-sm font-semibold text-white block">Yash Ghodele</span>
+                <span className="text-xs text-muted-foreground">Founder, Ugam Digital Studio</span>
+              </div>
             </div>
-
-            <div className="mt-8 h-px bg-white/5" />
           </motion.header>
 
-          {/* Hero Image */}
+          {/* Hero Cover Image */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mb-12 border border-white/10 shadow-2xl"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-14 rounded-2xl overflow-hidden border border-emerald-500/20 shadow-2xl relative aspect-[16/9]"
           >
             <Image
               src="/images/journal/fuelshield.jpg"
-              alt="Building FuelShield"
+              alt="Building FuelShield — Truck Yard Hardware Deployment"
               fill
               className="object-cover object-center"
               priority
@@ -85,67 +84,169 @@ export default function FuelShieldCaseStudy() {
           </motion.div>
 
           {/* Article Body */}
-          <motion.article
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="space-y-6"
-          >
-            <p className="text-base text-muted-foreground leading-[1.85] font-light">
-              In India, fuel theft from commercial vehicles costs the industry ₹5,000+ crores annually. Fleet operators have almost no visibility into their tanks between stops. Existing solutions were either expensive enterprise systems (₹2L+ per vehicle) or unreliable aftermarket setups that drivers learned to game in weeks.
+          <article className="prose prose-invert prose-zinc max-w-none space-y-8 text-zinc-300 leading-relaxed text-base">
+
+            <p className="text-lg text-zinc-200">
+              Most IoT demos look impressive: a sensor reports data, a dashboard updates in real time, an alert appears when something goes wrong. Everything works perfectly.
             </p>
 
-            <h2 className="text-2xl font-bold text-white mt-10 mb-4 pt-6 border-t border-white/5">
-              The Architecture
-            </h2>
-            <p className="text-base text-muted-foreground leading-[1.85] font-light">
-              FuelShield uses an HC-SR04 ultrasonic sensor mounted inside the tank, connected to an ESP32 microcontroller. The ESP32 processes readings locally — no cloud round-trip for critical decisions — and publishes to an MQTT broker only when anomalies are detected or during periodic health checks.
+            <p className="text-emerald-300 font-semibold border-l-2 border-emerald-400 pl-4 py-1">
+              Then you deploy it in the real world. That&apos;s where the real engineering begins.
             </p>
 
-            {/* FuelShield Schematic */}
-            <div className="my-8 p-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 font-mono text-sm">
-              <p className="text-xs text-emerald-400/70 uppercase tracking-widest mb-4">
-                {`// FuelShield Architecture`}
+            {/* Section 1 */}
+            <div className="pt-6 border-t border-zinc-800 space-y-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <Truck className="w-5 h-5 text-emerald-400" />
+                The Problem Nobody Can See
+              </h2>
+              <p>
+                Fuel theft is one of the most expensive hidden costs in commercial transportation. Across India&apos;s logistics ecosystem, fleet operators lose thousands of crores annually to unauthorized fuel siphoning, inaccurate reporting, and undetected leakages.
               </p>
-              <div className="flex flex-wrap items-center gap-2 text-white/80">
-                {[
-                  { label: "HC-SR04", color: "text-emerald-400" },
-                  { label: "→", color: "text-muted-foreground/40" },
-                  { label: "ESP32", color: "text-emerald-400" },
-                  { label: "→ (local detection) →", color: "text-muted-foreground/40" },
-                  { label: "MQTT", color: "text-blue-400" },
-                  { label: "→", color: "text-muted-foreground/40" },
-                  { label: "Firebase", color: "text-amber-400" },
-                  { label: "→", color: "text-muted-foreground/40" },
-                  { label: "Next.js Dashboard", color: "text-purple-400" },
-                ].map((step, j) => (
-                  <span key={j} className={step.color}>{step.label}</span>
-                ))}
+              <p>
+                The challenge isn&apos;t discovering the theft afterward. The challenge is <strong>knowing it is happening while it is happening</strong>.
+              </p>
+              <p>
+                Existing solutions generally fall into two categories:
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-1">
+                  <div className="font-bold text-red-400">Enterprise Systems</div>
+                  <div className="text-zinc-400">Cost more than many operators can justify (&gt;&sharp;2L+ per vehicle).</div>
+                </div>
+                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-1">
+                  <div className="font-bold text-amber-400">Aftermarket Devices</div>
+                  <div className="text-zinc-400">Low cost, but drivers learn to bypass or game them within weeks.</div>
+                </div>
               </div>
-              <p className="text-xs text-muted-foreground mt-3">
-                Detection runs on-chip. Only alerts reach the cloud. Offline buffer: 50 readings.
+
+              <p>
+                We believed there was room for something different: an affordable, reliable system capable of operating in the unpredictable conditions of Indian transportation networks. That became <strong>FuelShield</strong>.
               </p>
             </div>
 
-            <h2 className="text-2xl font-bold text-white mt-10 mb-4 pt-6 border-t border-white/5">
-              The Detection Logic
-            </h2>
-            <p className="text-base text-muted-foreground leading-[1.85] font-light">
-              We couldn&apos;t just track fuel level drops — legitimate usage causes those too. Instead, we built a rate-of-change detector. A normal 200L diesel engine burns roughly 0.8-1.2L per hour at highway speeds. A siphon drain happens at 10-15L per minute. The delta is unmistakable.
-            </p>
-            <p className="text-base text-muted-foreground leading-[1.85] font-light">
-              The result: sub-1-second siphon detection, 99.2% accuracy across 200+ vehicle deployments, and a system cost of ₹3,800 per vehicle — 98% cheaper than enterprise alternatives.
-            </p>
+            {/* Section 2 - Architecture */}
+            <div className="pt-6 border-t border-zinc-800 space-y-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <Cpu className="w-5 h-5 text-emerald-400" />
+                The Architecture
+              </h2>
+              <p>
+                At its core, FuelShield is intentionally simple. An ultrasonic sensor measures fuel levels inside the tank, an ESP32 microcontroller processes readings locally, and only meaningful events are transmitted to the cloud.
+              </p>
 
-            <h2 className="text-2xl font-bold text-white mt-10 mb-4 pt-6 border-t border-white/5">
-              What Production Taught Us
-            </h2>
-            <p className="text-base text-muted-foreground leading-[1.85] font-light">
-              Lab environments lie. Tanks vibrate on rough roads. Power fluctuates. SIM cards lose signal in rural corridors. We built offline-first buffering (50 readings queued locally) and adaptive sampling (higher frequency when anomalies detected). Every edge case was a field trip.
-            </p>
-          </motion.article>
+              {/* Architecture Diagram Box */}
+              <div className="my-6 p-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 font-mono text-sm space-y-3">
+                <p className="text-xs text-emerald-400/70 uppercase tracking-widest">
+                  {`// FuelShield Data Pipeline`}
+                </p>
+                <div className="flex flex-wrap items-center gap-2 text-white/90">
+                  <span className="text-emerald-400 font-bold">Fuel Tank</span>
+                  <span className="text-zinc-600">&rarr;</span>
+                  <span className="text-emerald-400 font-bold">HC-SR04</span>
+                  <span className="text-zinc-600">&rarr;</span>
+                  <span className="text-emerald-400 font-bold">ESP32</span>
+                  <span className="text-zinc-600">&rarr;</span>
+                  <span className="text-blue-400 font-bold">MQTT</span>
+                  <span className="text-zinc-600">&rarr;</span>
+                  <span className="text-amber-400 font-bold">Firebase</span>
+                  <span className="text-zinc-600">&rarr;</span>
+                  <span className="text-purple-400 font-bold">Dashboard</span>
+                </div>
+                <p className="text-xs text-zinc-400 pt-2 border-t border-emerald-500/20">
+                  Anomaly detection happens directly on device. The cloud receives alerts; the edge device makes decisions.
+                </p>
+              </div>
+            </div>
 
-          {/* Footer nav */}
+            {/* Section 3 - Velocity Detection */}
+            <div className="pt-6 border-t border-zinc-800 space-y-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <Activity className="w-5 h-5 text-emerald-400" />
+                Detecting Theft Without Detecting Normal Usage
+              </h2>
+              <p>
+                The first assumption we made was wrong. Initially, it seemed obvious that fuel theft could be identified by monitoring sudden drops in fuel level.
+              </p>
+              <p>
+                The problem is that fuel levels naturally decrease during operation: engines consume fuel, vehicles climb hills, fuel sloshes inside tanks, and sensors experience noise.
+              </p>
+
+              <div className="p-5 rounded-xl bg-zinc-900/60 border border-emerald-500/30 text-sm space-y-2">
+                <h4 className="font-bold text-emerald-400">The Solution: Measuring Rate of Change (Velocity)</h4>
+                <p className="text-zinc-300 text-xs leading-relaxed">
+                  A commercial diesel engine consumes fuel gradually over time (0.8–1.2L/hr). A siphon theft event removes fuel dramatically faster (10–15L/min). Once we shifted our detection model from quantity to velocity, accuracy improved to <strong>99.2%</strong>.
+                </p>
+              </div>
+            </div>
+
+            {/* Section 4 - Field Lessons */}
+            <div className="pt-6 border-t border-zinc-800 space-y-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-emerald-400" />
+                What the Field Taught Us
+              </h2>
+              <p>
+                The biggest lessons did not come from coding. They came from truck yards.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-2">
+                  <div className="font-bold text-zinc-400 uppercase tracking-wider">In the Lab</div>
+                  <ul className="space-y-1 text-zinc-400 list-disc pl-4">
+                    <li>Sensors remain stable</li>
+                    <li>Power supplies are clean</li>
+                    <li>Networks stay connected</li>
+                    <li>Hardware stays mounted</li>
+                  </ul>
+                </div>
+                <div className="p-4 rounded-xl bg-zinc-900/40 border border-emerald-500/30 space-y-2">
+                  <div className="font-bold text-emerald-400 uppercase tracking-wider">On Actual Vehicles</div>
+                  <ul className="space-y-1 text-zinc-300 list-disc pl-4">
+                    <li>Tanks vibrate continuously</li>
+                    <li>Diesel fumes degrade seals</li>
+                    <li>Power fluctuates &amp; spikes</li>
+                    <li>GSM signals vanish for hours</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 5 - Offline First */}
+            <div className="pt-6 border-t border-zinc-800 space-y-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <WifiOff className="w-5 h-5 text-emerald-400" />
+                Designing for Failure &amp; Offline Resilience
+              </h2>
+              <p>
+                One of the most important lessons was that connectivity cannot be trusted. Assuming continuous internet access would have made the system unusable.
+              </p>
+              <p>
+                Instead, FuelShield was designed as an <strong>offline-first platform</strong>: readings, detection, and alerts are queued locally in a 50-event buffer and automatically sync when network returns.
+              </p>
+            </div>
+
+            {/* Section 6 - Conclusion */}
+            <div className="pt-6 border-t border-zinc-800 space-y-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                The Biggest Lesson
+              </h2>
+              <p>
+                After more than a hundred hours spent around trucks, workshops, fleet operators, and service technicians, one lesson stands out:
+              </p>
+              <p className="text-emerald-300 font-semibold">
+                Technology does not operate in controlled environments. It operates in reality. Reality is noisy, unpredictable, and breaks assumptions.
+              </p>
+              <div className="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-zinc-900 to-zinc-950 border border-emerald-500/40 text-center font-bold text-lg text-white">
+                &ldquo;The job of engineering is to build systems that continue working despite reality. That&apos;s the difference between a prototype and a product people trust in production.&rdquo;
+              </div>
+            </div>
+
+          </article>
+
+          {/* Footer Back link */}
           <div className="mt-16 pt-10 border-t border-white/5">
             <Link
               href="/journal"
@@ -156,7 +257,7 @@ export default function FuelShieldCaseStudy() {
               </div>
               <div>
                 <div className="text-xs uppercase tracking-widest text-muted-foreground/50 mb-0.5">Return to</div>
-                <div className="font-semibold">Engineering Journal</div>
+                <div className="font-semibold text-white">Engineering Journal</div>
               </div>
             </Link>
           </div>
