@@ -228,7 +228,12 @@ export default function RootLayout({
         url: "https://yash-ghodele.pages.dev",
         name: "Yash Ghodele Portfolio",
         description: "Official portfolio of Yash Ghodele — Full Stack Developer & IoT Engineer.",
-        publisher: { "@id": "https://yash-ghodele.pages.dev/#person" }
+        publisher: { "@id": "https://yash-ghodele.pages.dev/#person" },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: "https://yash-ghodele.pages.dev/journal?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
       },
       {
         "@type": "ItemList",
@@ -245,14 +250,16 @@ export default function RootLayout({
         "@type": "ItemList",
         name: "Engineering Journal & Articles",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Every Event Fails the Same Way", url: "https://yash-ghodele.pages.dev/journal/event-failure-patterns" },
-          { "@type": "ListItem", position: 2, name: "Analysis, Design, and Synthesis", url: "https://yash-ghodele.pages.dev/journal/analysis-design-synthesis" },
-          { "@type": "ListItem", position: 3, name: "From Hardware Circuits to Web Interfaces", url: "https://yash-ghodele.pages.dev/journal/hardware-to-web" },
-          { "@type": "ListItem", position: 4, name: "Building FuelShield Case Study", url: "https://yash-ghodele.pages.dev/journal/fuelshield-case-study" },
-          { "@type": "ListItem", position: 5, name: "Why Manufacturing Dashboards Fail", url: "https://yash-ghodele.pages.dev/journal/manufacturing-dashboards-fail" },
-          { "@type": "ListItem", position: 6, name: "Building Student Projects at Scale", url: "https://yash-ghodele.pages.dev/journal/student-projects-at-scale" },
-          { "@type": "ListItem", position: 7, name: "Why We Obsess Over 14ms Latency", url: "https://yash-ghodele.pages.dev/journal/obsessing-over-latency" },
-          { "@type": "ListItem", position: 8, name: "Aurangabad's Manufacturing Opportunity", url: "https://yash-ghodele.pages.dev/journal/aurangabad-manufacturing-opportunity" }
+          { "@type": "ListItem", position: 1, name: "We Are All Intellectual Omnivores", url: "https://yash-ghodele.pages.dev/journal/we-are-all-intellectual-omnivores" },
+          { "@type": "ListItem", position: 2, name: "From WhatsApp to Dashboard: The Architecture Behind CampusCast", url: "https://yash-ghodele.pages.dev/journal/whatsapp-pipelines-research" },
+          { "@type": "ListItem", position: 3, name: "Every Event Fails the Same Way", url: "https://yash-ghodele.pages.dev/journal/event-failure-patterns" },
+          { "@type": "ListItem", position: 4, name: "Analysis, Design, and Synthesis", url: "https://yash-ghodele.pages.dev/journal/analysis-design-synthesis" },
+          { "@type": "ListItem", position: 5, name: "The Day I Realized Hardware and Software Are the Same Problem", url: "https://yash-ghodele.pages.dev/journal/hardware-and-software-are-the-same-problem" },
+          { "@type": "ListItem", position: 6, name: "Building FuelShield Case Study", url: "https://yash-ghodele.pages.dev/journal/fuelshield-case-study" },
+          { "@type": "ListItem", position: 7, name: "Why Manufacturing Dashboards Fail", url: "https://yash-ghodele.pages.dev/journal/manufacturing-dashboards-fail" },
+          { "@type": "ListItem", position: 8, name: "Building Student Projects at Scale", url: "https://yash-ghodele.pages.dev/journal/student-projects-at-scale" },
+          { "@type": "ListItem", position: 9, name: "Why We Obsess Over 14ms Latency", url: "https://yash-ghodele.pages.dev/journal/obsessing-over-latency" },
+          { "@type": "ListItem", position: 10, name: "Aurangabad's Manufacturing Opportunity", url: "https://yash-ghodele.pages.dev/journal/aurangabad-manufacturing-opportunity" }
         ]
       },
       {

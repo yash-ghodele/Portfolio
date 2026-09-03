@@ -29,12 +29,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     })
 
-    const journalUrls = JOURNAL_POSTS.map((post) => ({
-        url: `${baseUrl}/journal/${post.slug}`,
-        lastModified: new Date(post.date),
-        changeFrequency: 'monthly' as const,
-        priority: 0.7,
-    }))
+    const journalUrls = JOURNAL_POSTS.map((post) => {
+        let date = new Date(post.date)
+        if (isNaN(date.getTime())) {
+            date = new Date()
+        }
+        return {
+            url: `${baseUrl}/journal/${post.slug}`,
+            lastModified: date,
+            changeFrequency: 'monthly' as const,
+            priority: 0.7,
+        }
+    })
 
     return [
         {
