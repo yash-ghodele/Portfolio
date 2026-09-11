@@ -69,15 +69,21 @@ export default function AuthoSec() {
                     </p>
 
                     {/* CTA Action Bar */}
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                    <div className="flex flex-wrap gap-4 justify-center pt-4">
+                        <Button asChild size="lg" className="bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-bold rounded-full h-14 px-9 text-base shadow-xl shadow-amber-900/40 transition-all hover:scale-105 cursor-pointer">
+                            <a href="https://authosec.netlify.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                                Live Deployment <ExternalLink className="w-4 h-4" />
+                            </a>
+                        </Button>
                         <Button 
                             size="lg" 
+                            variant="outline"
                             onClick={handleScrollToRepos}
-                            className="bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-bold rounded-full h-14 px-9 text-base shadow-xl shadow-amber-900/40 transition-all hover:scale-105 cursor-pointer"
+                            className="border-amber-500/40 text-amber-300 hover:bg-amber-500/10 hover:text-white rounded-full h-14 px-8 text-base backdrop-blur-md transition-all hover:scale-105 cursor-pointer"
                         >
                             Explore Repositories <Github className="w-4 h-4" />
                         </Button>
-                        <Button asChild variant="outline" size="lg" className="border-amber-500/30 text-zinc-200 hover:bg-amber-500/10 hover:text-white rounded-full h-14 px-9 text-base backdrop-blur-md">
+                        <Button asChild variant="outline" size="lg" className="border-amber-500/30 text-zinc-200 hover:bg-amber-500/10 hover:text-white rounded-full h-14 px-8 text-base backdrop-blur-md">
                             <Link href="/reports/authosec-academic-report.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-mono">
                                 <FileText className="w-4 h-4 text-amber-400" /> Academic Report (IEEE Standard)
                             </Link>
@@ -420,6 +426,10 @@ export default function AuthoSec() {
                                     ? 'scale-[1.02] bg-amber-500/[0.08] border-amber-500/50 shadow-lg shadow-amber-950/40' 
                                     : 'border-white/[0.08] bg-white/[0.02]'
                             }`}>
+                                <a href="https://authosec.netlify.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-amber-400 transition-colors text-amber-300 font-semibold border-b border-amber-500/20 pb-2 mb-1">
+                                    <ExternalLink className="w-4 h-4 text-amber-400 shrink-0" />
+                                    <span>Live Production Portal (authosec.netlify.app)</span>
+                                </a>
                                 <a href="https://github.com/aniket3077/authosec--backend-" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-amber-400 transition-colors">
                                     <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
                                     <span>authosec--backend- (Next.js 15, Prisma ORM, PostgreSQL)</span>

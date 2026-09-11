@@ -438,7 +438,7 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
       stats: "2-4s OTP Delivery | TC01-TC05 Passed",
       tech: ["Ugam Campus Product", "Next.js 15", "Prisma ORM", "Supabase PostgreSQL", "AWS SNS", "AES-256 GCM", "Expo Mobile"],
       color: "from-amber-900/40",
-      demoLink: "https://github.com/aniket3077/authosec--backend-",
+      demoLink: "https://authosec.netlify.app/",
       codeLink: "https://github.com/aniket3077/authosec--backend-",
       publishedAt: "2024-12-01",
       content: []
