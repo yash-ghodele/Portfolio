@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion"
 import { useState } from "react"
+import HeroNetwork from "@/components/ui/hero-network"
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -21,95 +22,100 @@ type StackCategory = {
 
 const STACK: StackCategory[] = [
   {
-    label: "Hardware / IoT",
+    label: "Hardware & IoT",
     icon: "⚡",
     color: "border-emerald-500/25 bg-emerald-500/5 hover:border-emerald-500/40",
-    description: "Embedded systems and connected devices",
+    description: "Embedded microcontrollers, telemetry & edge sensors",
     items: [
-      { name: "ESP32", note: "Primary MCU" },
-      { name: "Arduino" },
-      { name: "MQTT", note: "Edge messaging" },
-      { name: "LoRaWAN", note: "Long-range IoT" },
-      { name: "HC-SR04", note: "Ultrasonic ranging" },
-      { name: "DHT22", note: "Temp/humidity" },
-      { name: "SIM800L", note: "GSM for remote areas" },
-      { name: "I2C / SPI / UART" },
+      { name: "ESP32", note: "Primary Dual-Core MCU" },
+      { name: "ESP8266", note: "NodeMCU Wi-Fi Nodes" },
+      { name: "Arduino", note: "C/C++ Firmware" },
+      { name: "MQTT", note: "Edge Pub/Sub Broker" },
+      { name: "LoRaWAN", note: "Long-Range IoT Corridor" },
+      { name: "HC-SR04 & DHT22", note: "Ultrasonic & Temp/Humidity" },
+      { name: "SIM800L", note: "GSM/GPRS Cellular Module" },
+      { name: "L293D & SG90", note: "Motor IC & Servo Actuators" },
+      { name: "I2C / SPI / UART", note: "Bus Protocols" },
     ],
   },
   {
-    label: "Frontend / UI",
+    label: "Frontend & Mobile",
     icon: "🖥",
     color: "border-blue-500/25 bg-blue-500/5 hover:border-blue-500/40",
-    description: "Web and mobile interfaces",
+    description: "Web apps, dashboards & cross-platform mobile UI",
     items: [
-      { name: "Next.js 14", note: "App Router" },
-      { name: "React", note: "v18" },
-      { name: "TypeScript" },
-      { name: "Tailwind CSS" },
-      { name: "Framer Motion" },
-      { name: "Flutter", note: "Mobile" },
-      { name: "shadcn/ui" },
+      { name: "Next.js 14–16", note: "App Router & SSR" },
+      { name: "React 18/19", note: "Hooks & Server Components" },
+      { name: "TypeScript", note: "Strict Type Safety" },
+      { name: "Tailwind CSS v4", note: "Design System Styling" },
+      { name: "Framer Motion", note: "Micro-animations & Gestures" },
+      { name: "Flutter & Dart", note: "Cross-Platform Mobile" },
+      { name: "Expo / React Native", note: "Native Mobile Protocol" },
+      { name: "PWA & IndexedDB", note: "Offline-First Engine" },
+      { name: "shadcn/ui", note: "Accessible Component Primitives" },
     ],
   },
   {
-    label: "Backend / Cloud",
+    label: "Backend, Cloud & Data",
     icon: "☁",
     color: "border-purple-500/25 bg-purple-500/5 hover:border-purple-500/40",
-    description: "APIs, databases, and real-time systems",
+    description: "APIs, real-time sync, databases & edge hosting",
     items: [
-      { name: "Firebase", note: "Auth + Realtime DB" },
-      { name: "Supabase" },
-      { name: "FastAPI", note: "Python REST" },
-      { name: "Sanity CMS" },
-      { name: "Cloudflare Pages" },
-      { name: "Vercel" },
-      { name: "WebSockets", note: "Live dashboards" },
+      { name: "Firebase", note: "Auth & Realtime DB" },
+      { name: "Supabase", note: "Postgres & Row Level Security" },
+      { name: "FastAPI & Flask", note: "Async Python REST Microservices" },
+      { name: "Prisma ORM", note: "Type-Safe DB Client" },
+      { name: "Cloudflare Pages & R2", note: "Edge Hosting & Zero-Egress Storage" },
+      { name: "Vercel", note: "Production Next.js Platform" },
+      { name: "AWS SNS", note: "Transactional SMS & OTP Pipeline" },
+      { name: "WebSockets", note: "Sub-14ms Real-Time Streams" },
+      { name: "SQLite & Redis", note: "Edge & Memory Caching" },
     ],
   },
   {
-    label: "Languages",
+    label: "AI & Computer Vision",
+    icon: "🧠",
+    color: "border-cyan-500/25 bg-cyan-500/5 hover:border-cyan-500/40",
+    description: "Edge neural networks & generative LLM pipelines",
+    items: [
+      { name: "PyTorch", note: "Deep Learning Model Training" },
+      { name: "MobileNetV2", note: "Sub-2s Edge Vision Classifier" },
+      { name: "TensorFlow", note: "Model Quantization" },
+      { name: "Gemini 1.5 LLM", note: "Context Retrieval & Multi-Lingual RAG" },
+      { name: "Hybrid CNN + LLM", note: "Edge Vision + Cloud Intelligence" },
+      { name: "Recharts", note: "Analytical Data Visualizations" },
+    ],
+  },
+  {
+    label: "Languages & Enterprise Engines",
     icon: "{ }",
     color: "border-amber-500/25 bg-amber-500/5 hover:border-amber-500/40",
-    description: "What I code in daily",
+    description: "Languages & execution environments used across production",
     items: [
-      { name: "TypeScript", note: "Primary" },
-      { name: "Python", note: "IoT + data" },
-      { name: "C/C++", note: "Embedded" },
-      { name: "Dart", note: "Flutter" },
-      { name: "SQL" },
+      { name: "TypeScript", note: "Primary Full-Stack Language" },
+      { name: "Python", note: "AI Pipelines & Data Services" },
+      { name: "C / C++", note: "Embedded Firmware & Hardware Logic" },
+      { name: "Dart", note: "Flutter Mobile Apps" },
+      { name: "SQL", note: "Postgres & Query Optimization" },
+      { name: "VBA & WinAPI", note: "RAM Array Engine for 100k+ Records" },
     ],
   },
   {
-    label: "Tools & Dev",
+    label: "Tools & Dev Ecosystem",
     icon: "🔧",
     color: "border-slate-500/25 bg-slate-500/5 hover:border-slate-500/40",
-    description: "Workflow and toolchain",
+    description: "Toolchain, hardware flashing & design workflow",
     items: [
-      { name: "Git / GitHub" },
-      { name: "VS Code" },
-      { name: "Arduino IDE" },
-      { name: "Figma", note: "UI design" },
-      { name: "Postman" },
-      { name: "ESLint + Prettier" },
-    ],
-  },
-  {
-    label: "Philosophy",
-    icon: "🎯",
-    color: "border-rose-500/25 bg-rose-500/5 hover:border-rose-500/40",
-    description: "How I choose what to use",
-    items: [
-      { name: "Edge-first detection" },
-      { name: "Offline-first buffering" },
-      { name: "Signal > noise UI" },
-      { name: "Local context matters" },
-      { name: "Ship, then iterate" },
-      { name: "Hardware resilience" },
+      { name: "Git & GitHub", note: "Version Control & CI Workflows" },
+      { name: "VS Code", note: "Primary IDE Environment" },
+      { name: "Arduino IDE & PlatformIO", note: "MCU Firmware Development" },
+      { name: "Figma", note: "UI/UX Wireframes & Component Design" },
+      { name: "Postman", note: "API Endpoint Testing" },
+      { name: "ESLint & Prettier", note: "Automated Code Quality" },
+      { name: "Mammoth.js & KaTeX", note: "Document Conversion & Math Engine" },
     ],
   },
 ]
-
-import HeroNetwork from "@/components/ui/hero-network"
 
 export default function StackClient() {
   const [active, setActive] = useState<string | null>(null)
@@ -139,8 +145,8 @@ export default function StackClient() {
             <span className="text-primary">The Full Arsenal.</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Every tool I reach for has been stress-tested in production — dusty factory floors,
-            intermittent 4G, power fluctuations. This is what actually works.
+            Every tool I reach for has been stress-tested across real projects, truck yards, factory floors,
+            agricultural fields, and high-throughput pipelines. This is what actually works.
           </p>
         </motion.div>
 
@@ -203,19 +209,19 @@ export default function StackClient() {
           </p>
           <div className="flex flex-wrap items-center gap-2 text-sm">
             {[
-              { label: "Sensor", color: "text-emerald-400" },
+              { label: "Sensor / Camera", color: "text-emerald-400" },
               { label: "→", color: "text-muted-foreground/40" },
-              { label: "ESP32", color: "text-emerald-400" },
+              { label: "ESP32 / Edge ML", color: "text-emerald-400" },
               { label: "→", color: "text-muted-foreground/40" },
-              { label: "MQTT", color: "text-blue-400" },
+              { label: "MQTT / WebSockets", color: "text-blue-400" },
               { label: "→", color: "text-muted-foreground/40" },
-              { label: "Firebase / Supabase", color: "text-blue-400" },
+              { label: "FastAPI & Supabase", color: "text-blue-400" },
               { label: "→", color: "text-muted-foreground/40" },
-              { label: "WebSocket", color: "text-purple-400" },
+              { label: "Gemini 1.5 LLM", color: "text-cyan-400" },
               { label: "→", color: "text-muted-foreground/40" },
               { label: "Next.js Dashboard", color: "text-purple-400" },
               { label: "→", color: "text-muted-foreground/40" },
-              { label: "14ms", color: "text-primary font-bold" },
+              { label: "< 14ms Latency", color: "text-primary font-bold" },
             ].map((step, i) => (
               <span key={i} className={`font-mono ${step.color}`}>
                 {step.label}

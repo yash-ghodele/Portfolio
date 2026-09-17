@@ -18,8 +18,8 @@ export default function Navbar() {
 
     const navLinks = useMemo(() => [
         { name: "Home", href: "/" },
-        { name: "Work", href: "/work" },
         { name: "About", href: "/about" },
+        { name: "Work", href: "/work" },
         { name: "Stack", href: "/stack" },
         { name: "Events", href: "/events" },
         { name: "Journal", href: "/journal" },

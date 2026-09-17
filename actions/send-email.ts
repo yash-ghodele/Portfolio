@@ -134,11 +134,24 @@ export async function sendEmail(prevState: FormState, formData: FormData): Promi
             `
         })
 
-        if (ownerEmail.error) throw new Error(ownerEmail.error.message)
+        if (ownerEmail.error) {
+            console.error("Resend Owner Email Error:", ownerEmail.error)
+            const errText = ownerEmail.error.message || ""
+            if (errText.includes("verify a domain") || errText.includes("testing emails")) {
+                return {
+                    message: "Resend Testing Note: Emails can only be delivered to your registered Resend account email when using onboarding@resend.dev. To send to all visitors, verify a custom domain at resend.com/domains.",
+                    success: false
+                }
+            }
+            return {
+                message: `Failed to send email: ${ownerEmail.error.message}`,
+                success: false
+            }
+        }
 
         // 2. Send Confirmation to Visitor (Auto-Reply)
         try {
-            await resend.emails.send({
+            const autoReply = await resend.emails.send({
                 from: 'Yash Ghodele <onboarding@resend.dev>',
                 to: email,
                 subject: `Receipt: ${subject}`,
@@ -189,9 +202,11 @@ export async function sendEmail(prevState: FormState, formData: FormData): Promi
                 </html>
                 `
             })
+            if (autoReply.error) {
+                console.warn("Auto-reply warning (skipped due to Resend domain restriction):", autoReply.error.message)
+            }
         } catch (autoReplyError) {
-            console.warn("Auto-reply failed (likely due to unverified recipient):", autoReplyError)
-            // Function continues; we consider the submission successful if the OWNER received the mail.
+            console.warn("Auto-reply failed:", autoReplyError)
         }
 
         console.log("Email sent successfully via Resend")

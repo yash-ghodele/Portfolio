@@ -8,76 +8,157 @@ import Footer from '@/components/footer'
 const hue = 15
 
 const event = {
-    title: "SPIC MACAY's Virasat'24",
-    subtitle: "Bridging the Gap Between Legend & Learner",
+    title: "SPIC MACAY Virasat 2024",
+    subtitle: "Bansuri Concert — A Journey of Music, Dignity & Connection",
     image: "/images/events/spic-macay.jpg",
-    role: "Head of Hospitality",
-    date: "February 2024",
-    location: "Maharashtra, India",
+    role: "Head of Hospitality & Audience Management",
+    date: "14 – 15 February 2024",
+    location: "Chhatrapati Sambhajinagar & Sudamwadi, MH",
     verified: true,
-    attendees: "MIT College & Rural Schools",
-    summary: "Managed high-stakes hospitality and logistics for Pandit Ronu Majumdar, ensuring a seamless cultural experience across urban and rural venues.",
+    attendees: "MIT College & ZP High School Sudamwadi",
+    summary: "Coordinated high-stakes hospitality, logistics, and audience flow for Bansuri Maestro Pt. Ronu Majumdar, Pt. Ajeet Pathak, and Pt. Kalpesh Sachla across urban and rural concert venues.",
     metrics: [
-        "Bansuri Concert",
-        "Rural Outreach",
-        "Artist Hospitality"
+        "Bansuri Maestro Concert",
+        "Urban & Rural Outreach",
+        "Artist Hospitality & Escort"
     ],
     skills: [
         "Hospitality Management",
-        "Logistics",
         "Audience Management",
-        "Cultural Curation"
+        "Artist Escort & Transport",
+        "Cultural Curation",
+        "Event Coordination"
     ],
     content: [
         {
             type: "p" as const,
-            text: "As Cultural Secretary of the IETE Students' Forum, I spearheaded the organization of SPIC MACAY's Virasat'24 at our college — a landmark cultural event celebrating India's classical performing arts heritage. This was a significant endeavor in bringing a nationally recognized cultural initiative to our campus."
+            text: "Some experiences transcend the boundary of single events — they unfold as profound **journeys**. My association with **SPIC MACAY’s Virasat 2024 – Bansuri Concert** was precisely that: an immersive, grounding experience that continued to resonate long after the final note faded and the applause subsided."
         },
         {
             type: "h3" as const,
-            text: "The Mission"
+            text: "The Context"
         },
         {
             type: "p" as const,
-            text: "SPIC MACAY (Society for the Promotion of Indian Classical Music And Culture Amongst Youth) brings world-class Indian classical artists to educational institutions. Hosting Virasat'24 meant delivering a professional-grade cultural experience for hundreds of students."
+            text: "In February 2024, I had the privilege of serving as a **Coordinator and Core Team Member** for SPIC MACAY’s Virasat series. In this capacity, I took on the role of **Head of Hospitality and Audience Management** for a classical instrumental concert series hosted across two contrasting yet equally meaningful settings:"
+        },
+        {
+            type: "gridConfig" as const,
+            cols: 2,
+            items: [
+                {
+                    title: "14 February 2024",
+                    description: "MIT College of Engineering, Chhatrapati Sambhajinagar — An urban campus performance featuring full stage production, audience management, and an intimate session with our Music Department."
+                },
+                {
+                    title: "15 February 2024",
+                    description: "ZP High School, Sudamwadi (Raghunathpurwadi, Shivoor) — A rural school concert dedicated to bringing India's rich classical heritage directly to village students."
+                }
+            ]
+        },
+        {
+            type: "p" as const,
+            text: "We had the rare honor of hosting maestros who represent the pinnacle of Indian classical music:"
         },
         {
             type: "gridConfig" as const,
             cols: 3,
             items: [
-                { title: "Classical Music", description: "Live performances by acclaimed classical musicians, exposing students to centuries-old Indian musical traditions." },
-                { title: "Classical Dance", description: "Traditional dance forms presented by skilled artists, showcasing the elegance and discipline of Indian performing arts." },
-                { title: "Cultural Heritage", description: "Interactive sessions connecting students with India's rich artistic legacy and inspiring cultural appreciation." }
+                {
+                    title: "Pt. Ranendranath “Ronu” Majumdar",
+                    description: "Foremost disciple of Bharat Ratna Pt. Hariprasad Chaurasia; one of India’s most celebrated Bansuri maestros of the Maihar Gharana."
+                },
+                {
+                    title: "Pt. Ajeet Pathak",
+                    description: "Eminent tabla virtuoso and master exponent of the Banaras and Darbhanga gharanas."
+                },
+                {
+                    title: "Pt. Kalpesh Sachla",
+                    description: "Accomplished flautist and dedicated disciple of Pandit Ronu Majumdar."
+                }
             ]
         },
         {
             type: "p" as const,
-            text: "The event was designed to bridge the gap between students and India's classical heritage, creating an immersive cultural experience that went beyond passive observation."
+            text: "Being entrusted with their hospitality, well-being, and movement was both an incredible privilege and a responsibility I held with the utmost reverence."
         },
         {
             type: "h3" as const,
-            text: "Planning & Execution"
+            text: "Hospitality Beyond Logistics"
         },
         {
             type: "p" as const,
-            text: "Coordinating a SPIC MACAY event required meticulous planning across multiple domains — from securing artist bookings to venue acoustics, audience management, and institutional coordination."
-        },
-        {
-            type: "gridConfig" as const,
-            cols: 3,
-            items: [
-                { title: "Artist Coordination", description: "Managed communication with SPIC MACAY's national team and coordinated arrival logistics, rehearsals, and performance schedules for visiting artists." },
-                { title: "Venue & Production", description: "Oversaw stage design, sound engineering, lighting setup, and seating arrangements to create an authentic concert-hall experience." },
-                { title: "Outreach & Engagement", description: "Drove campus-wide promotions, managed registrations, and ensured strong student turnout through strategic social media and on-ground campaigns." }
-            ]
+            text: "My responsibilities commenced early on 14 February when I met the artists at **Ahmednagar**, accompanying them through every phase of their tour until dropping them off safely at **Nashik** after their final concert. Over these two intense days, my role extended far beyond transport and accommodation logistics — I was responsible for safeguarding their comfort, managing rigid schedules, ensuring seamless venue transitions, and curating an off-stage environment defined by tranquility and care."
         },
         {
             type: "blockquote" as const,
-            text: "Culture is the widening of the mind and of the spirit."
+            text: "SPIC MACAY imparts a fundamental philosophy: When you host art, you must first host the artist — with unyielding dignity."
+        },
+        {
+            type: "h3" as const,
+            text: "The MIT College Concert"
         },
         {
             type: "p" as const,
-            text: "The event drew enthusiastic participation and created a lasting impression, demonstrating that classical arts have a powerful place in modern educational settings. It strengthened the college's cultural identity and opened doors for more such initiatives."
+            text: "The opening concert at MIT College of Engineering executed with flawless precision. From backstage discipline to audience movement, every operational detail functioned seamlessly, creating a serene atmosphere where the music could take center stage."
+        },
+        {
+            type: "p" as const,
+            text: "Following the performance, the artists honored us with a visit to our **Music Department**. We spent invaluable time engaged in warm conversation, sharing reflections on music and life, and capturing memories I will cherish indefinitely. As I escorted them back to the hotel, I knew the next day would present a completely different landscape."
+        },
+        {
+            type: "h3" as const,
+            text: "Sudamwadi: Where Music Met the Village"
+        },
+        {
+            type: "p" as const,
+            text: "On 15 February, our journey led us to **Sudamwadi** — a tranquil village that bestowed a profound, unexpected depth upon the entire initiative. This rural school concert wasn't about stage grandeur or technical scale; it was about pure, unfiltered human connection."
+        },
+        {
+            type: "p" as const,
+            text: "Following their performance, we sat together for a humble lunch in the village, enveloped by nature, genuine warmth, and the heartfelt hospitality of the local residents. The serene environment and grounded spirit of the village served as a powerful reminder of why SPIC MACAY exists: to deliver timeless Indian classical art directly to the hearts of people everywhere."
+        },
+        {
+            type: "highlight" as const,
+            text: "It reminded me why SPIC MACAY exists in the first place: to take Indian classical art to places where it truly belongs — among the people."
+        },
+        {
+            type: "h3" as const,
+            text: "The Closing Moment & Gratitude"
+        },
+        {
+            type: "p" as const,
+            text: "Following the Sudamwadi performance, we set out for Nashik. As the tour drew to a close and I dropped the artists at their destination, we shared a quiet, wholesome moment. Collecting their autographs and taking a personal photo together felt less like concluding an assignment as a coordinator, and more like reflecting as a student who had witnessed mastery, humility, and tradition up close."
+        },
+        {
+            type: "p" as const,
+            text: "I extend my deepest gratitude to **Shon Patil Sir** and **Nitin Gaikwad Sir** for placing their trust in me and guiding me through this unforgettable journey."
+        },
+        {
+            type: "h3" as const,
+            text: "Final Reflection"
+        },
+        {
+            type: "gridConfig" as const,
+            cols: 3,
+            items: [
+                {
+                    title: "Respect in Hospitality",
+                    description: "Hospitality is far more than operational coordination — it is an active gesture of deep respect for the artist and their craft."
+                },
+                {
+                    title: "Service-Driven Leadership",
+                    description: "Leadership does not always require high visibility; it often thrives in quiet, calm, service-oriented dedication behind the scenes."
+                },
+                {
+                    title: "Trust & Tradition",
+                    description: "Certain responsibilities are defined by trust. Carrying forward a living cultural tradition, even briefly, leaves a lifelong imprint."
+                }
+            ]
+        },
+        {
+            type: "p" as const,
+            text: "I didn’t merely manage an event — I held space for a living tradition. The lessons in humility, discipline, and reverence will stay with me for a lifetime."
         }
     ]
 }
