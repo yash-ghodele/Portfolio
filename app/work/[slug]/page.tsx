@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const { title, description, image, tech } = project
 
     return {
-        title: `${title} | Yash Ghodele`,
+        title,
         description: description,
         keywords: tech ? [...tech, "Yash Ghodele", "Ugam Digital Studio", "IoT Engineering"] : ["Yash Ghodele", "Ugam Digital Studio"],
         authors: [{ name: "Yash Ghodele" }],

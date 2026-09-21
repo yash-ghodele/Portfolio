@@ -46,7 +46,7 @@ export async function generateMetadata({
   const post = JOURNAL_POSTS.find((p) => p.slug === slug)
   if (!post) return {}
   return {
-    title: `${post.title} — Yash Ghodele`,
+    title: post.title,
     description: post.excerpt,
     keywords: [
       post.title,

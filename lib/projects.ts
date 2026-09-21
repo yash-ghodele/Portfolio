@@ -455,8 +455,8 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
       stats: "11 Curated Instruments | 100% Client-Side State",
       tech: ["Ugam Campus Product", "HTML5", "CSS3 Glassmorphism", "JavaScript (ES6+)", "LocalStorage", "Bento Grid"],
       color: "from-pink-900/40",
-      demoLink: "https://github.com/riya-ghodele/Neon-Beats-A-Music-Store.git",
-      codeLink: "https://github.com/riya-ghodele/Neon-Beats-A-Music-Store.git",
+      demoLink: "https://neon-beats-a-music-store.vercel.app/",
+      codeLink: "https://github.com/riya-ghodele/Neon-Beats-A-Music-Store",
       publishedAt: "2025-01-01",
       content: []
     }

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { 
-  ArrowLeft, ExternalLink, Github, Cpu, ShieldCheck, Zap, ShoppingBag, 
+  ArrowLeft, ExternalLink, Github, Linkedin, Cpu, ShieldCheck, Zap, ShoppingBag, 
   Activity, RefreshCw, FileText, Music, Sparkles, GraduationCap, CheckCircle2, 
   Layers, Sliders, Smartphone, Check, Lock, Star
 } from 'lucide-react'
@@ -46,15 +46,25 @@ export default function NeonBeats() {
                         A modern dark-neon musical instruments web application featuring glassmorphism Bento Grid architecture, dynamic category filtering, interactive sliding drawer cart, and real-time state persistence built under the <span className="text-amber-400 font-medium">Ugam Campus Alchemist Protocol</span>.
                     </p>
 
-                    <div className="flex flex-wrap justify-center gap-4 pt-4">
-                        <Button asChild size="lg" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold rounded-2xl h-14 px-8 shadow-xl shadow-pink-900/30">
-                            <a href="https://github.com/riya-ghodele/Neon-Beats-A-Music-Store.git" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                                <Github className="w-5 h-5" /> View Source on GitHub
+                    <div className="flex flex-wrap justify-center gap-3 pt-4">
+                        <Button asChild size="lg" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold rounded-2xl h-12 px-6 shadow-xl shadow-pink-900/30">
+                            <a href="https://neon-beats-a-music-store.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                                <ExternalLink className="w-4 h-4" /> Live Demo
                             </a>
                         </Button>
-                        <Button asChild variant="outline" size="lg" className="border-pink-500/30 hover:bg-pink-500/10 text-pink-300 font-semibold rounded-2xl h-14 px-8 backdrop-blur-md">
+                        <Button asChild variant="outline" size="lg" className="border-white/10 hover:bg-white/5 text-white font-semibold rounded-2xl h-12 px-6 backdrop-blur-md">
+                            <a href="https://github.com/riya-ghodele/Neon-Beats-A-Music-Store" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                                <Github className="w-4 h-4" /> GitHub Repository
+                            </a>
+                        </Button>
+                        <Button asChild variant="outline" size="lg" className="border-blue-500/30 hover:bg-blue-500/10 text-blue-300 font-semibold rounded-2xl h-12 px-6 backdrop-blur-md">
+                            <a href="https://lnkd.in/p/dzvkANqU" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                                <Linkedin className="w-4 h-4 text-blue-400" /> LinkedIn Post
+                            </a>
+                        </Button>
+                        <Button asChild variant="outline" size="lg" className="border-pink-500/30 hover:bg-pink-500/10 text-pink-300 font-semibold rounded-2xl h-12 px-6 backdrop-blur-md">
                             <Link href="/reports/neon-beats.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-mono">
-                                <FileText className="w-5 h-5 text-pink-400" /> Read Project Report (PDF)
+                                <FileText className="w-4 h-4 text-pink-400" /> Report (PDF)
                             </Link>
                         </Button>
                     </div>
@@ -241,10 +251,15 @@ export default function NeonBeats() {
                             </div>
                         </div>
 
-                        <div className="pt-2 flex gap-3">
-                            <Button asChild className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-xl">
+                        <div className="pt-2 flex flex-col sm:flex-row gap-2">
+                            <Button asChild className="flex-1 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-xl">
+                                <a href="https://neon-beats-a-music-store.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                                    <ExternalLink className="w-4 h-4" /> Live Demo
+                                </a>
+                            </Button>
+                            <Button asChild variant="outline" className="flex-1 border-white/10 hover:bg-white/5 text-white font-semibold rounded-xl">
                                 <Link href="/reports/neon-beats.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                                    <FileText className="w-4 h-4" /> Download Report PDF
+                                    <FileText className="w-4 h-4 text-pink-400" /> Report PDF
                                 </Link>
                             </Button>
                         </div>
