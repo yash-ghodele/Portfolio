@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { 
-  ArrowLeft, ExternalLink, Github, Linkedin, Cpu, ShieldCheck, Zap, ShoppingBag, 
-  Activity, RefreshCw, FileText, Music, Sparkles, GraduationCap, CheckCircle2, 
-  Layers, Sliders, Smartphone, Check, Lock, Star
+import {
+    ArrowLeft, ExternalLink, Github, Linkedin, Cpu, ShieldCheck, Zap, ShoppingBag,
+    Activity, RefreshCw, FileText, Music, Sparkles, GraduationCap, CheckCircle2,
+    Layers, Sliders, Smartphone, Check, Lock, Star
 } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -86,9 +86,9 @@ export default function NeonBeats() {
                             </div>
                         </div>
                         <div className="relative aspect-video w-full rounded-b-2xl overflow-hidden bg-zinc-950">
-                            <Image 
-                                src="/images/projects/neon-beats.png" 
-                                alt="Neon Beats Music Store Interface" 
+                            <Image
+                                src="/images/projects/neon-beats.png"
+                                alt="Neon Beats Music Store Interface"
                                 fill
                                 className="object-cover object-top hover:scale-102 transition-transform duration-700"
                                 priority

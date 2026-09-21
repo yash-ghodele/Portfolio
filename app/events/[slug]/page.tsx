@@ -28,11 +28,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const event = await getEvent(slug)
     if (!event) return
 
-    const { title, subtitle, description, summary, image, skills } = event
+    const { title, subtitle, summary, image, skills } = event
 
     return {
         title,
-        description: subtitle || description,
+        description: subtitle || summary,
         keywords: skills ? [...skills, "Yash Ghodele", "Event Head", "Hackathon Organizer"] : ["Yash Ghodele", "Hackathon Organizer"],
         authors: [{ name: "Yash Ghodele" }],
         robots: {
