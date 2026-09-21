@@ -443,5 +443,22 @@ export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
       publishedAt: "2024-12-01",
       content: []
     }
+  },
+  {
+    slug: "neon-beats",
+    metadata: {
+      title: "Neon Beats - Musical Instrument Store",
+      subtitle: "Ugam Campus Product Project",
+      image: "/images/projects/neon-beats.png",
+      iconName: "Layout",
+      description: "High-fidelity e-commerce experience for musical instruments featuring dark neon aesthetics, glassmorphism bento grid, interactive sliding shopping cart, category filtering, and LocalStorage state persistence.",
+      stats: "11 Curated Instruments | 100% Client-Side State",
+      tech: ["Ugam Campus Product", "HTML5", "CSS3 Glassmorphism", "JavaScript (ES6+)", "LocalStorage", "Bento Grid"],
+      color: "from-pink-900/40",
+      demoLink: "https://github.com/riya-ghodele/Neon-Beats-A-Music-Store.git",
+      codeLink: "https://github.com/riya-ghodele/Neon-Beats-A-Music-Store.git",
+      publishedAt: "2025-01-01",
+      content: []
+    }
   }
 ]

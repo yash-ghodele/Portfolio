@@ -19,6 +19,7 @@ import SmartGarbage from "@/components/projects-templates/smart-garbage"
 import ESPCar from "@/components/projects-templates/esp-car"
 // import Backstage from "@/components/projects-templates/backstage"
 import AuthoSec from "@/components/projects-templates/authosec"
+import NeonBeats from "@/components/projects-templates/neon-beats"
 
 const templates: Record<string, React.ComponentType> = {
     "fuelshield": FuelShield,
@@ -32,7 +33,8 @@ const templates: Record<string, React.ComponentType> = {
     "smart-garbage": SmartGarbage,
     "esp-car": ESPCar,
     // "backstage": Backstage,
-    "authosec": AuthoSec
+    "authosec": AuthoSec,
+    "neon-beats": NeonBeats
 }
 
 const iconMap: Record<string, LucideIcon> = {

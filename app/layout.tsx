@@ -39,6 +39,8 @@ export const metadata: Metadata = {
   keywords: [
     "Yash Ghodele",
     "AuthoSec",
+    "Neon Beats",
+    "Music Store E-Commerce",
     "Dual-QR Protocol",
     "Fintech Security",
     "Ugam Campus",

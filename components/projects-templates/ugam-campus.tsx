@@ -127,7 +127,7 @@ export default function UgamCampus() {
                         </p>
                         <ul className="space-y-2 text-xs font-mono text-amber-200/80 pt-2">
                             <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-amber-400" /> 50+ Completed Engineering Projects</li>
-                            <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-amber-400" /> Flagships: AuthoSec, Smart Garbage, ESP Car</li>
+                            <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-amber-400" /> Flagships: AuthoSec, Neon Beats, Smart Garbage, ESP Car</li>
                             <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-amber-400" /> Complete Codebase + Report + Viva Coaching</li>
                         </ul>
                     </div>
@@ -157,18 +157,22 @@ export default function UgamCampus() {
                 {/* Shipped Product Portfolio Highlights */}
                 <div className="mt-12 p-8 rounded-3xl bg-amber-950/20 border border-amber-500/20 backdrop-blur-md space-y-4">
                     <h4 className="text-lg font-bold text-amber-300 uppercase tracking-wider font-mono">Flagship Ugam Campus Engineering Products:</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <Link href="/work/authosec" className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-amber-500/40 transition-all block">
                             <div className="text-white font-bold text-base mb-1">AuthoSec</div>
-                            <div className="text-xs text-zinc-400">Dual-QR Secure Payment &amp; Compliance Protocol</div>
+                            <div className="text-xs text-zinc-400">Dual-QR Secure Payment Protocol</div>
+                        </Link>
+                        <Link href="/work/neon-beats" className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-pink-500/40 transition-all block">
+                            <div className="text-white font-bold text-base mb-1 text-pink-300">Neon Beats</div>
+                            <div className="text-xs text-zinc-400">Musical Instrument Storefront</div>
                         </Link>
                         <Link href="/work/smart-garbage" className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-amber-500/40 transition-all block">
                             <div className="text-white font-bold text-base mb-1">Smart Garbage</div>
-                            <div className="text-xs text-zinc-400">Automated Wet &amp; Dry Waste Classification Bin</div>
+                            <div className="text-xs text-zinc-400">Automated Waste Classification Bin</div>
                         </Link>
                         <Link href="/work/esp-car" className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-amber-500/40 transition-all block">
                             <div className="text-white font-bold text-base mb-1">ESP Car</div>
-                            <div className="text-xs text-zinc-400">Wi-Fi Robotic Vehicle &amp; Blynk Remote Controls</div>
+                            <div className="text-xs text-zinc-400">Wi-Fi Robotic Vehicle &amp; Blynk Telemetry</div>
                         </Link>
                     </div>
                 </div>
