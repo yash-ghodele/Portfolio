@@ -1,29 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   typescript: {
     ignoreBuildErrors: true,
   },
   images: {
     unoptimized: true,
-  },
-  async redirects() {
-    return [
-      {
-        source: '/community',
-        destination: '/events',
-        permanent: true,
-      },
-      {
-        source: '/community/:slug',
-        destination: '/events/:slug',
-        permanent: true,
-      },
-      {
-        source: '/projects/:slug((?!.*\\.).*)',
-        destination: '/work/:slug',
-        permanent: true,
-      },
-    ]
   },
 }
 

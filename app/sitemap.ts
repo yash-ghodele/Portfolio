@@ -3,6 +3,7 @@ import { getProjects, getEvents } from '@/lib/fetch'
 import { JOURNAL_POSTS } from '@/lib/journal'
 import { ProjectMetadata, EventMetadata } from '@/lib/types'
 
+export const dynamic = 'force-static'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://yash-ghodele.pages.dev'

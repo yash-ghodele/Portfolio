@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/hooks/use-toast"
 import { Mail, MapPin, Phone, Github, Linkedin, Instagram, Send, Loader2 } from "lucide-react"
-import { sendEmail } from "@/actions/send-email"
 
 interface FormData {
   name: string
@@ -42,29 +41,39 @@ export default function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    const formDataObj = new FormData()
-    formDataObj.append("name", formData.name)
-    formDataObj.append("email", formData.email)
-    formDataObj.append("subject", formData.subject)
-    formDataObj.append("message", formData.message)
-
-    const result = await sendEmail({ message: "", success: false }, formDataObj)
-
-    if (result.success) {
-      toast({
-        title: "Message transmission successful",
-        description: result.message,
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
-      setFormData({ name: "", email: "", subject: "", message: "" })
-    } else {
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        toast({
+          title: "Message transmission successful",
+          description: result.message || "Thank you! I will get back to you soon.",
+        })
+        setFormData({ name: "", email: "", subject: "", message: "" })
+      } else {
+        toast({
+          title: "Transmission Error",
+          description: result.message || "Something went wrong. Please try again.",
+          variant: "destructive",
+        })
+      }
+    } catch (error) {
       toast({
         title: "Transmission Error",
-        description: result.message || "Something went wrong.",
-        variant: "destructive"
+        description: "Could not send message. Please contact via email directly.",
+        variant: "destructive",
       })
+    } finally {
+      setIsSubmitting(false)
     }
-
-    setIsSubmitting(false)
   }
 
   const socialLinks = [
