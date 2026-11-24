@@ -2,6 +2,23 @@ import { ProjectMetadata } from "./types"
 
 export const STATIC_PROJECTS: { slug: string; metadata: ProjectMetadata }[] = [
   {
+    slug: "campuscast",
+    metadata: {
+      title: "CampusCast - WhatsApp Digital Notice Board OS",
+      subtitle: "Full Stack & Cloud Signage OS",
+      image: "/images/projects/campuscast-hero.jpg",
+      iconName: "Terminal",
+      description: "WhatsApp-driven campus communication OS synchronizing authorized faculty messages to zero-hardware Smart TV hallway kiosks in 1.25s mean end-to-end latency.",
+      stats: "1.25s E2E Latency | 6 Dept Kiosks | 20-Point Hardened",
+      tech: ["Next.js 14", "TypeScript", "Cloud Firestore", "WhatsApp Cloud API", "Twilio Webhook", "Tailwind CSS"],
+      color: "from-blue-900/40",
+      demoLink: "https://campus-cast-display.vercel.app/",
+      codeLink: "https://github.com/yash-ghodele/CampusCast",
+      publishedAt: "2026-10-29",
+      content: []
+    }
+  },
+  {
     slug: "fuelshield",
     metadata: {
       title: "FuelShield - IoT Fuel Theft Detection",

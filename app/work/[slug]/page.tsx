@@ -20,8 +20,10 @@ import ESPCar from "@/components/projects-templates/esp-car"
 // import Backstage from "@/components/projects-templates/backstage"
 import AuthoSec from "@/components/projects-templates/authosec"
 import NeonBeats from "@/components/projects-templates/neon-beats"
+import CampusCast from "@/components/projects-templates/campuscast"
 
 const templates: Record<string, React.ComponentType> = {
+    "campuscast": CampusCast,
     "fuelshield": FuelShield,
     "sanjivani": Sanjivani,
     "sanjivani-v2": SanjivaniV2,
