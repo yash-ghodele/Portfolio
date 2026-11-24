@@ -17,7 +17,8 @@ import HeroNetwork from "@/components/ui/hero-network"
 const TIMELINE = [
   {
     year: "2025 →",
-    title: "Founder — Ugam Digital Studio",
+    // title: "Founder — Ugam Digital Studio",
+    title: "Ugam Digital Studio",
     subtitle: "Aurangabad, MH",
     desc: "Building IoT fleet management, manufacturing dashboards, and engineering education at scale. 200+ vehicle deployments, 50+ engineering projects delivered.",
     icon: Briefcase,

@@ -90,7 +90,7 @@ export default function Hero() {
               >
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 backdrop-blur-sm bg-background/50 text-sm text-muted-foreground">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0" />
-                  Founder,{" "}
+                  {/* Founder,{" "} */}
                   <a
                     href="https://ugamdigitalstudio.tech"
                     target="_blank"
