@@ -19,7 +19,7 @@ const TIMELINE = [
     year: "2025 →",
     // title: "Founder — Ugam Digital Studio",
     title: "Ugam Digital Studio",
-    subtitle: "Aurangabad, MH",
+    subtitle: "Chh. Sambhajinagar, MH",
     desc: "Building IoT fleet management, manufacturing dashboards, and engineering education at scale. 200+ vehicle deployments, 50+ engineering projects delivered.",
     icon: Briefcase,
     highlight: true,
@@ -35,7 +35,7 @@ const TIMELINE = [
   {
     year: "2024",
     title: "Lead Organizer — InnoHack",
-    subtitle: "MIT Aurangabad",
+    subtitle: "MIT Chh. Sambhajinagar",
     desc: "Organized MIT's flagship hackathon — 200+ participants, 40+ projects across AI, IoT, and web tracks. Full logistics, mentorship coordination, and industry judging.",
     icon: Users,
     highlight: false,
@@ -114,7 +114,7 @@ export default function AboutClient() {
             The Hardware-to-Software Bridge.
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-            I&apos;m Yash Ghodele — an ECE engineer from MIT Aurangabad who builds full-stack products and IoT systems.
+            I&apos;m Yash Ghodele — an ECE engineer from MIT Chhatrapati Sambhajinagar who builds full-stack products and IoT systems.
             I founded{" "}
             <a href="https://ugamdigitalstudio.tech" target="_blank" rel="noopener noreferrer"
               className="text-primary hover:underline font-medium">
@@ -131,7 +131,7 @@ export default function AboutClient() {
           className="flex items-center gap-3 mb-16 p-4 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm w-fit"
         >
           <MapPin className="w-4 h-4 text-primary" />
-          <span className="text-sm text-white font-medium">Aurangabad, Maharashtra → Global delivery</span>
+          <span className="text-sm text-white font-medium">Chhatrapati Sambhajinagar, Maharashtra → Global delivery</span>
         </motion.div>
 
         {/* Timeline */}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Blogs | Yash Ghodele",
     description:
-      "Technical deep dives on IoT, manufacturing, latency engineering, and building in Aurangabad.",
+      "Technical deep dives on IoT, manufacturing, latency engineering, and building in Chhatrapati Sambhajinagar.",
     url: "https://yash-ghodele.pages.dev/blogs",
     siteName: "Yash Ghodele Portfolio",
     type: "website",

@@ -346,7 +346,7 @@ const ALL_JOURNAL_POSTS: JournalPost[] = [
     content: [
       {
         type: "p",
-        text: "When I started my B.Tech in ECE at MIT Aurangabad, I was drowning in circuit theory. BJTs, operational amplifiers, transmission lines — all fascinating, but divorced from reality. Nobody was showing me how circuits connected to real-world products.",
+        text: "When I started my B.Tech in ECE at MIT Chhatrapati Sambhajinagar, I was drowning in circuit theory. BJTs, operational amplifiers, transmission lines — all fascinating, but divorced from reality. Nobody was showing me how circuits connected to real-world products.",
       },
       {
         type: "p",

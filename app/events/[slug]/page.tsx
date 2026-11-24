@@ -90,7 +90,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                     "name": event.location || "Chhatrapati Sambhajinagar",
                     "address": {
                         "@type": "PostalAddress",
-                        "addressLocality": "Aurangabad",
+                        "addressLocality": "Chhatrapati Sambhajinagar",
                         "addressRegion": "Maharashtra",
                         "addressCountry": "IN"
                     }

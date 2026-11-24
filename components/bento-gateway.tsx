@@ -186,13 +186,13 @@ export default function BentoGateway() {
             <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
             <div>
               <p className="text-white font-semibold text-base leading-tight">
-                Aurangabad, MH
+                Chh. Sambhajinagar, MH
               </p>
               <p className="text-muted-foreground text-sm mt-0.5">→ Global delivery</p>
             </div>
           </div>
           <div className="mt-5 text-xs text-muted-foreground leading-relaxed">
-            Building digital infrastructure for Aurangabad&apos;s 500+ manufacturing units —
+            Building digital infrastructure for Chhatrapati Sambhajinagar&apos;s 500+ manufacturing units —
             offline-first, Marathi-aware, hardware-resilient.
           </div>
         </motion.div>

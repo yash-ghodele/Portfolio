@@ -68,7 +68,7 @@ export default function Footer() {
             <div className="flex flex-col gap-3 text-sm text-gray-400 w-full items-center md:items-start">
               <div className="flex items-center gap-2 hover:text-white transition-colors">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>Aurangabad, India</span>
+                <span>Chh. Sambhajinagar, India</span>
               </div>
               <a href="mailto:yashghodele.work@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors group">
                 <Mail className="w-4 h-4 text-primary group-hover:text-white transition-colors" />

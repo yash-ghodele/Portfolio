@@ -6,12 +6,12 @@ import AboutClient from "@/components/about-client"
 export const metadata: Metadata = {
   title: "About — Yash Ghodele",
   description:
-    "From ECE circuits to cloud systems. The hardware-to-software bridge behind CampusCast, FuelShield, and Sanjivani. Building IoT and full-stack solutions from Aurangabad for the world.",
+    "Electronics & Computer Engineering student at MIT College of Engineering, Chhatrapati Sambhajinagar. Hands-on experience in project planning, IoT architectures, and large-scale technical operations.",
   alternates: { canonical: "https://yash-ghodele.pages.dev/about" },
   openGraph: {
     title: "About | Yash Ghodele",
     description:
-      "Bridging the gap between ECE circuits and cloud systems. Creator of CampusCast and FuelShield. Full Stack Developer and IoT Systems Engineer.",
+      "Bridging ECE circuits, embedded systems, and modern web platforms. Engineering undergraduate and technical lead based in Chhatrapati Sambhajinagar.",
     url: "https://yash-ghodele.pages.dev/about",
     siteName: "Yash Ghodele Portfolio",
     images: [{ url: "/images/hero/yash-ghodele.jpg", width: 1200, height: 630, alt: "Yash Ghodele" }],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About | Yash Ghodele",
     description:
-      "The hardware-to-software bridge behind CampusCast and FuelShield. Full Stack Developer & IoT Systems Engineer.",
+      "The hardware-to-software bridge: ECE circuits, embedded telemetry, and production web applications from Chhatrapati Sambhajinagar.",
     images: ["/images/hero/yash-ghodele.jpg"],
   },
 }

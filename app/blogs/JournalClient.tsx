@@ -56,7 +56,7 @@ export default function JournalClient() {
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
             Technical writing on IoT architecture, manufacturing software, latency obsession,
-            and building in Aurangabad&apos;s industrial corridor.
+            and building in Chhatrapati Sambhajinagar&apos;s industrial corridor.
           </p>
         </motion.div>
 

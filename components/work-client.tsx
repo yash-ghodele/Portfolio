@@ -126,7 +126,7 @@ export default function WorkClient({ projects }: WorkClientProps) {
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
             IoT fleet systems, manufacturing dashboards, full-stack platforms, and embedded
-            engineering — shipped in production across Aurangabad&apos;s industrial ecosystem.
+            engineering — shipped in production across Chhatrapati Sambhajinagar&apos;s industrial ecosystem.
           </p>
         </motion.div>
 

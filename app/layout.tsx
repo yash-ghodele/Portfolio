@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Yash Ghodele is a Full Stack Developer & IoT Systems Engineer. Creator of CampusCast (WhatsApp Digital Signage OS), FuelShield (IoT Fuel Theft Detection), Sanjivani, and WireFlow. Specializing in Next.js, React, Python, Arduino, and embedded systems at MIT Aurangabad.",
+    "Yash Ghodele is an Electronics & Computer Engineering undergraduate at MIT College of Engineering, Chhatrapati Sambhajinagar. Specializing in IoT telemetry, embedded firmware, Next.js web platforms, and large-scale hackathon operations.",
 
   applicationName: "Yash Ghodele Portfolio",
   category: "Technology, Engineering, Portfolio",
@@ -105,7 +105,7 @@ export const metadata: Metadata = {
     siteName: "Yash Ghodele Portfolio",
     title: "Yash Ghodele | Full Stack Developer & IoT Engineer",
     description:
-      "Full Stack Developer & IoT Systems Engineer. Creator of CampusCast (WhatsApp digital signage OS), FuelShield (IoT fuel theft detection), Sanjivani, and WireFlow. Production web platforms and embedded hardware.",
+      "Electronics & Computer Engineering undergraduate at MIT Chh. Sambhajinagar. Building real-world IoT telemetry, full-stack platforms, and directing technical hackathons with 1,000+ participants.",
     images: [
       {
         url: "/images/hero/yash-ghodele.jpg",
@@ -120,7 +120,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yash Ghodele | Full Stack Developer & IoT Engineer",
     description:
-      "Creator of CampusCast, FuelShield, Sanjivani, and WireFlow. Full Stack Developer & IoT Systems Engineer building production platforms.",
+      "Electronics & Computer Engineering developer and project lead. Bridging embedded hardware and cloud platforms from Chhatrapati Sambhajinagar.",
     images: ["/images/hero/yash-ghodele.jpg"],
     creator: "@why_be_yashhh",
   },
@@ -159,7 +159,7 @@ export default function RootLayout({
         telephone: "+917666168561",
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Aurangabad",
+          addressLocality: "Chhatrapati Sambhajinagar",
           addressRegion: "Maharashtra",
           addressCountry: "IN",
         },
@@ -200,7 +200,7 @@ export default function RootLayout({
         ],
         alumniOf: {
           "@type": "EducationalOrganization",
-          name: "MIT College of Engineering, Aurangabad",
+          name: "MIT College of Engineering, Chhatrapati Sambhajinagar, Maharashtra",
         },
         knowsAbout: [
           "Full Stack Development",

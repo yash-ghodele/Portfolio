@@ -10,26 +10,33 @@ export const metadata: Metadata = {
     absolute: "Yash Ghodele | Portfolio",
   },
   description:
-    "Yash Ghodele is a Full Stack Developer and IoT Systems Engineer. Creator of CampusCast (WhatsApp Digital Signage OS), FuelShield (IoT Fuel Theft Detection), Sanjivani, and WireFlow — building scalable systems from Aurangabad.",
+    "Electronics & Computer Engineering undergraduate from Chhatrapati Sambhajinagar specializing in IoT telemetry, embedded firmware, and modern full-stack web platforms. Coordinated national hackathons with 1,000+ participants.",
 
   keywords: [
     "Yash Ghodele",
-    "CampusCast",
-    "WhatsApp Digital Notice Board",
-    "FuelShield",
-    "IoT Fuel Theft Detection",
-    "Sanjivani",
-    "WireFlow",
+    "Electronics & Computer Engineering",
     "Full Stack Developer",
     "IoT Systems Engineer",
-    "MIT Aurangabad",
-    "Portfolio",
+    "Project Management",
+    "Embedded Systems",
+    "ESP32",
+    "Next.js",
+    "React",
+    "Firebase",
+    "MQTT",
+    "CampusCast",
+    "FuelShield",
+    "MIT College of Engineering",
+    "Chhatrapati Sambhajinagar",
+    "Chh. Sambhajinagar",
+    "InnoHack",
+    "BotBuddies",
   ],
 
   openGraph: {
-    title: "Yash Ghodele | Portfolio",
+    title: "Yash Ghodele | Full Stack Developer & IoT Engineer",
     description:
-      "Full Stack Developer & IoT Systems Engineer. Creator of CampusCast, FuelShield, Sanjivani, and WireFlow. Production web platforms and embedded hardware from MIT Aurangabad.",
+      "Electronics & Computer Engineering developer and project lead from Chhatrapati Sambhajinagar. Bridging hardware, IoT telemetry, and modern full-stack web applications.",
     url: "https://yash-ghodele.pages.dev",
     siteName: "Yash Ghodele Portfolio",
     images: [
@@ -47,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yash Ghodele | Portfolio",
     description:
-      "Creator of CampusCast, FuelShield, Sanjivani, and WireFlow. Full Stack Developer & IoT Systems Engineer building production platforms.",
+      "Electronics & Computer Engineering developer and project lead from Chhatrapati Sambhajinagar. Bridging hardware sensors and cloud platforms.",
     images: ["/images/hero/yash-ghodele.jpg"],
     creator: "@why_be_yashhh",
   },

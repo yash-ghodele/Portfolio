@@ -6,12 +6,12 @@ import { getProjects } from "@/lib/fetch"
 export const metadata: Metadata = {
   title: "Work — Yash Ghodele",
   description:
-    "Explore engineering projects by Yash Ghodele: CampusCast (WhatsApp Digital Signage OS), FuelShield (IoT Fuel Theft Detection), Sanjivani, WireFlow, and production-grade embedded systems.",
+    "Technical portfolio of Yash Ghodele: Production IoT telemetry, embedded firmware, automated campus communications, and full-stack web platforms built from Chhatrapati Sambhajinagar.",
   alternates: { canonical: "https://yash-ghodele.pages.dev/work" },
   openGraph: {
     title: "Work | Yash Ghodele",
     description:
-      "Engineering real-world systems: CampusCast WhatsApp digital signage, FuelShield IoT fuel monitoring, Sanjivani AI agri-tech, and WireFlow industrial dashboards.",
+      "Engineering real-world systems: WhatsApp-driven digital signage, ultrasonic fuel telemetry, AI plant disease diagnostics, and industrial dashboards.",
     url: "https://yash-ghodele.pages.dev/work",
     siteName: "Yash Ghodele Portfolio",
     images: [{ url: "/images/hero/yash-ghodele.jpg", width: 1200, height: 630, alt: "Portfolio Work" }],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Work | Yash Ghodele",
     description:
-      "CampusCast, FuelShield, Sanjivani, WireFlow, and production IoT platforms built by Yash Ghodele.",
+      "Real-world IoT systems, embedded telemetry, and production web architectures built by Yash Ghodele.",
     images: ["/images/hero/yash-ghodele.jpg"],
   },
 }
