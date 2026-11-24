@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence, Variants } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
@@ -47,6 +47,54 @@ const fadeUp: Variants = {
     y: 0,
     transition: { duration: 0.4, delay: i * 0.07, ease: "easeOut" },
   }),
+}
+
+const CAMPUSCAST_CARD_IMAGES = [
+  "/images/projects/campuscast-hero.jpg",
+  "/images/projects/campuscast/02_admin_dashboard.png",
+  "/images/projects/campuscast/01_whatsapp_notice_submission.png",
+  "/images/projects/campuscast/04_department_wise_notice_display.png",
+  "/images/projects/campuscast/03_digital_notice_board_on_screen.png",
+  "/images/projects/campuscast/05_notice_management_interface.png",
+]
+
+function CampusCastRotatingImage({ title }: { title: string }) {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % CAMPUSCAST_CARD_IMAGES.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <>
+      {CAMPUSCAST_CARD_IMAGES.map((src, idx) => (
+        <Image
+          key={src}
+          src={src}
+          alt={title}
+          fill
+          className={`object-cover group-hover:scale-105 transition-all duration-700 ${
+            idx === index ? "opacity-100" : "opacity-0"
+          }`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          loading={idx === 0 ? "eager" : "lazy"}
+        />
+      ))}
+      <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 px-2 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/10">
+        {CAMPUSCAST_CARD_IMAGES.map((_, idx) => (
+          <span
+            key={idx}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              idx === index ? "w-3 bg-primary" : "w-1.5 bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+    </>
+  )
 }
 
 export default function WorkClient({ projects }: WorkClientProps) {
@@ -135,13 +183,18 @@ export default function WorkClient({ projects }: WorkClientProps) {
                           project.metadata.color || "from-primary/30 to-purple-800/30"
                         } opacity-30 z-10`}
                       />
-                      <Image
-                        src={project.metadata.image || "/placeholder.jpg"}
-                        alt={project.metadata.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                      />
+                      {project.slug === "campuscast" ? (
+                        <CampusCastRotatingImage title={project.metadata.title} />
+                      ) : (
+                        <Image
+                          src={project.metadata.image || "/placeholder.jpg"}
+                          alt={project.metadata.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                          loading={i < 3 ? "eager" : "lazy"}
+                        />
+                      )}
                       {/* Top-right icon */}
                       <div className="absolute top-4 left-4 z-20 p-2.5 rounded-xl bg-black/50 backdrop-blur-md border border-white/10">
                         <Icon className="w-4 h-4 text-white" />
