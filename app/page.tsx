@@ -10,12 +10,26 @@ export const metadata: Metadata = {
     absolute: "Yash Ghodele | Portfolio",
   },
   description:
-    "Yash Ghodele is a Full Stack Developer and IoT Systems Engineer. Building real-world web platforms, embedded systems, and scalable student-led tech products from Aurangabad.",
+    "Yash Ghodele is a Full Stack Developer and IoT Systems Engineer. Creator of CampusCast (WhatsApp Digital Signage OS), FuelShield (IoT Fuel Theft Detection), Sanjivani, and WireFlow — building scalable systems from Aurangabad.",
+
+  keywords: [
+    "Yash Ghodele",
+    "CampusCast",
+    "WhatsApp Digital Notice Board",
+    "FuelShield",
+    "IoT Fuel Theft Detection",
+    "Sanjivani",
+    "WireFlow",
+    "Full Stack Developer",
+    "IoT Systems Engineer",
+    "MIT Aurangabad",
+    "Portfolio",
+  ],
 
   openGraph: {
     title: "Yash Ghodele | Portfolio",
     description:
-      "Building production-grade web apps, IoT systems, and real-world student tech platforms. Full Stack Developer & IoT Engineer from MIT Aurangabad.",
+      "Full Stack Developer & IoT Systems Engineer. Creator of CampusCast, FuelShield, Sanjivani, and WireFlow. Production web platforms and embedded hardware from MIT Aurangabad.",
     url: "https://yash-ghodele.pages.dev",
     siteName: "Yash Ghodele Portfolio",
     images: [
@@ -33,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yash Ghodele | Portfolio",
     description:
-      "Full Stack Developer & IoT Engineer building real-world systems, web platforms, and embedded products.",
+      "Creator of CampusCast, FuelShield, Sanjivani, and WireFlow. Full Stack Developer & IoT Systems Engineer building production platforms.",
     images: ["/images/hero/yash-ghodele.jpg"],
     creator: "@why_be_yashhh",
   },

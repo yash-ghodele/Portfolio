@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Yash Ghodele is a Full Stack Developer & IoT Engineer specializing in React, Next.js, Python, Arduino, and Embedded Systems. B.Tech ECE student at MIT College of Engineering, Aurangabad. Executive Head at BotBuddies, organizing hackathons with 200+ participants.",
+    "Yash Ghodele is a Full Stack Developer & IoT Systems Engineer. Creator of CampusCast (WhatsApp Digital Signage OS), FuelShield (IoT Fuel Theft Detection), Sanjivani, and WireFlow. Specializing in Next.js, React, Python, Arduino, and embedded systems at MIT Aurangabad.",
 
   applicationName: "Yash Ghodele Portfolio",
   category: "Technology, Engineering, Portfolio",
@@ -105,7 +105,7 @@ export const metadata: Metadata = {
     siteName: "Yash Ghodele Portfolio",
     title: "Yash Ghodele | Full Stack Developer & IoT Engineer",
     description:
-      "Full Stack Developer & IoT Engineer building real-world systems, scalable web applications, and innovative IoT platforms. Organizing hackathons with 200+ participants.",
+      "Full Stack Developer & IoT Systems Engineer. Creator of CampusCast (WhatsApp digital signage OS), FuelShield (IoT fuel theft detection), Sanjivani, and WireFlow. Production web platforms and embedded hardware.",
     images: [
       {
         url: "/images/hero/yash-ghodele.jpg",
@@ -120,7 +120,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yash Ghodele | Full Stack Developer & IoT Engineer",
     description:
-      "Building real-world systems with Next.js, React, IoT, and Embedded Engineering. Organizing hackathons with 200+ participants.",
+      "Creator of CampusCast, FuelShield, Sanjivani, and WireFlow. Full Stack Developer & IoT Systems Engineer building production platforms.",
     images: ["/images/hero/yash-ghodele.jpg"],
     creator: "@why_be_yashhh",
   },
