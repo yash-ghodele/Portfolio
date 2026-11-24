@@ -2,3 +2,5 @@
 /community /events 301
 /community/* /events/:splat 301
 /projects/* /work/:splat 301
+/journal /blogs 301
+/journal/* /blogs/:splat 301

@@ -47,7 +47,7 @@ export default function JournalClient() {
         >
           <div className="flex items-center gap-3 mb-6">
             <span className="text-xs font-mono tracking-[0.25em] uppercase text-muted-foreground">
-              {"// Journal"}
+              {"// Blogs"}
             </span>
             <div className="h-px w-16 bg-white/10" />
           </div>
@@ -101,7 +101,7 @@ export default function JournalClient() {
                 variants={fadeUp}
               >
                 <Link
-                  href={`/journal/${post.slug}`}
+                  href={`/blogs/${post.slug}`}
                   className="group flex flex-col md:flex-row md:items-center gap-6 p-6 rounded-2xl border border-white/5 bg-white/[0.02]
                              hover:border-primary/25 hover:bg-primary/[0.03] transition-all duration-300 overflow-hidden"
                 >

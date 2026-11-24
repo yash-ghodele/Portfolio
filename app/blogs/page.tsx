@@ -3,15 +3,15 @@ import Footer from "@/components/footer"
 import JournalClient from "./JournalClient"
 
 export const metadata: Metadata = {
-  title: "Journal — Yash Ghodele",
+  title: "Blogs — Yash Ghodele",
   description:
     "Technical deep dives on IoT architecture, manufacturing dashboards, real-time latency engineering, and building in regional India.",
-  alternates: { canonical: "https://yash-ghodele.pages.dev/journal" },
+  alternates: { canonical: "https://yash-ghodele.pages.dev/blogs" },
   openGraph: {
-    title: "Journal | Yash Ghodele",
+    title: "Blogs | Yash Ghodele",
     description:
       "Technical deep dives on IoT, manufacturing, latency engineering, and building in Aurangabad.",
-    url: "https://yash-ghodele.pages.dev/journal",
+    url: "https://yash-ghodele.pages.dev/blogs",
     siteName: "Yash Ghodele Portfolio",
     type: "website",
   },

@@ -67,9 +67,9 @@ export default function BentoGateway() {
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2 mb-1">
                 <h2 className="text-xl font-bold text-white tracking-tight">Yash Ghodele</h2>
-                <span className="px-2 py-0.5 rounded-full text-xs border border-primary/30 bg-primary/10 text-primary">
+                {/* <span className="px-2 py-0.5 rounded-full text-xs border border-primary/30 bg-primary/10 text-primary">
                   Founder
-                </span>
+                </span> */}
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed mb-4 max-w-md">
                 ECE engineer turned full-stack product builder. I bridge the gap between hardware
@@ -99,7 +99,7 @@ export default function BentoGateway() {
         </motion.div>
 
 
-        {/* ── Cell 3: Latest Journal ── */}
+        {/* ── Cell 3: Latest Blog ── */}
         <motion.div
           custom={2}
           initial="hidden"
@@ -111,14 +111,14 @@ export default function BentoGateway() {
         >
           <div className="flex items-center justify-between mb-4">
             <p className="text-xs font-mono tracking-widest text-muted-foreground uppercase">
-              Latest Journal
+              Latest Blog
             </p>
             <span className="px-2 py-0.5 rounded-full text-xs border border-primary/20 bg-primary/5 text-primary/80">
               {latestPost.category}
             </span>
           </div>
 
-          <Link href={`/journal/${latestPost.slug}`} className="block group/link">
+          <Link href={`/blogs/${latestPost.slug}`} className="block group/link">
             <h3 className="text-base font-semibold text-white leading-snug mb-2 group-hover/link:text-primary transition-colors duration-200 line-clamp-3">
               {latestPost.title}
             </h3>

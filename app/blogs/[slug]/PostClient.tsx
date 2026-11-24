@@ -27,11 +27,11 @@ export default function PostClient({ post }: { post: JournalPost }) {
           className="mb-10"
         >
           <Link
-            href="/journal"
+            href="/blogs"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
-            Back to Journal
+            Back to Blogs
           </Link>
         </motion.div>
 
@@ -68,8 +68,8 @@ export default function PostClient({ post }: { post: JournalPost }) {
               YG
             </div>
             <span className="text-sm text-white font-medium">{post.author}</span>
-            <span className="text-muted-foreground/40">·</span>
-            <span className="text-sm text-muted-foreground">Founder, Ugam Digital Studio</span>
+            {/* <span className="text-muted-foreground/40">·</span>
+            <span className="text-sm text-muted-foreground">Founder, Ugam Digital Studio</span> */}
           </div>
 
           <div className="mt-8 h-px bg-white/5" />
@@ -215,7 +215,7 @@ export default function PostClient({ post }: { post: JournalPost }) {
         {/* Footer nav */}
         <div className="mt-16 pt-10 border-t border-white/5">
           <Link
-            href="/journal"
+            href="/blogs"
             className="group inline-flex items-center gap-3 text-muted-foreground hover:text-white transition-colors duration-200"
           >
             <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-primary/30 group-hover:bg-primary/5 transition-all duration-300">
@@ -223,7 +223,7 @@ export default function PostClient({ post }: { post: JournalPost }) {
             </div>
             <div>
               <div className="text-xs uppercase tracking-widest text-muted-foreground/50 mb-0.5">Return to</div>
-              <div className="font-semibold">Engineering Journal</div>
+              <div className="font-semibold">Engineering Blogs</div>
             </div>
           </Link>
         </div>

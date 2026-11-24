@@ -36,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             date = new Date()
         }
         return {
-            url: `${baseUrl}/journal/${post.slug}`,
+            url: `${baseUrl}/blogs/${post.slug}`,
             lastModified: date,
             changeFrequency: 'monthly' as const,
             priority: 0.7,
@@ -54,7 +54,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${baseUrl}/work`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
         { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
         { url: `${baseUrl}/stack`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-        { url: `${baseUrl}/journal`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+        { url: `${baseUrl}/blogs`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
         { url: `${baseUrl}/events`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
         // Dynamic Content
         ...projectUrls,

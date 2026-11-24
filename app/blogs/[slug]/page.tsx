@@ -8,6 +8,7 @@ import React from "react"
 // Import custom templates — one file per post slug
 import EventFailurePatterns from "@/components/blog-templates/event-failure-patterns"
 import WhatsappPipelinesResearch from "@/components/blog-templates/whatsapp-pipelines-research"
+import ShippingCampusCastInProduction from "@/components/blog-templates/shipping-campuscast-in-production"
 import WeAreIntellectualOmnivores from "@/components/blog-templates/we-are-intellectual-omnivores"
 import AnalysisDesignSynthesis from "@/components/blog-templates/analysis-design-synthesis"
 import HardwareAndSoftwareSameProblem from "@/components/blog-templates/hardware-and-software-are-the-same-problem"
@@ -18,6 +19,7 @@ import ObsessingOverLatency from "@/components/blog-templates/obsessing-over-lat
 import AurangabadManufacturingOpportunity from "@/components/blog-templates/aurangabad-manufacturing-opportunity"
 
 const templates: Record<string, React.ComponentType> = {
+  "shipping-campuscast-in-production": ShippingCampusCastInProduction,
   "we-are-all-intellectual-omnivores": WeAreIntellectualOmnivores,
   "whatsapp-pipelines-research": WhatsappPipelinesResearch,
   "campuscast-whatsapp-architecture": WhatsappPipelinesResearch,
@@ -52,7 +54,7 @@ export async function generateMetadata({
       post.title,
       post.category,
       "Yash Ghodele",
-      "Ugam Digital Studio",
+      // "Ugam Digital Studio",
       "IoT Engineering",
       "Software Architecture",
       "Full Stack Development",
@@ -69,11 +71,11 @@ export async function generateMetadata({
         "max-snippet": -1,
       },
     },
-    alternates: { canonical: `https://yash-ghodele.pages.dev/journal/${post.slug}` },
+    alternates: { canonical: `https://yash-ghodele.pages.dev/blogs/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://yash-ghodele.pages.dev/journal/${post.slug}`,
+      url: `https://yash-ghodele.pages.dev/blogs/${post.slug}`,
       siteName: "Yash Ghodele Portfolio",
       images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
       type: "article",
@@ -105,14 +107,14 @@ export default async function JournalPostPage({ params }: { params: Promise<{ sl
     "@graph": [
       {
         "@type": isTech ? ["TechArticle", "BlogPosting"] : "BlogPosting",
-        "@id": `https://yash-ghodele.pages.dev/journal/${post.slug}#article`,
+        "@id": `https://yash-ghodele.pages.dev/blogs/${post.slug}#article`,
         "headline": post.title,
         "description": post.excerpt,
         "image": `https://yash-ghodele.pages.dev${post.image}`,
         "datePublished": post.date,
         "dateModified": post.date,
         "articleSection": post.category,
-        "keywords": [post.category, post.title, "Yash Ghodele", "Ugam Digital Studio"],
+        "keywords": [post.category, post.title, "Yash Ghodele" /*, "Ugam Digital Studio" */],
         "author": {
           "@type": "Person",
           "name": post.author,
@@ -127,14 +129,14 @@ export default async function JournalPostPage({ params }: { params: Promise<{ sl
           "@type": "WebSite",
           "@id": "https://yash-ghodele.pages.dev/#website"
         },
-        "mainEntityOfPage": `https://yash-ghodele.pages.dev/journal/${post.slug}`
+        "mainEntityOfPage": `https://yash-ghodele.pages.dev/blogs/${post.slug}`
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yash-ghodele.pages.dev" },
-          { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://yash-ghodele.pages.dev/journal" },
-          { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://yash-ghodele.pages.dev/journal/${post.slug}` }
+          { "@type": "ListItem", "position": 2, "name": "Blogs", "item": "https://yash-ghodele.pages.dev/blogs" },
+          { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://yash-ghodele.pages.dev/blogs/${post.slug}` }
         ]
       }
     ]
