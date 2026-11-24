@@ -154,7 +154,7 @@ export default function RootLayout({
         url: "https://yash-ghodele.pages.dev",
         image: "https://yash-ghodele.pages.dev/images/hero/yash-ghodele.jpg",
         description:
-          "Full Stack Developer & IoT Engineer building scalable web platforms and real-world embedded systems. Founder of Ugam Digital Studio.",
+          "Full Stack Developer & IoT Engineer building scalable web platforms and real-world embedded systems.",
         email: "yashghodele.work@gmail.com",
         telephone: "+917666168561",
         address: {
@@ -168,10 +168,10 @@ export default function RootLayout({
           "https://github.com/yash-ghodele",
           "https://instagram.com/why_be_yashhh",
         ],
-        jobTitle: "Founder at Ugam Digital Studio & Full Stack Developer",
+        jobTitle: "Full Stack Developer & IoT Systems Engineer",
         hasOccupation: {
           "@type": "Occupation",
-          name: "Founder & IoT Engineer",
+          name: "Full Stack Developer & IoT Systems Engineer",
           occupationLocation: {
             "@type": "Country",
             name: "India",

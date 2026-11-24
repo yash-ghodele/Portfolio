@@ -6,7 +6,7 @@ import { getProjects } from "@/lib/fetch"
 export const metadata: Metadata = {
   title: "Work — Yash Ghodele",
   description:
-    "IoT fleet systems, industrial dashboards, full-stack apps, and engineering projects by Yash Ghodele — Founder of Ugam Digital Studio.",
+    "IoT fleet systems, industrial dashboards, full-stack apps, and engineering projects by Yash Ghodele — Full Stack Developer & IoT Systems Engineer.",
   alternates: { canonical: "https://yash-ghodele.pages.dev/work" },
   openGraph: {
     title: "Work | Yash Ghodele",

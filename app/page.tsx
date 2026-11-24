@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     absolute: "Yash Ghodele | Portfolio",
   },
   description:
-    "Yash Ghodele is a Full Stack Developer, IoT Engineer, and Founder of Ugam Digital Studio. Building real-world web platforms, embedded systems, and scalable student-led tech products from Aurangabad.",
+    "Yash Ghodele is a Full Stack Developer and IoT Systems Engineer. Building real-world web platforms, embedded systems, and scalable student-led tech products from Aurangabad.",
 
   openGraph: {
     title: "Yash Ghodele | Portfolio",

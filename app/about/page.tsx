@@ -6,12 +6,12 @@ import AboutClient from "@/components/about-client"
 export const metadata: Metadata = {
   title: "About — Yash Ghodele",
   description:
-    "From ECE circuits to cloud systems. The hardware-to-software bridge. Founder of Ugam Digital Studio, building IoT and full-stack solutions from Aurangabad for the world.",
+    "From ECE circuits to cloud systems. The hardware-to-software bridge building IoT and full-stack solutions from Aurangabad for the world.",
   alternates: { canonical: "https://yash-ghodele.pages.dev/about" },
   openGraph: {
     title: "About | Yash Ghodele",
     description:
-      "Bridging the gap between ECE circuits and cloud systems. Founder of Ugam Digital Studio and student leader building production-grade IoT and full-stack solutions.",
+      "Bridging the gap between ECE circuits and cloud systems. Full Stack Developer and IoT Engineer building production-grade solutions.",
     url: "https://yash-ghodele.pages.dev/about",
     siteName: "Yash Ghodele Portfolio",
     images: [{ url: "/images/hero/yash-ghodele.jpg", width: 1200, height: 630, alt: "Yash Ghodele" }],
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "About | Yash Ghodele",
-    description: "The hardware-to-software bridge. Founder of Ugam Digital Studio.",
+    description: "The hardware-to-software bridge. Full Stack Developer & IoT Systems Engineer.",
     images: ["/images/hero/yash-ghodele.jpg"],
   },
 }
