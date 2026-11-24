@@ -21,6 +21,23 @@ export interface JournalPost {
 
 const ALL_JOURNAL_POSTS: JournalPost[] = [
   {
+    slug: "shipping-campuscast-in-production",
+    title: "Shipping CampusCast: Zero-Hardware Smart TVs, Deterministic Parsing, and 1.25s Latency",
+    excerpt:
+      "What actually changed when we moved CampusCast from an architecture comparison on paper to a 6-department, 20-point security-hardened campus communication OS.",
+    date: "Oct 29, 2026",
+    author: "Yash Ghodele",
+    category: "Engineering",
+    readTime: "8 min",
+    image: "/images/journal/shipping-campuscast.jpg",
+    content: [
+      {
+        type: "p",
+        text: "What actually changed when we moved CampusCast from an architecture comparison on paper to a 6-department, 20-point security-hardened campus communication OS."
+      }
+    ]
+  },
+  {
     slug: "whatsapp-pipelines-research",
     title: "From WhatsApp to Dashboard: The Architecture Behind CampusCast",
     excerpt:

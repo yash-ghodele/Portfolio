@@ -38,6 +38,8 @@ export const metadata: Metadata = {
 
   keywords: [
     "Yash Ghodele",
+    "CampusCast",
+    "WhatsApp Digital Notice Board",
     "AuthoSec",
     "Neon Beats",
     "Music Store E-Commerce",
@@ -223,6 +225,7 @@ export default function RootLayout({
           "SPIC MACAY Virasat 2024 Coordinator"
         ],
         creator: [
+          { "@type": "SoftwareApplication", name: "CampusCast", url: "https://yash-ghodele.pages.dev/work/campuscast" },
           { "@type": "SoftwareApplication", name: "FuelShield", url: "https://yash-ghodele.pages.dev/work/fuelshield" },
           { "@type": "SoftwareApplication", name: "Sanjivani", url: "https://yash-ghodele.pages.dev/work/sanjivani" },
           { "@type": "SoftwareApplication", name: "WireFlow", url: "https://yash-ghodele.pages.dev/work/wireflow" },
@@ -230,7 +233,7 @@ export default function RootLayout({
           { "@type": "SoftwareApplication", name: "Smart CRM", url: "https://yash-ghodele.pages.dev/work/smart-crm" },
           { "@type": "SoftwareApplication", name: "Ugam Campus Projects", url: "https://yash-ghodele.pages.dev/work/ugam-campus" }
         ],
-        publishingPrinciples: "https://yash-ghodele.pages.dev/journal"
+        publishingPrinciples: "https://yash-ghodele.pages.dev/blogs"
       },
       {
         "@type": "WebSite",
@@ -241,7 +244,7 @@ export default function RootLayout({
         publisher: { "@id": "https://yash-ghodele.pages.dev/#person" },
         potentialAction: {
           "@type": "SearchAction",
-          target: "https://yash-ghodele.pages.dev/journal?q={search_term_string}",
+          target: "https://yash-ghodele.pages.dev/blogs?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       },
@@ -249,27 +252,29 @@ export default function RootLayout({
         "@type": "ItemList",
         name: "Projects & Work Portfolio",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "FuelShield - IoT Fuel Theft Detection", url: "https://yash-ghodele.pages.dev/work/fuelshield" },
-          { "@type": "ListItem", position: 2, name: "Sanjivani - AI Plant Disease Detection", url: "https://yash-ghodele.pages.dev/work/sanjivani" },
-          { "@type": "ListItem", position: 3, name: "WireFlow - Industrial Manufacturing Dashboard", url: "https://yash-ghodele.pages.dev/work/wireflow" },
-          { "@type": "ListItem", position: 4, name: "LocalMD - Offline Medical Assistant", url: "https://yash-ghodele.pages.dev/work/localmd" },
-          { "@type": "ListItem", position: 5, name: "Smart CRM & Fleet Platform", url: "https://yash-ghodele.pages.dev/work/smart-crm" }
+          { "@type": "ListItem", position: 1, name: "CampusCast - WhatsApp Digital Notice Board OS", url: "https://yash-ghodele.pages.dev/work/campuscast" },
+          { "@type": "ListItem", position: 2, name: "FuelShield - IoT Fuel Theft Detection", url: "https://yash-ghodele.pages.dev/work/fuelshield" },
+          { "@type": "ListItem", position: 3, name: "Sanjivani - AI Plant Disease Detection", url: "https://yash-ghodele.pages.dev/work/sanjivani" },
+          { "@type": "ListItem", position: 4, name: "WireFlow - Industrial Manufacturing Dashboard", url: "https://yash-ghodele.pages.dev/work/wireflow" },
+          { "@type": "ListItem", position: 5, name: "LocalMD - Offline Medical Assistant", url: "https://yash-ghodele.pages.dev/work/localmd" },
+          { "@type": "ListItem", position: 6, name: "Smart CRM & Fleet Platform", url: "https://yash-ghodele.pages.dev/work/smart-crm" }
         ]
       },
       {
         "@type": "ItemList",
-        name: "Engineering Journal & Articles",
+        name: "Engineering Blogs & Articles",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "We Are All Intellectual Omnivores", url: "https://yash-ghodele.pages.dev/journal/we-are-all-intellectual-omnivores" },
-          { "@type": "ListItem", position: 2, name: "From WhatsApp to Dashboard: The Architecture Behind CampusCast", url: "https://yash-ghodele.pages.dev/journal/whatsapp-pipelines-research" },
-          { "@type": "ListItem", position: 3, name: "Every Event Fails the Same Way", url: "https://yash-ghodele.pages.dev/journal/event-failure-patterns" },
-          { "@type": "ListItem", position: 4, name: "Analysis, Design, and Synthesis", url: "https://yash-ghodele.pages.dev/journal/analysis-design-synthesis" },
-          { "@type": "ListItem", position: 5, name: "The Day I Realized Hardware and Software Are the Same Problem", url: "https://yash-ghodele.pages.dev/journal/hardware-and-software-are-the-same-problem" },
-          { "@type": "ListItem", position: 6, name: "Building FuelShield Case Study", url: "https://yash-ghodele.pages.dev/journal/fuelshield-case-study" },
-          { "@type": "ListItem", position: 7, name: "Why Manufacturing Dashboards Fail", url: "https://yash-ghodele.pages.dev/journal/manufacturing-dashboards-fail" },
-          { "@type": "ListItem", position: 8, name: "Building Student Projects at Scale", url: "https://yash-ghodele.pages.dev/journal/student-projects-at-scale" },
-          { "@type": "ListItem", position: 9, name: "Why We Obsess Over 14ms Latency", url: "https://yash-ghodele.pages.dev/journal/obsessing-over-latency" },
-          { "@type": "ListItem", position: 10, name: "Aurangabad's Manufacturing Opportunity", url: "https://yash-ghodele.pages.dev/journal/aurangabad-manufacturing-opportunity" }
+          { "@type": "ListItem", position: 1, name: "Shipping CampusCast: Zero-Hardware Smart TVs, Deterministic Parsing, and 1.25s Latency", url: "https://yash-ghodele.pages.dev/blogs/shipping-campuscast-in-production" },
+          { "@type": "ListItem", position: 2, name: "We Are All Intellectual Omnivores", url: "https://yash-ghodele.pages.dev/blogs/we-are-all-intellectual-omnivores" },
+          { "@type": "ListItem", position: 3, name: "From WhatsApp to Dashboard: The Architecture Behind CampusCast", url: "https://yash-ghodele.pages.dev/blogs/whatsapp-pipelines-research" },
+          { "@type": "ListItem", position: 4, name: "Every Event Fails the Same Way", url: "https://yash-ghodele.pages.dev/blogs/event-failure-patterns" },
+          { "@type": "ListItem", position: 5, name: "Analysis, Design, and Synthesis", url: "https://yash-ghodele.pages.dev/blogs/analysis-design-synthesis" },
+          { "@type": "ListItem", position: 6, name: "The Day I Realized Hardware and Software Are the Same Problem", url: "https://yash-ghodele.pages.dev/blogs/hardware-and-software-are-the-same-problem" },
+          { "@type": "ListItem", position: 7, name: "Building FuelShield Case Study", url: "https://yash-ghodele.pages.dev/blogs/fuelshield-case-study" },
+          { "@type": "ListItem", position: 8, name: "Why Manufacturing Dashboards Fail", url: "https://yash-ghodele.pages.dev/blogs/manufacturing-dashboards-fail" },
+          { "@type": "ListItem", position: 9, name: "Building Student Projects at Scale", url: "https://yash-ghodele.pages.dev/blogs/student-projects-at-scale" },
+          { "@type": "ListItem", position: 10, name: "Why We Obsess Over 14ms Latency", url: "https://yash-ghodele.pages.dev/blogs/obsessing-over-latency" },
+          { "@type": "ListItem", position: 11, name: "Aurangabad's Manufacturing Opportunity", url: "https://yash-ghodele.pages.dev/blogs/aurangabad-manufacturing-opportunity" }
         ]
       },
       {
